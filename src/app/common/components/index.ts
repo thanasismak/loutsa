@@ -6,3 +6,8 @@ export * from './select/select.component';
 export * from './svg-icon/svg-icon.component';
 export * from './tiles/tiles.component';
 export * from './header/header.component';
+export * from './hero/hero.component';
+export * from './cards-grid/cards-grid.component';
+export * from './story/story.component';
+export * from './mission-values/mission-values.component';
+export * from './stats/stats.component';

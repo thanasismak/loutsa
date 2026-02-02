@@ -1,21 +1,39 @@
-<!-- About Section -->
-<app-section [sectionClass]="'about-section'">
-  <div class="about-content">
-    <h2>{{ 'about.title' | translate }}</h2>
-    <p class="description">{{ 'about.description' | translate }}</p>
-    
-    <div class="divider"></div>
-    
-    <h3>{{ 'about.mission' | translate }}</h3>
-    <p class="mission-text">{{ 'about.mission_text' | translate }}</p>
-  </div>
-</app-section>
+<!-- Hero Banner -->
+<app-hero
+  titleKey="about.why_choose"
+  subtitleKey="about.why_choose_desc">
+</app-hero>
 
-<!-- Why Camping Loutsa Section -->
-<app-section [title]="'home.why_camping_loutsa' | translate" [sectionClass]="'highlight'">
-  <app-gallery 
-    [itemsInput]="whyItems"
-    [animationType]="'farToClose'"
-    [columns]="3">
-  </app-gallery>
-</app-section>
+<!-- Why Choose Cards -->
+<app-cards-grid
+  titleKey="about.why_title"
+  [itemsInput]="whyCards()"
+  [columns]="4">
+</app-cards-grid>
+
+<!-- Story Section -->
+<app-story
+  titleKey="about.story_title"
+  introKey="about.story_intro"
+  detail1Key="about.story_detail_1"
+  detail2Key="about.story_detail_2"
+  imageUrl="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&h=400&fit=crop">
+</app-story>
+
+<!-- Mission & Values -->
+<app-mission-values
+  missionTitleKey="about.mission_title"
+  missionTextKey="about.mission_text"
+  valuesTitleKey="about.values_title"
+  value1Key="about.value_1"
+  value2Key="about.value_2"
+  value3Key="about.value_3"
+  value4Key="about.value_4">
+</app-mission-values>
+
+<!-- Stats Section -->
+<app-stats
+  titleKey="about.stats_title"
+  [statsInput]="stats()">
+</app-stats>
+
