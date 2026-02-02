@@ -1,5 +1,20 @@
 /* SCSS Variables - Breakpoints, Colors, Spacing */
 
+/* ===== THEME PALETTE (Warm Traditional) ===== */
+$theme-primary: #0ea5a4;        // Teal
+$theme-primary-light: #14b8a6;  // Light teal
+$theme-secondary: #5a3a28;      // Deep brown
+$theme-secondary-light: #6d4536; // Brown
+$theme-accent: #d4af37;         // Gold
+$theme-light: #faf5f0;          // Cream
+$theme-lighter: #fff9f5;        // Very light cream
+
+/* ===== THEME GRADIENTS ===== */
+$gradient-primary: linear-gradient(135deg, $theme-primary 0%, $theme-primary-light 100%);
+$gradient-secondary: linear-gradient(135deg, $theme-secondary 0%, $theme-secondary-light 100%);
+$gradient-light: linear-gradient(135deg, $theme-light 0%, $theme-lighter 100%);
+$gradient-card: linear-gradient(135deg, $theme-light 0%, #f0ebe5 100%);
+
 /* ===== BREAKPOINTS ===== */
 $breakpoint-xs: 320px;    // Extra small devices (old phones)
 $breakpoint-sm: 480px;    // Small devices (phones)
@@ -9,14 +24,14 @@ $breakpoint-xl: 1280px;   // Desktops
 $breakpoint-2xl: 1536px;  // Large screens
 
 /* ===== COLORS ===== */
-$color-primary: #0ea5a4;
-$color-primary-light: #14b8a6;
+$color-primary: $theme-primary;
+$color-primary-light: $theme-primary-light;
 $color-primary-very-light: #f0fdfa;
 $color-primary-dark: #0d9488;
 
 $color-white: #ffffff;
-$color-light: #f0fdfa;
-$color-lighter: #f9fafb;
+$color-light: $theme-light;
+$color-lighter: $theme-lighter;
 
 $color-dark: #1f2937;
 $color-gray: #6b7280;

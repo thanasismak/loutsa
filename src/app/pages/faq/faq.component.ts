@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { SectionComponent } from '@app/common/components';
 
 @Component({
   selector: 'app-faq',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, SectionComponent],
   template: `
-    <section class="card">
-      <h2>{{ 'faq.title' | translate }}</h2>
+    <app-section [title]="'faq.title' | translate">
       <div class="faq-list">
         <div class="faq-item">
           <h3>{{ 'faq.q1' | translate }}</h3>
@@ -27,20 +27,9 @@ import { TranslateModule } from '@ngx-translate/core';
           <p>{{ 'faq.a4' | translate }}</p>
         </div>
       </div>
-    </section>
+    </app-section>
   `,
   styles: [`
-    .card {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 8px rgba(2, 6, 23, 0.06);
-    }
-
-    h2 {
-      color: var(--accent, #0ea5a4);
-    }
-
     .faq-list {
       margin-top: 1.5rem;
     }

@@ -1,53 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { SectionComponent, TilesComponent } from '@app/common/components';
+
+interface PriceCard {
+  titleKey: string;
+  price: string;
+  descKey: string;
+  featured?: boolean;
+}
 
 @Component({
   selector: 'app-pricing',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, SectionComponent, TilesComponent],
   template: `
-    <section class="pricing-section">
-      <h2>{{ 'pricing.title' | translate }}</h2>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>{{ 'pricing.low_season' | translate }}</h3>
-          <p class="price">€15/night</p>
-          <p>{{ 'pricing.low_desc' | translate }}</p>
+    <app-section [title]="'pricing.title' | translate">
+      <app-tiles [gridClass]="'cols-3'">
+        <div class="price-card" *ngFor="let card of pricingCards()" [class.featured]="card.featured">
+          <h3>{{ card.titleKey | translate }}</h3>
+          <p class="price">{{ card.price }}</p>
+          <p>{{ card.descKey | translate }}</p>
         </div>
-        <div class="price-card featured">
-          <h3>{{ 'pricing.mid_season' | translate }}</h3>
-          <p class="price">€25/night</p>
-          <p>{{ 'pricing.mid_desc' | translate }}</p>
-        </div>
-        <div class="price-card">
-          <h3>{{ 'pricing.high_season' | translate }}</h3>
-          <p class="price">€35/night</p>
-          <p>{{ 'pricing.high_desc' | translate }}</p>
-        </div>
-      </div>
-    </section>
+      </app-tiles>
+    </app-section>
   `,
   styles: [`
-    .pricing-section {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-    }
-
-    h2 {
-      text-align: center;
-      color: var(--accent, #0ea5a4);
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
     .price-card {
+      background: white;
       border: 2px solid #e2e8f0;
       padding: 1.5rem;
       border-radius: 8px;
@@ -76,7 +56,27 @@ import { TranslateModule } from '@ngx-translate/core';
     .price-card p {
       color: #64748b;
       line-height: 1.5;
+      margin: 0.5rem 0;
     }
   `]
 })
-export class PricingComponent {}
+export class PricingComponent {
+  pricingCards = signal<PriceCard[]>([
+    {
+      titleKey: 'pricing.low_season',
+      price: '€15/night',
+      descKey: 'pricing.low_desc'
+    },
+    {
+      titleKey: 'pricing.mid_season',
+      price: '€25/night',
+      descKey: 'pricing.mid_desc',
+      featured: true
+    },
+    {
+      titleKey: 'pricing.high_season',
+      price: '€35/night',
+      descKey: 'pricing.high_desc'
+    }
+  ]);
+}

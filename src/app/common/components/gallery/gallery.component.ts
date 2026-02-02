@@ -1,4 +1,4 @@
-import { Component, input, computed, Signal, isSignal, effect } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -21,23 +21,10 @@ export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'scrollCloser
 })
 export class GalleryComponent {
   // Items to display - can be array or signal
-  itemsInput = input<GalleryItem[] | Signal<GalleryItem[]>>([]);
+  itemsInput = input<GalleryItem[]>([]);
   
-  // Convert items input to always return array
-  items = computed(() => {
-    const input = this.itemsInput();
-    if (!input) return [];
-    if (Array.isArray(input)) {
-      console.log('[Gallery] Items (array):', input);
-      return input;
-    }
-    if (isSignal(input)) {
-      const unwrapped = input();
-      console.log('[Gallery] Items (from signal):', unwrapped);
-      return unwrapped;
-    }
-    return [];
-  });
+  // Computed items - simple pass-through
+  items = computed(() => this.itemsInput() ?? []);
   
   // Grid columns: 1, 2, or 3
   columns = input<1 | 2 | 3>(3);
@@ -50,7 +37,7 @@ export class GalleryComponent {
   
   // Computed: whether items have animations
   hasMotionedItems = computed(() => this.animationType() !== 'none');
-  
+
   // Easing function: easeOutCubic for smooth deceleration
   private easeOutCubic(t: number): number {
     const x = 1 - t;
@@ -60,7 +47,7 @@ export class GalleryComponent {
   // Compute transform for scroll-based animations
   getTransform(index: number): string {
     const anim = this.animationType();
-    if (anim !== 'scrollCloser') return 'none';
+    if (anim !== 'scrollCloser') return '';
     
     const itemCount = this.items().length;
     const scrollPos = this.scrollPosition();
@@ -102,6 +89,6 @@ export class GalleryComponent {
       return `translateX(${currentOffset}px)`;
     }
     
-    return 'none';
+    return '';
   }
 }

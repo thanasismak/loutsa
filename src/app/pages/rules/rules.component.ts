@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { SectionComponent } from '@app/common/components';
 
 @Component({
   selector: 'app-rules',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, SectionComponent],
   template: `
-    <section class="card">
-      <h2>{{ 'rules.title' | translate }}</h2>
+    <app-section [title]="'rules.title' | translate">
       <ul class="rules-list">
         <li>{{ 'rules.quiet_hours' | translate }}</li>
         <li>{{ 'rules.pets' | translate }}</li>
@@ -17,20 +17,9 @@ import { TranslateModule } from '@ngx-translate/core';
         <li>{{ 'rules.parking' | translate }}</li>
         <li>{{ 'rules.safety' | translate }}</li>
       </ul>
-    </section>
+    </app-section>
   `,
   styles: [`
-    .card {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 8px rgba(2, 6, 23, 0.06);
-    }
-
-    h2 {
-      color: var(--accent, #0ea5a4);
-    }
-
     .rules-list {
       list-style: none;
       padding: 0;

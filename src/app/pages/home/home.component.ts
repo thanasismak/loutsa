@@ -7,10 +7,13 @@ import {
   SectionComponent,
   TilesComponent,
   GalleryComponent,
-  CarouselComponent
+  CarouselComponent,
+  HeroComponent,
+  FeaturedComponent
 } from '@app/common/components';
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
-import { HOME_NAVIGATION_CARDS, HOME_FEATURE_ITEMS, HOME_TESTIMONIALS } from './home.constants';
+import { FeaturedContent } from '@app/common/components/featured/featured.component';
+import { HOME_NAVIGATION_CARDS, HOME_FEATURE_ITEMS, HOME_TESTIMONIALS, HOME_FEATURED_CONTENT } from './home.constants';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +26,9 @@ import { HOME_NAVIGATION_CARDS, HOME_FEATURE_ITEMS, HOME_TESTIMONIALS } from './
     SectionComponent,
     TilesComponent,
     GalleryComponent,
-    CarouselComponent
+    CarouselComponent,
+    HeroComponent,
+    FeaturedComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
@@ -34,6 +39,7 @@ export class HomeComponent implements OnInit {
   
   scrollPosition = signal(0);
   navigationCards = HOME_NAVIGATION_CARDS;
+  featuredContent = signal<FeaturedContent>(HOME_FEATURED_CONTENT);
   featureItems = signal<GalleryItem[]>(HOME_FEATURE_ITEMS);
   testimonials = signal(HOME_TESTIMONIALS);
 
@@ -55,4 +61,3 @@ export class HomeComponent implements OnInit {
     // Component initialization if needed
   }
 }
-

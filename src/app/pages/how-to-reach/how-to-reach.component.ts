@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { SectionComponent } from '@app/common/components';
 
 @Component({
   selector: 'app-how-to-reach',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, SectionComponent],
   template: `
-    <section class="card">
-      <h2>{{ 'directions.title' | translate }}</h2>
+    <app-section [title]="'directions.title' | translate">
       <div class="directions-grid">
         <div class="directions-content">
           <h3>{{ 'directions.address' | translate }}</h3>
@@ -25,17 +25,10 @@ import { TranslateModule } from '@ngx-translate/core';
           </div>
         </div>
       </div>
-    </section>
+    </app-section>
   `,
   styles: [`
-    .card {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 8px rgba(2, 6, 23, 0.06);
-    }
-
-    h2, h3 {
+    h3 {
       color: var(--accent, #0ea5a4);
     }
 

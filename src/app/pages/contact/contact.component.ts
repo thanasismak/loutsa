@@ -2,14 +2,14 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { SectionComponent } from '@app/common/components';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule],
+  imports: [CommonModule, FormsModule, TranslateModule, SectionComponent],
   template: `
-    <section class="card">
-      <h2>{{ 'contact.title' | translate }}</h2>
+    <app-section [title]="'contact.title' | translate">
       <div class="contact-grid">
         <div class="contact-info">
           <h3>{{ 'contact.info' | translate }}</h3>
@@ -33,20 +33,9 @@ import { TranslateModule } from '@ngx-translate/core';
           <button type="submit">{{ 'contact.send' | translate }}</button>
         </form>
       </div>
-    </section>
+    </app-section>
   `,
   styles: [`
-    .card {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 8px rgba(2, 6, 23, 0.06);
-    }
-
-    h2 {
-      color: var(--accent, #0ea5a4);
-    }
-
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;

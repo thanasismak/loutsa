@@ -1,9 +1,10 @@
 <div class="gallery-grid" 
+     #galleryContainer
      [ngClass]="animationType()"
-     [style.--gallery-columns]="columns()">
+     [ngStyle]="{'--gallery-columns': columns()}"
+     [style.grid-template-columns]="'repeat(' + columns() + ', 1fr)'">
   @for (item of items(); track $index) {
     <div class="gallery-item" 
-         [ngClass]="animationType()"
          [style.animation-delay]="hasMotionedItems() ? ($index * 100) + 'ms' : '0ms'"
          [style.transform]="getTransform($index)">
       

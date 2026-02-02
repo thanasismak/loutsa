@@ -1,62 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { SectionComponent, TilesComponent } from '@app/common/components';
+
+interface Facility {
+  icon: string;
+  titleKey: string;
+  descKey: string;
+}
 
 @Component({
   selector: 'app-facilities',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, SectionComponent, TilesComponent],
   template: `
-    <section class="card">
-      <h2>{{ 'facilities.title' | translate }}</h2>
-      <div class="facilities-grid">
-        <div class="facility-item">
-          <div class="icon">💧</div>
-          <h3>{{ 'facilities.water' | translate }}</h3>
-          <p>{{ 'facilities.water_desc' | translate }}</p>
+    <app-section [title]="'facilities.title' | translate">
+      <app-tiles [gridClass]="'cols-4'">
+        <div class="facility-item" *ngFor="let facility of facilities()">
+          <div class="icon">{{ facility.icon }}</div>
+          <h3>{{ facility.titleKey | translate }}</h3>
+          <p>{{ facility.descKey | translate }}</p>
         </div>
-        <div class="facility-item">
-          <div class="icon">🚿</div>
-          <h3>{{ 'facilities.showers' | translate }}</h3>
-          <p>{{ 'facilities.showers_desc' | translate }}</p>
-        </div>
-        <div class="facility-item">
-          <div class="icon">⚡</div>
-          <h3>{{ 'facilities.electricity' | translate }}</h3>
-          <p>{{ 'facilities.electricity_desc' | translate }}</p>
-        </div>
-        <div class="facility-item">
-          <div class="icon">📶</div>
-          <h3>{{ 'facilities.wifi' | translate }}</h3>
-          <p>{{ 'facilities.wifi_desc' | translate }}</p>
-        </div>
-      </div>
-    </section>
+      </app-tiles>
+    </app-section>
   `,
   styles: [`
-    .card {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 8px rgba(2, 6, 23, 0.06);
-    }
-
-    h2 {
-      color: var(--accent, #0ea5a4);
-    }
-
-    .facilities-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
     .facility-item {
       text-align: center;
       padding: 1.5rem;
       background: #f8fafc;
       border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .facility-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(14, 165, 164, 0.15);
     }
 
     .icon {
@@ -76,4 +55,11 @@ import { TranslateModule } from '@ngx-translate/core';
     }
   `]
 })
-export class FacilitiesComponent {}
+export class FacilitiesComponent {
+  facilities = signal<Facility[]>([
+    { icon: '💧', titleKey: 'facilities.water', descKey: 'facilities.water_desc' },
+    { icon: '🚿', titleKey: 'facilities.showers', descKey: 'facilities.showers_desc' },
+    { icon: '⚡', titleKey: 'facilities.electricity', descKey: 'facilities.electricity_desc' },
+    { icon: '📶', titleKey: 'facilities.wifi', descKey: 'facilities.wifi_desc' }
+  ]);
+}

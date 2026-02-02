@@ -72,12 +72,18 @@
 }
 
 /* Scroll Closer: Items move closer/farther based on scroll position */
-.scrollCloser {
+.gallery-grid.scrollCloser {
+  overflow: visible;
+  align-items: center;
+  
   .gallery-item {
-    transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
     will-change: transform;
     backface-visibility: hidden;
     perspective: 1000px;
+    opacity: 1;
+    visibility: visible;
+    display: block;
   }
 }
 

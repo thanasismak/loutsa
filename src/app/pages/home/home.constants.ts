@@ -1,4 +1,13 @@
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
+import { FeaturedContent } from '@app/common/components/featured/featured.component';
+
+export const HOME_FEATURED_CONTENT: FeaturedContent = {
+  titleKey: 'home.feature_nature',
+  descriptionKey: 'home.feature_nature_desc',
+  imageUrl: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=500&fit=crop',
+  imageAlt: 'Camping View',
+  variant: 'grid-animated'
+};
 
 export const HOME_NAVIGATION_CARDS = [
   { title: 'app.nav.about', description: 'home.about_desc', link: '/about', arrow: true },

@@ -1,5 +1,72 @@
 /* Global Utility Classes */
 
+/* ===== THEME COLOR UTILITIES ===== */
+.bg-primary {
+  background-color: $theme-primary;
+}
+
+.bg-secondary {
+  background-color: $theme-secondary;
+}
+
+.bg-light {
+  background-color: $theme-light;
+}
+
+.bg-gradient-primary {
+  background: $gradient-primary;
+}
+
+.bg-gradient-secondary {
+  background: $gradient-secondary;
+}
+
+.bg-gradient-light {
+  background: $gradient-light;
+}
+
+.text-primary {
+  color: $theme-primary;
+}
+
+.text-secondary {
+  color: $theme-secondary;
+}
+
+.text-accent {
+  color: $theme-accent;
+}
+
+.text-light {
+  color: $theme-light;
+}
+
+/* ===== BORDER UTILITIES ===== */
+.border-primary {
+  border-color: $theme-primary;
+}
+
+.border-left-primary {
+  border-left: 4px solid $theme-primary;
+}
+
+.border-top-primary {
+  border-top: 4px solid $theme-primary;
+}
+
+.border-top-accent {
+  border-top: 4px solid $theme-accent;
+}
+
+/* ===== SHADOW UTILITIES ===== */
+.shadow-primary {
+  box-shadow: 0 4px 20px rgba($theme-primary, 0.1);
+}
+
+.shadow-secondary {
+  box-shadow: 0 4px 20px rgba($theme-secondary, 0.1);
+}
+
 /* Animation Utilities */
 .fade-in {
   animation: fadeIn 0.8s ease-out forwards;
