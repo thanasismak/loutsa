@@ -1,0 +1,251 @@
+/* SCSS Mixins - Responsive, Utility, and Helper Mixins */
+
+/* ===== RESPONSIVE BREAKPOINT MIXINS ===== */
+
+/// Mobile-first responsive mixin
+/// @param {String} $breakpoint - Breakpoint name or custom value
+/// @example @include respond-to('md') { ... }
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'xs' {
+    @media (min-width: $breakpoint-xs) { @content; }
+  }
+  @else if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @else if $breakpoint == 'xl' {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+  @else if $breakpoint == '2xl' {
+    @media (min-width: $breakpoint-2xl) { @content; }
+  }
+  @else {
+    @media (min-width: $breakpoint) { @content; }
+  }
+}
+
+/// Desktop-first responsive mixin (downwards)
+/// @param {String} $breakpoint - Breakpoint name
+@mixin respond-below($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: $breakpoint-sm - 1px) { @content; }
+  }
+  @else if $breakpoint == 'md' {
+    @media (max-width: $breakpoint-md - 1px) { @content; }
+  }
+  @else if $breakpoint == 'lg' {
+    @media (max-width: $breakpoint-lg - 1px) { @content; }
+  }
+  @else if $breakpoint == 'xl' {
+    @media (max-width: $breakpoint-xl - 1px) { @content; }
+  }
+  @else if $breakpoint == '2xl' {
+    @media (max-width: $breakpoint-2xl - 1px) { @content; }
+  }
+  @else {
+    @media (max-width: $breakpoint - 1px) { @content; }
+  }
+}
+
+/* ===== FLUID SCALING MIXINS ===== */
+
+/// Fluid font size using clamp
+/// @param {Number} $mobile - Font size on mobile
+/// @param {Number} $desktop - Font size on desktop
+@mixin fluid-font($mobile, $desktop) {
+  font-size: clamp($mobile, #{(100vw - $breakpoint-xs) * ($desktop - $mobile) / ($breakpoint-2xl - $breakpoint-xs) + $mobile}, $desktop);
+}
+
+/// Fluid spacing using clamp
+/// @param {Number} $mobile - Spacing on mobile
+/// @param {Number} $desktop - Spacing on desktop
+@mixin fluid-spacing($mobile, $desktop) {
+  padding: clamp($mobile, #{(100vw - $breakpoint-xs) * ($desktop - $mobile) / ($breakpoint-2xl - $breakpoint-xs) + $mobile}, $desktop);
+}
+
+/// Fluid gap using clamp
+/// @param {Number} $mobile - Gap on mobile
+/// @param {Number} $desktop - Gap on desktop
+@mixin fluid-gap($mobile, $desktop) {
+  gap: clamp($mobile, #{(100vw - $breakpoint-xs) * ($desktop - $mobile) / ($breakpoint-2xl - $breakpoint-xs) + $mobile}, $desktop);
+}
+
+/* ===== FLEX & GRID MIXINS ===== */
+
+/// Flexbox center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Flexbox column center
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Responsive grid with auto-fit
+/// @param {Number} $min - Minimum item width
+/// @param {Number} $gap - Gap between items
+@mixin grid-auto-fit($min: 250px, $gap: 1.5rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+  gap: $gap;
+}
+
+/// Responsive grid with auto-fill
+@mixin grid-auto-fill($min: 250px, $gap: 1.5rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min, 1fr));
+  gap: $gap;
+}
+
+/* ===== TEXT & TYPOGRAPHY MIXINS ===== */
+
+/// Text truncate
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Multi-line text truncate
+/// @param {Number} $lines - Number of lines to show
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/// Responsive text
+/// @param {Number} $mobile - Mobile size
+/// @param {Number} $tablet - Tablet size
+/// @param {Number} $desktop - Desktop size
+@mixin responsive-text($mobile, $tablet, $desktop) {
+  font-size: $mobile;
+  
+  @include respond-to('md') {
+    font-size: $tablet;
+  }
+  
+  @include respond-to('lg') {
+    font-size: $desktop;
+  }
+}
+
+/* ===== SHADOW & ELEVATION MIXINS ===== */
+
+/// Material Design elevation
+/// @param {Number} $level - Elevation level 1-24
+@mixin elevation($level: 1) {
+  @if $level == 1 {
+    box-shadow: $shadow-sm;
+  }
+  @else if $level == 2 {
+    box-shadow: $shadow-md;
+  }
+  @else if $level == 3 {
+    box-shadow: $shadow-lg;
+  }
+  @else if $level == 4 {
+    box-shadow: $shadow-xl;
+  }
+  @else if $level == 5 {
+    box-shadow: $shadow-2xl;
+  }
+}
+
+/* ===== HOVER & INTERACTION MIXINS ===== */
+
+/// Hover effect with transition
+@mixin hover-lift($distance: 6px) {
+  transition: all $transition-base;
+  
+  &:hover {
+    transform: translateY(-$distance);
+    box-shadow: $shadow-xl;
+  }
+}
+
+/// Interactive element with focus states
+@mixin interactive {
+  cursor: pointer;
+  transition: all $transition-base;
+  
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ===== CARD & CONTAINER MIXINS ===== */
+
+/// Card base styles
+@mixin card {
+  background: $color-white;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  transition: all $transition-base;
+  
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+/// Responsive container with max-width
+@mixin container($max-width: 1200px, $padding: 1.5rem) {
+  width: 100%;
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+/* ===== ACCESSIBILITY MIXINS ===== */
+
+/// Visually hidden but accessible to screen readers
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/// Disable pointer events
+@mixin disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+/// Transition helper
+/// @param {String} $property - CSS property to transition
+/// @param {String} $duration - Duration (from $transition-* variables)
+/// @param {String} $timing - Timing function
+@mixin transition($property: all, $duration: $transition-base, $timing: ease-in-out) {
+  transition: $property $duration $timing;
+}

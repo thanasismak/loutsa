@@ -1,0 +1,41 @@
+<header class="site-header">
+  <div class="container header-content">
+    <!-- Logo on Left -->
+    <div class="logo-section">
+      <h1 class="site-title">{{ 'app.nav.logo' | translate }} {{ title() }}</h1>
+    </div>
+    
+    <!-- Navigation Menu (Desktop: horizontal, Mobile: hidden) -->
+    <nav class="nav" [class.open]="menuOpen()">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link" (click)="closeMenu()">
+        {{ 'app.nav.home' | translate }}
+      </a>
+      <a routerLink="/about" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.about' | translate }}</a>
+      <a routerLink="/gallery" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.gallery' | translate }}</a>
+      <a routerLink="/facilities" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.facilities' | translate }}</a>
+      <a routerLink="/pricing" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.pricing' | translate }}</a>
+      <a routerLink="/things-to-do" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.activities' | translate }}</a>
+      <a routerLink="/contact" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.contact' | translate }}</a>
+    </nav>
+    
+    <!-- Language Selector and Hamburger (Right Side) -->
+    <div class="header-right">
+      <!-- Language Selector in Header -->
+      <app-select 
+        class="lang-selector-header"
+        [options]="languageOptions()"
+        [value]="currentLang()"
+        placeholder="Language"
+        ariaLabel="Select Language"
+        (valueChange)="switchLang($event)">
+      </app-select>
+
+      <!-- Hamburger Menu Button on Right -->
+      <button class="hamburger" [class.open]="menuOpen()" (click)="toggleMenu()" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,66 @@
+<div class="carousel-container">
+  <!-- Carousel Content -->
+  <div class="carousel-content">
+    <!-- Single item mode -->
+    @if (visibleCount === 1) {
+      @if (currentItem(); as item) {
+        <div class="carousel-slide" [attr.data-index]="currentIndex()">
+          <ng-content></ng-content>
+        </div>
+      }
+    }
+    <!-- Multi-item grid mode - render only visible items -->
+    @if (visibleCount > 1) {
+      <div class="testimonials-carousel-grid">
+        @for (item of visibleItems(); track item['name'] || $index) {
+          <div class="testimonial-card-compact">
+            <div class="stars">
+              @for (star of [1,2,3,4,5]; track star) {
+                <span class="star" [class.filled]="star <= (item['rating'] || 0)">★</span>
+              }
+            </div>
+            <p class="testimonial-text">{{ (item['text'] || '') | translate }}</p>
+            <div class="testimonial-author">
+              <strong>{{ (item['name'] || '') | translate }}</strong>
+              <span class="testimonial-title">{{ (item['title'] || '') | translate }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Navigation Buttons -->
+  @if (showNavigation && totalItems() > 1) {
+    <div class="carousel-nav">
+      <button
+        class="carousel-btn carousel-btn-prev"
+        (click)="previous()"
+        aria-label="Previous slide"
+      >
+        ◀
+      </button>
+      <button
+        class="carousel-btn carousel-btn-next"
+        (click)="next()"
+        aria-label="Next slide"
+      >
+        ▶
+      </button>
+    </div>
+  }
+
+  <!-- Indicators -->
+  @if (showIndicators && totalItems() > 1) {
+    <div class="carousel-indicators">
+      @for (index of indicatorIndices(); track index) {
+        <button
+          class="indicator"
+          [class.active]="index === currentIndex()"
+          (click)="goToSlide(index)"
+          [attr.aria-label]="'Go to slide ' + (index + 1)"
+        ></button>
+      }
+    </div>
+  }
+</div>

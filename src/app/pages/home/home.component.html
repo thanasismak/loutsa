@@ -1,0 +1,55 @@
+<!-- Hero Section -->
+<section class="hero" [style.transform]="'translateY(' + scrollPosition() * 0.5 + 'px)'">
+  <div class="hero-overlay"></div>
+  <div class="hero-content fade-in">
+    <h1>{{ 'home.hero' | translate }}</h1>
+    <p>{{ 'home.hero_subtitle' | translate }}</p>
+    <a routerLink="/pricing" class="cta-button pulse">{{ 'home.cta' | translate }}</a>
+  </div>
+</section>
+
+<!-- Featured Section -->
+<app-section [sectionClass]="'featured'">
+  <div class="featured-section">
+    <div class="featured-image-container" [style.transform]="'rotate(' + (scrollPosition() * 0.02) + 'deg) scale(' + (1 + scrollPosition() * 0.0001) + ')'">
+      <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=500&fit=crop" alt="Camping View" class="featured-image slide-in-left">
+      <div class="image-overlay"></div>
+    </div>
+    <div class="featured-text slide-in-right">
+      <h2>{{ 'home.feature_nature' | translate }}</h2>
+      <p>{{ 'home.feature_nature_desc' | translate }}</p>
+    </div>
+  </div>
+</app-section>
+
+<!-- Navigation Cards Section -->
+<app-section [title]="'home.explore' | translate">
+  <app-tiles [gridClass]="'cols-3'">
+    <app-card *ngFor="let card of navigationCards; let i = index" 
+              [config]="card"
+              [style.animation-delay]="(i * 100) + 'ms'">
+    </app-card>
+  </app-tiles>
+</app-section>
+
+<!-- Features Section - Discover Nearby -->
+<app-section [title]="'home.discover_nearby' | translate">
+  <app-gallery 
+    [itemsInput]="featureItems"
+    [animationType]="'scrollCloser'"
+    [scrollPosition]="scrollPosition()"
+    [columns]="3">
+  </app-gallery>
+</app-section>
+
+<!-- Highlights Section - Testimonials (3 per view, auto-rotate) -->
+<app-section [title]="'home.testimonials' | translate" [sectionClass]="'highlight testimonials-compact'">
+  <app-carousel 
+    [items]="testimonials()"
+    [autoRotate]="true"
+    [rotationInterval]="5000"
+    [visibleCount]="3"
+    [showIndicators]="false"
+    [showNavigation]="false">
+  </app-carousel>
+</app-section>

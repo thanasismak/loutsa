@@ -1,0 +1,67 @@
+/* Tiles Component Styles - Responsive Grid */
+
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.tiles-grid {
+  display: grid;
+  gap: clamp(1rem, 4vw, 1.5rem);
+
+  /* 3-column grid with auto-fit */
+  &.cols-3 {
+    @include grid-auto-fit(250px, clamp(1rem, 4vw, 1.5rem));
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    @include respond-to('lg') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include respond-below('md') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-below('sm') {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  /* 2-column grid */
+  &.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 4vw, 1.5rem);
+
+    @include respond-to('md') {
+      gap: $spacing-lg;
+    }
+
+    @include respond-below('md') {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  /* 4-column grid */
+  &.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 4vw, 1.5rem);
+
+    @include respond-to('lg') {
+      grid-template-columns: repeat(4, 1fr);
+      gap: $spacing-lg;
+    }
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-md;
+    }
+
+    @include respond-below('md') {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+}

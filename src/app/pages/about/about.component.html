@@ -1,0 +1,21 @@
+<!-- About Section -->
+<app-section [sectionClass]="'about-section'">
+  <div class="about-content">
+    <h2>{{ 'about.title' | translate }}</h2>
+    <p class="description">{{ 'about.description' | translate }}</p>
+    
+    <div class="divider"></div>
+    
+    <h3>{{ 'about.mission' | translate }}</h3>
+    <p class="mission-text">{{ 'about.mission_text' | translate }}</p>
+  </div>
+</app-section>
+
+<!-- Why Camping Loutsa Section -->
+<app-section [title]="'home.why_camping_loutsa' | translate" [sectionClass]="'highlight'">
+  <app-gallery 
+    [itemsInput]="whyItems"
+    [animationType]="'farToClose'"
+    [columns]="3">
+  </app-gallery>
+</app-section>

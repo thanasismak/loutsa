@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>{{ 'app.nav.logo' | translate }} Camping Loutsa</h3>
+      <p>{{ 'footer.location' | translate }}</p>
+      <p>📞 {{ 'footer.phone' | translate }}</p>
+      <p>✉️ {{ 'footer.email' | translate }}</p>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a routerLink="/about">{{ 'app.nav.about' | translate }}</a></li>
+        <li><a routerLink="/facilities">{{ 'app.nav.facilities' | translate }}</a></li>
+        <li><a routerLink="/pricing">{{ 'app.nav.pricing' | translate }}</a></li>
+        <li><a routerLink="/contact">{{ 'app.nav.contact' | translate }}</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" class="social-link">Facebook</a>
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">Twitter</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Camping Thines - {{ 'footer.tagline' | translate }}</p>
+  </div>
+</footer>

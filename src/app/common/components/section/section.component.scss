@@ -1,0 +1,94 @@
+/* Section Component Styles - Responsive */
+
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.section {
+  padding: clamp(2rem, 8vw, 4rem) 0;
+  
+  &.featured {
+    background: linear-gradient(135deg, $color-primary-very-light 0%, $color-white 100%);
+  }
+
+  &.dark {
+    background: $color-gray-900;
+    color: $color-gray-300;
+  }
+
+  &.highlight {
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+    color: $color-white;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 6vw, 3rem);
+}
+
+.section-title {
+  @include responsive-text($font-size-2xl, $font-size-4xl, $font-size-5xl);
+  margin: 0 0 clamp(0.75rem, 2vw, 1rem) 0;
+  color: $color-primary;
+  font-weight: 700;
+
+  .section.dark & {
+    color: $color-cyan-500;
+  }
+
+  .section.highlight & {
+    color: $color-white;
+  }
+}
+
+.section-subtitle {
+  @include responsive-text($font-size-sm, $font-size-base, $font-size-lg);
+  color: $color-gray-muted;
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.6;
+
+  .section.dark & {
+    color: $color-gray-300;
+  }
+
+  .section.highlight & {
+    color: rgba($color-white, 0.9);
+  }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+
+@include respond-to('md') {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@include respond-below('sm') {
+  .section {
+    padding: clamp(1.5rem, 5vw, 2rem) 0;
+  }
+
+  .container {
+    padding: 0 $spacing-md;
+  }
+
+  .section-header {
+    margin-bottom: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .section-title {
+    margin-bottom: $spacing-md;
+  }
+}

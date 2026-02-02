@@ -1,0 +1,40 @@
+<div class="gallery-grid" 
+     [ngClass]="animationType()"
+     [style.--gallery-columns]="columns()">
+  @for (item of items(); track $index) {
+    <div class="gallery-item" 
+         [ngClass]="animationType()"
+         [style.animation-delay]="hasMotionedItems() ? ($index * 100) + 'ms' : '0ms'"
+         [style.transform]="getTransform($index)">
+      
+      <!-- Image Card: Image + Title + Description -->
+      @if (item.src || item.image) {
+        <div class="image-card">
+          <div class="gallery-image-wrapper">
+            <img [src]="item.src || item.image" 
+                 [alt]="item.alt || item.title" 
+                 class="gallery-image">
+            @if (item.title) {
+              <div class="gallery-overlay">
+                <p class="overlay-text">{{ item.title | translate }}</p>
+              </div>
+            }
+          </div>
+          <div class="image-card-content">
+            <h3 class="image-card-title">{{ item.title ? (item.title | translate) : '' }}</h3>
+            <p class="image-card-description">{{ item.description ? (item.description | translate) : '' }}</p>
+          </div>
+        </div>
+      }
+
+      <!-- Text Card: Title + Description Only -->
+      @if (!item.src && !item.image) {
+        <div class="text-card">
+          <h3 class="card-title">{{ item.title ? (item.title | translate) : '' }}</h3>
+          <p class="card-description">{{ item.description ? (item.description | translate) : '' }}</p>
+        </div>
+      }
+
+    </div>
+  }
+</div>
