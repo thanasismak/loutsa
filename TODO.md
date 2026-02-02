@@ -155,12 +155,15 @@ Based on #4 findings, add service sections such as:
 - CarouselComponent with service injection
 - Border-radius variables added
 - Testimonials grid styling
+- Gallery page routing fixed (selector conflict resolved)
+- Scrollbars hidden (user-select disabled for UI)
 
 ⏳ **IN PROGRESS:**
-- None currently
+- [ ] **Responsiveness Enhancement**: Ensure all pages render correctly across breakpoints (xs, sm, md, lg, xl, 2xl)
+- [ ] **Viewport Service with Signals**: Create viewport.service.ts with signal-based breakpoint detection and reactive responsiveness
 
 ❌ **NOT STARTED:**
-- All 5 items in this TODO
+- All 5 items in Priority Tasks section
 
 ---
 
