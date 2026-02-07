@@ -13,7 +13,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "baseHref": "/camping/",
-            "outputPath": "dist/loutsa-site",
+            "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
