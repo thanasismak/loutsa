@@ -87,7 +87,11 @@ export class GalleryComponent {
     
     // Get responsive offset multiplier from breakpoint
     const offsetMultiplier = this.getOffsetMultiplier();
-    const maxOffset = viewportWidth * offsetMultiplier;
+    
+    // Calculate base max offset, then cap to safe range (180-260px)
+    // This prevents over-translation at high viewport widths
+    const baseMaxOffset = viewportWidth * offsetMultiplier;
+    const maxOffset = Math.max(180, Math.min(baseMaxOffset, 260));
     
     // Animation trigger point: responsive based on breakpoint
     const startScroll = 300;
@@ -100,7 +104,7 @@ export class GalleryComponent {
     // Apply easing function for smooth deceleration
     const easedProgress = this.easeOutCubic(scrollProgress);
     
-    // Calculate current offset: starts at maxOffset, decreases to 0
+    // Calculate current offset: starts at capped maxOffset, decreases to 0
     const currentOffset = maxOffset * (1 - easedProgress);
     
     // First item starts far left, moves right toward center
