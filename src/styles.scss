@@ -16,6 +16,7 @@ body::-webkit-scrollbar {
 /* Disable text selection globally for visual content */
 html, body {
   user-select: none;
+  overflow-x: clip;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
