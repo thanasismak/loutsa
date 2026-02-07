@@ -1,7 +1,7 @@
 /* Gallery Component Styles - Responsive */
 
-@import '../../../../styles/variables';
-@import '../../../../styles/mixins';
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
 
 .gallery-grid {
   display: grid;
@@ -131,11 +131,11 @@
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba($color-primary, 0.8), rgba(#00c8c3, 0.8));
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
+  background: linear-gradient(135deg, rgba($color-primary, 0.8), rgba(#00c8c3, 0.8));
   @include transition(opacity, $transition-base);
 }
 
@@ -190,11 +190,11 @@
 .card-title {
   color: $color-primary;
   margin: 0 0 0.75rem 0;
-  @include responsive-text($font-size-base, $font-size-lg, $font-size-xl);
   font-weight: 700;
   letter-spacing: -0.3px;
   position: relative;
   z-index: 1;
+  @include responsive-text($font-size-base, $font-size-lg, $font-size-xl);
 }
 
 .card-description {

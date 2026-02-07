@@ -43,9 +43,9 @@ export class GalleryComponent {
     return this.viewportService.isMobile() ? 1 : this.columns();
   });
 
-  // Computed: responsive animation type - disable animations on mobile, otherwise use input animationType
+  // Computed: responsive animation type - disable animations on mobile AND tablet, only on desktop
   responsiveAnimationType = computed(() => {
-    return this.viewportService.isMobile() ? 'none' : this.animationType();
+    return (this.viewportService.isMobile() || this.viewportService.isTablet()) ? 'none' : this.animationType();
   });
   
   // Computed: whether items have animations
@@ -53,7 +53,7 @@ export class GalleryComponent {
 
   // Get offset multiplier based on breakpoint
   private getOffsetMultiplier(): number {
-    const breakpoint = this.viewportService.breakpoint();
+    const breakpoint = this.viewportService.breakpoint;
     const multipliers: Record<string, number> = {
       xs: 0.3,
       sm: 0.35,
@@ -62,7 +62,7 @@ export class GalleryComponent {
       xl: 0.6,
       '2xl': 0.7,
     };
-    return multipliers[breakpoint] ?? 0.3;
+    return multipliers[breakpoint()] ?? 0.3;
   }
 
   // Easing function: easeOutCubic for smooth deceleration
@@ -73,8 +73,8 @@ export class GalleryComponent {
 
   // Compute transform for scroll-based animations
   getTransform(index: number): string {
-    // Disable all animations on mobile
-    if (this.viewportService.isMobile()) {
+    // Disable all animations on mobile AND tablet (only desktop animations)
+    if (this.viewportService.isMobile() || this.viewportService.isTablet()) {
       return '';
     }
 

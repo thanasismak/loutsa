@@ -1,5 +1,7 @@
 /* SCSS Mixins - Responsive, Utility, and Helper Mixins */
 
+@use './variables' as v;
+
 /* ===== RESPONSIVE BREAKPOINT MIXINS ===== */
 
 /// Mobile-first responsive mixin
@@ -7,22 +9,22 @@
 /// @example @include respond-to('md') { ... }
 @mixin respond-to($breakpoint) {
   @if $breakpoint == 'xs' {
-    @media (min-width: $breakpoint-xs) { @content; }
+    @media (min-width: v.$breakpoint-xs) { @content; }
   }
   @else if $breakpoint == 'sm' {
-    @media (min-width: $breakpoint-sm) { @content; }
+    @media (min-width: v.$breakpoint-sm) { @content; }
   }
   @else if $breakpoint == 'md' {
-    @media (min-width: $breakpoint-md) { @content; }
+    @media (min-width: v.$breakpoint-md) { @content; }
   }
   @else if $breakpoint == 'lg' {
-    @media (min-width: $breakpoint-lg) { @content; }
+    @media (min-width: v.$breakpoint-lg) { @content; }
   }
   @else if $breakpoint == 'xl' {
-    @media (min-width: $breakpoint-xl) { @content; }
+    @media (min-width: v.$breakpoint-xl) { @content; }
   }
   @else if $breakpoint == '2xl' {
-    @media (min-width: $breakpoint-2xl) { @content; }
+    @media (min-width: v.$breakpoint-2xl) { @content; }
   }
   @else {
     @media (min-width: $breakpoint) { @content; }
@@ -33,22 +35,22 @@
 /// @param {String} $breakpoint - Breakpoint name
 @mixin respond-below($breakpoint) {
   @if $breakpoint == 'sm' {
-    @media (max-width: $breakpoint-sm - 1px) { @content; }
+    @media (max-width: calc(v.$breakpoint-sm - 1px)) { @content; }
   }
   @else if $breakpoint == 'md' {
-    @media (max-width: $breakpoint-md - 1px) { @content; }
+    @media (max-width: calc(v.$breakpoint-md - 1px)) { @content; }
   }
   @else if $breakpoint == 'lg' {
-    @media (max-width: $breakpoint-lg - 1px) { @content; }
+    @media (max-width: calc(v.$breakpoint-lg - 1px)) { @content; }
   }
   @else if $breakpoint == 'xl' {
-    @media (max-width: $breakpoint-xl - 1px) { @content; }
+    @media (max-width: calc(v.$breakpoint-xl - 1px)) { @content; }
   }
   @else if $breakpoint == '2xl' {
-    @media (max-width: $breakpoint-2xl - 1px) { @content; }
+    @media (max-width: calc(v.$breakpoint-2xl - 1px)) { @content; }
   }
   @else {
-    @media (max-width: $breakpoint - 1px) { @content; }
+    @media (max-width: calc($breakpoint - 1px)) { @content; }
   }
 }
 
@@ -58,21 +60,21 @@
 /// @param {Number} $mobile - Font size on mobile
 /// @param {Number} $desktop - Font size on desktop
 @mixin fluid-font($mobile, $desktop) {
-  font-size: clamp($mobile, #{(100vw - $breakpoint-xs) * ($desktop - $mobile) / ($breakpoint-2xl - $breakpoint-xs) + $mobile}, $desktop);
+  font-size: clamp($mobile, #{(100vw - v.$breakpoint-xs) * ($desktop - $mobile) / (v.$breakpoint-2xl - v.$breakpoint-xs) + $mobile}, $desktop);
 }
 
 /// Fluid spacing using clamp
 /// @param {Number} $mobile - Spacing on mobile
 /// @param {Number} $desktop - Spacing on desktop
 @mixin fluid-spacing($mobile, $desktop) {
-  padding: clamp($mobile, #{(100vw - $breakpoint-xs) * ($desktop - $mobile) / ($breakpoint-2xl - $breakpoint-xs) + $mobile}, $desktop);
+  padding: clamp($mobile, #{(100vw - v.$breakpoint-xs) * ($desktop - $mobile) / (v.$breakpoint-2xl - v.$breakpoint-xs) + $mobile}, $desktop);
 }
 
 /// Fluid gap using clamp
 /// @param {Number} $mobile - Gap on mobile
 /// @param {Number} $desktop - Gap on desktop
 @mixin fluid-gap($mobile, $desktop) {
-  gap: clamp($mobile, #{(100vw - $breakpoint-xs) * ($desktop - $mobile) / ($breakpoint-2xl - $breakpoint-xs) + $mobile}, $desktop);
+  gap: clamp($mobile, #{(100vw - v.$breakpoint-xs) * ($desktop - $mobile) / (v.$breakpoint-2xl - v.$breakpoint-xs) + $mobile}, $desktop);
 }
 
 /* ===== FLEX & GRID MIXINS ===== */
@@ -148,19 +150,19 @@
 /// @param {Number} $level - Elevation level 1-24
 @mixin elevation($level: 1) {
   @if $level == 1 {
-    box-shadow: $shadow-sm;
+    box-shadow: v.$shadow-sm;
   }
   @else if $level == 2 {
-    box-shadow: $shadow-md;
+    box-shadow: v.$shadow-md;
   }
   @else if $level == 3 {
-    box-shadow: $shadow-lg;
+    box-shadow: v.$shadow-lg;
   }
   @else if $level == 4 {
-    box-shadow: $shadow-xl;
+    box-shadow: v.$shadow-xl;
   }
   @else if $level == 5 {
-    box-shadow: $shadow-2xl;
+    box-shadow: v.$shadow-2xl;
   }
 }
 
@@ -168,18 +170,18 @@
 
 /// Hover effect with transition
 @mixin hover-lift($distance: 6px) {
-  transition: all $transition-base;
+  transition: all v.$transition-base;
   
   &:hover {
     transform: translateY(-$distance);
-    box-shadow: $shadow-xl;
+    box-shadow: v.$shadow-xl;
   }
 }
 
 /// Interactive element with focus states
 @mixin interactive {
   cursor: pointer;
-  transition: all $transition-base;
+  transition: all v.$transition-base;
   
   &:hover {
     opacity: 0.9;
@@ -200,14 +202,14 @@
 
 /// Card base styles
 @mixin card {
-  background: $color-white;
-  border-radius: $radius-lg;
+  background: v.$color-white;
+  border-radius: v.$radius-lg;
   overflow: hidden;
-  box-shadow: $shadow-md;
-  transition: all $transition-base;
+  box-shadow: v.$shadow-md;
+  transition: all v.$transition-base;
   
   &:hover {
-    box-shadow: $shadow-lg;
+    box-shadow: v.$shadow-lg;
   }
 }
 
@@ -246,6 +248,6 @@
 /// @param {String} $property - CSS property to transition
 /// @param {String} $duration - Duration (from $transition-* variables)
 /// @param {String} $timing - Timing function
-@mixin transition($property: all, $duration: $transition-base, $timing: ease-in-out) {
+@mixin transition($property: all, $duration: v.$transition-base, $timing: ease-in-out) {
   transition: $property $duration $timing;
 }

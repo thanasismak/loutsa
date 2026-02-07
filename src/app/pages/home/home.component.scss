@@ -1,7 +1,7 @@
 /* Home Component Styles - Responsive First */
 
-@import '../../../styles/variables';
-@import '../../../styles/mixins';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
 /* Featured Section */
 .featured-section {
@@ -41,22 +41,22 @@
 }
 
 .featured-text h2 {
-  @include responsive-text($font-size-xl, $font-size-3xl, $font-size-4xl);
   color: $color-primary;
   margin-bottom: $spacing-md;
+  @include responsive-text($font-size-xl, $font-size-3xl, $font-size-4xl);
 }
 
 .featured-text p {
-  @include responsive-text($font-size-sm, $font-size-base, $font-size-lg);
   color: $color-gray-muted;
   line-height: 1.8;
+  @include responsive-text($font-size-sm, $font-size-base, $font-size-lg);
 }
 
 /* Feature Cards */
 .feature-card {
-  @include card;
   position: relative;
   overflow: hidden;
+  @include card;
 
   .feature-icon {
     position: absolute;
@@ -72,9 +72,9 @@
     width: 100%;
     height: clamp(200px, 50vw, 250px);
     object-fit: cover;
-    transition: transform $transition-base;
     position: relative;
     z-index: 1;
+    transition: transform $transition-base;
   }
 
   &:hover img {
@@ -82,22 +82,22 @@
   }
 
   h3 {
-    color: $color-primary;
-    @include responsive-text($font-size-base, $font-size-lg, $font-size-xl);
     padding: $spacing-md clamp($spacing-sm, 3vw, $spacing-lg) 0;
     margin: 0;
     position: relative;
     z-index: 1;
+    color: $color-primary;
+    @include responsive-text($font-size-base, $font-size-lg, $font-size-xl);
   }
 
   p {
-    color: $color-gray-muted;
     padding: $spacing-sm clamp($spacing-sm, 3vw, $spacing-lg) $spacing-lg;
     margin: 0;
     line-height: 1.7;
-    @include responsive-text($font-size-sm, $font-size-base, $font-size-base);
     position: relative;
     z-index: 1;
+    color: $color-gray-muted;
+    @include responsive-text($font-size-sm, $font-size-base, $font-size-base);
   }
 }
 
@@ -117,9 +117,9 @@
   }
 
   h3 {
+    margin-top: 0;
     color: $color-primary;
     @include responsive-text($font-size-lg, $font-size-xl, $font-size-2xl);
-    margin-top: 0;
   }
 
   p {

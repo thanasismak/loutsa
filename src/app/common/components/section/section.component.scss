@@ -1,7 +1,7 @@
 /* Section Component Styles - Responsive */
 
-@import '../../../../styles/variables';
-@import '../../../../styles/mixins';
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
 
 .section {
   padding: clamp(2rem, 8vw, 4rem) 0;
@@ -33,10 +33,10 @@
 }
 
 .section-title {
-  @include responsive-text($font-size-2xl, $font-size-4xl, $font-size-5xl);
   margin: 0 0 clamp(0.75rem, 2vw, 1rem) 0;
   color: $color-primary;
   font-weight: 700;
+  @include responsive-text($font-size-2xl, $font-size-4xl, $font-size-5xl);
 
   .section.dark & {
     color: $color-cyan-500;
@@ -48,11 +48,11 @@
 }
 
 .section-subtitle {
-  @include responsive-text($font-size-sm, $font-size-base, $font-size-lg);
   color: $color-gray-muted;
   margin: 0 auto;
   max-width: 600px;
   line-height: 1.6;
+  @include responsive-text($font-size-sm, $font-size-base, $font-size-lg);
 
   .section.dark & {
     color: $color-gray-300;

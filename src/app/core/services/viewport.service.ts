@@ -40,6 +40,15 @@ export class ViewportService implements OnDestroy {
   constructor() {
     this.setupResizeListener();
     this.setupEffects();
+    
+    // Force initial signal update to ensure correct viewport is captured
+    if (typeof window !== 'undefined') {
+      // Use requestAnimationFrame to ensure DOM is ready
+      requestAnimationFrame(() => {
+        this.width.set(this.getWidth());
+        this.height.set(this.getHeight());
+      });
+    }
   }
 
   private setupResizeListener(): void {
@@ -50,7 +59,15 @@ export class ViewportService implements OnDestroy {
       this.height.set(this.getHeight());
     };
 
+    // Listen to multiple viewport change events for comprehensive coverage
     window.addEventListener('resize', this.resizeListener);
+    window.addEventListener('orientationchange', this.resizeListener);
+    
+    // Catch DevTools mobile emulation and visualViewport changes
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', this.resizeListener);
+      window.visualViewport.addEventListener('scroll', this.resizeListener);
+    }
   }
 
   private setupEffects(): void {
@@ -98,8 +115,14 @@ export class ViewportService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (typeof window !== 'undefined' && this.resizeListener) {
-      window.removeEventListener('resize', this.resizeListener);
+    if (typeof window === 'undefined' || !this.resizeListener) return;
+    
+    window.removeEventListener('resize', this.resizeListener);
+    window.removeEventListener('orientationchange', this.resizeListener);
+    
+    if (window.visualViewport) {
+      window.visualViewport.removeEventListener('resize', this.resizeListener);
+      window.visualViewport.removeEventListener('scroll', this.resizeListener);
     }
   }
 }

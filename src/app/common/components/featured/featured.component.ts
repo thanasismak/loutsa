@@ -124,11 +124,11 @@ export class FeaturedComponent {
   scrollPosition = input(0);
 
   // Computed responsive variant - uses ViewportService signals for reactivity
-  // Only animate on desktop (1280px+), use simple grid on mobile/tablet
+  // Only animate on desktop (1280px+), disable animations on mobile/tablet
   responsiveVariant = computed(() => {
-    const isMobile = this.viewportService.isMobile();
-    const isTablet = this.viewportService.isTablet();
-    return (isMobile || isTablet) ? 'grid-simple' : this.variant();
+    const isMobile = this.viewportService.isMobile;
+    const isTablet = this.viewportService.isTablet;
+    return (isMobile() || isTablet()) ? 'grid-simple' : this.variant();
   });
 
   getImageTransform(): string {
