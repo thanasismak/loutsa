@@ -1,6 +1,7 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { ViewportService } from '../../../core/services/viewport.service';
 
 export interface GalleryItem {
   src?: string;
@@ -20,6 +21,8 @@ export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'scrollCloser
   styleUrl: './gallery.component.scss'
 })
 export class GalleryComponent {
+  private viewportService = inject(ViewportService);
+  
   // Items to display - can be array or signal
   itemsInput = input<GalleryItem[]>([]);
   
@@ -38,6 +41,20 @@ export class GalleryComponent {
   // Computed: whether items have animations
   hasMotionedItems = computed(() => this.animationType() !== 'none');
 
+  // Get offset multiplier based on breakpoint
+  private getOffsetMultiplier(): number {
+    const breakpoint = this.viewportService.breakpoint();
+    const multipliers: Record<string, number> = {
+      xs: 0.3,
+      sm: 0.35,
+      md: 0.4,
+      lg: 0.5,
+      xl: 0.6,
+      '2xl': 0.7,
+    };
+    return multipliers[breakpoint] ?? 0.3;
+  }
+
   // Easing function: easeOutCubic for smooth deceleration
   private easeOutCubic(t: number): number {
     const x = 1 - t;
@@ -51,24 +68,16 @@ export class GalleryComponent {
     
     const itemCount = this.items().length;
     const scrollPos = this.scrollPosition();
+    const viewportWidth = this.viewportService.width();
     
-    // Responsive offset calculation based on viewport width
-    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1024;
-    
-    // Responsive multiplier: smaller on mobile, larger on desktop
-    let offsetMultiplier = 0.3; // Default mobile (320-480px)
-    if (viewportWidth > 480) offsetMultiplier = 0.35; // Tablet small (480-768px)
-    if (viewportWidth > 768) offsetMultiplier = 0.4;  // Tablet (768-1024px)
-    if (viewportWidth > 1024) offsetMultiplier = 0.5; // Desktop small
-    if (viewportWidth > 1280) offsetMultiplier = 0.6; // Desktop large
-    if (viewportWidth > 1536) offsetMultiplier = 0.7; // Desktop xlarge
-    
-    // Calculate maximum offset based on viewport width and responsive multiplier
+    // Get responsive offset multiplier from breakpoint
+    const offsetMultiplier = this.getOffsetMultiplier();
     const maxOffset = viewportWidth * offsetMultiplier;
     
-    // Animation trigger point: items start animating after 200px scroll (earlier on mobile)
-    const startScroll = viewportWidth > 768 ? 300 : 200;
-    const endScroll = viewportWidth > 768 ? 1200 : 800; // Shorter duration on mobile
+    // Animation trigger point: responsive based on breakpoint
+    const isMobile = this.viewportService.isMobile();
+    const startScroll = isMobile ? 200 : 300;
+    const endScroll = isMobile ? 800 : 1200;
     const scrollRange = endScroll - startScroll;
     
     // Calculate animation progress (0 to 1)
