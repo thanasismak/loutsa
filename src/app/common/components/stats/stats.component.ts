@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, input, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -13,7 +13,7 @@ export interface StatItem {
   imports: [CommonModule, TranslateModule],
   template: `
     <section class="stats-section">
-      <h2 *ngIf="titleKey">{{ titleKey | translate }}</h2>
+      <h2 *ngIf="titleKey()">{{ (titleKey() || '') | translate }}</h2>
       <div class="stats-grid">
         <div class="stat-item" *ngFor="let stat of stats()">
           <div class="stat-value">{{ stat.value }}</div>
@@ -72,10 +72,14 @@ export interface StatItem {
   `]
 })
 export class StatsComponent {
-  @Input() titleKey?: string;
-  @Input() set statsInput(value: StatItem[]) {
-    this.stats.set(value);
-  }
-
+  titleKey = input<string | undefined>();
+  statsInput = input<StatItem[]>([]);
+  
   stats = signal<StatItem[]>([]);
+
+  constructor() {
+    effect(() => {
+      this.stats.set(this.statsInput());
+    });
+  }
 }

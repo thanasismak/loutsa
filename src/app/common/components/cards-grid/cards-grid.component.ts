@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, input, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -14,8 +14,8 @@ export interface CardItem {
   imports: [CommonModule, TranslateModule],
   template: `
     <section class="cards-grid-section">
-      <h2 *ngIf="titleKey">{{ titleKey | translate }}</h2>
-      <div class="cards-grid" [ngClass]="'cols-' + columns">
+      <h2 *ngIf="titleKey()">{{ (titleKey() || '') | translate }}</h2>
+      <div class="cards-grid" [ngClass]="'cols-' + columns()">
         <div class="card-item" *ngFor="let item of items()">
           <div class="card-icon">{{ item.icon }}</div>
           <h3>{{ item.titleKey | translate }}</h3>
@@ -109,11 +109,15 @@ export interface CardItem {
   `]
 })
 export class CardsGridComponent {
-  @Input() titleKey?: string;
-  @Input() columns: number = 3;
-  @Input() set itemsInput(value: CardItem[]) {
-    this.items.set(value);
-  }
-
+  titleKey = input<string | undefined>();
+  columns = input<number>(3);
+  itemsInput = input<CardItem[]>([]);
+  
   items = signal<CardItem[]>([]);
+
+  constructor() {
+    effect(() => {
+      this.items.set(this.itemsInput());
+    });
+  }
 }

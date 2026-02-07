@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -7,18 +7,19 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   template: `
-    <section class="hero-banner" [style.background-image]="backgroundImage ? 'url(' + backgroundImage + ')' : ''">
+    <section class="hero-banner" [style.background-image]="backgroundImage() ? 'url(' + backgroundImage() + ')' : ''">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h1>{{ titleKey | translate }}</h1>
-        <p class="hero-subtitle">{{ subtitleKey | translate }}</p>
+        <h1>{{ titleKey() | translate }}</h1>
+        <p class="hero-subtitle">{{ subtitleKey() | translate }}</p>
       </div>
     </section>
   `,
   styles: [`
     .hero-banner {
       position: relative;
-      height: 400px;
+      /* Fluid height: 250px on mobile, scales with viewport, max 400px on desktop */
+      height: clamp(250px, 60vw, 400px);
       background: linear-gradient(135deg, #0ea5a4 0%, #14b8a6 100%);
       background-size: cover;
       background-position: center;
@@ -41,17 +42,20 @@ import { TranslateModule } from '@ngx-translate/core';
       position: relative;
       z-index: 2;
       animation: slideUp 0.8s ease-out;
+      padding: 0 clamp(1rem, 5vw, 2rem);
     }
 
     .hero-banner h1 {
-      font-size: 3.5rem;
-      margin: 0 0 1rem 0;
+      /* Fluid font size: 1.75rem on mobile, scales with viewport, max 3.5rem on desktop */
+      font-size: clamp(1.75rem, 5vw, 3.5rem);
+      margin: 0 0 clamp(0.75rem, 2vw, 1rem) 0;
       font-weight: 700;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .hero-subtitle {
-      font-size: 1.3rem;
+      /* Fluid font size: 0.875rem on mobile, scales with viewport, max 1.3rem on desktop */
+      font-size: clamp(0.875rem, 2vw, 1.3rem);
       margin: 0;
       opacity: 0.95;
       font-weight: 300;
@@ -67,24 +71,10 @@ import { TranslateModule } from '@ngx-translate/core';
         transform: translateY(0);
       }
     }
-
-    @media (max-width: 768px) {
-      .hero-banner {
-        height: 300px;
-      }
-
-      .hero-banner h1 {
-        font-size: 2.2rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1rem;
-      }
-    }
   `]
 })
 export class HeroComponent {
-  @Input() titleKey: string = '';
-  @Input() subtitleKey: string = '';
-  @Input() backgroundImage?: string;
+  titleKey = input<string>('');
+  subtitleKey = input<string>('');
+  backgroundImage = input<string | undefined>();
 }

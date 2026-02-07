@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ export interface CardConfig {
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-  @Input() config!: CardConfig;
+  config = input.required<CardConfig>();
 
   onHover(): void {
     // Add custom hover logic if needed

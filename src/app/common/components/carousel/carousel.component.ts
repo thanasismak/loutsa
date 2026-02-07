@@ -1,6 +1,6 @@
 import {
   Component,
-  Input,
+  input,
   OnInit,
   OnDestroy,
   signal,
@@ -34,12 +34,12 @@ export interface CarouselItem {
 export class CarouselComponent implements OnInit, OnDestroy {
   private carouselService = inject(TestimonialCarouselService);
 
-  @Input() items: CarouselItem[] = [];
-  @Input() autoRotate = true;
-  @Input() rotationInterval = 5000; // 5 seconds
-  @Input() showIndicators = true;
-  @Input() showNavigation = true;
-  @Input() visibleCount = 1; // Number of items to show at once (1 for single, 3 for grid)
+  items = input<CarouselItem[]>([]);
+  autoRotate = input<boolean>(true);
+  rotationInterval = input<number>(5000); // 5 seconds
+  showIndicators = input<boolean>(true);
+  showNavigation = input<boolean>(true);
+  visibleCount = input<number>(1); // Number of items to show at once (1 for single, 3 for grid)
 
   // Output the current item so parent can use it
   itemChanged = output<{ item: CarouselItem; index: number }>();
@@ -51,16 +51,16 @@ export class CarouselComponent implements OnInit, OnDestroy {
   private lastScrollPos = 0;
 
   // Computed properties
-  currentItem = computed(() => this.items[this.currentIndex()]);
-  totalItems = computed(() => this.items.length);
+  currentItem = computed(() => this.items()[this.currentIndex()]);
+  totalItems = computed(() => this.items().length);
   indicatorIndices = computed(() =>
     Array.from({ length: this.totalItems() }, (_, i) => i)
   );
   // New: Get multiple visible items for grid carousel
   visibleItems = computed(() => {
     const visible: CarouselItem[] = [];
-    for (let i = 0; i < this.visibleCount; i++) {
-      visible.push(this.items[(this.currentIndex() + i) % this.totalItems()]);
+    for (let i = 0; i < this.visibleCount(); i++) {
+      visible.push(this.items()[(this.currentIndex() + i) % this.totalItems()]);
     }
     return visible;
   });
@@ -68,7 +68,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   private rotationTimer: any;
 
   ngOnInit(): void {
-    if (this.autoRotate && this.items.length > 1) {
+    if (this.autoRotate() && this.items().length > 1) {
       this.startAutoRotation();
     }
     // Initialize scroll position
@@ -97,7 +97,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   private startAutoRotation(): void {
     this.rotationTimer = setInterval(() => {
       this.next();
-    }, this.rotationInterval);
+    }, this.rotationInterval());
   }
 
   private stopAutoRotation(): void {
@@ -126,7 +126,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.currentIndex.set(nextIndex);
     this.emitItemChange();
     // Reset timer on manual navigation
-    if (this.autoRotate) {
+    if (this.autoRotate()) {
       this.stopAutoRotation();
       this.startAutoRotation();
     }
@@ -138,7 +138,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.currentIndex.set(prevIndex);
     this.emitItemChange();
     // Reset timer on manual navigation
-    if (this.autoRotate) {
+    if (this.autoRotate()) {
       this.stopAutoRotation();
       this.startAutoRotation();
     }
@@ -148,7 +148,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.currentIndex.set(index);
     this.emitItemChange();
     // Reset timer on manual navigation
-    if (this.autoRotate) {
+    if (this.autoRotate()) {
       this.stopAutoRotation();
       this.startAutoRotation();
     }

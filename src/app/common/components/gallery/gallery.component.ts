@@ -37,9 +37,19 @@ export class GalleryComponent {
   
   // Scroll position for scroll-based animations
   scrollPosition = input(0);
+
+  // Computed: responsive columns - single column on mobile, otherwise use input columns
+  responsiveColumns = computed(() => {
+    return this.viewportService.isMobile() ? 1 : this.columns();
+  });
+
+  // Computed: responsive animation type - disable animations on mobile, otherwise use input animationType
+  responsiveAnimationType = computed(() => {
+    return this.viewportService.isMobile() ? 'none' : this.animationType();
+  });
   
   // Computed: whether items have animations
-  hasMotionedItems = computed(() => this.animationType() !== 'none');
+  hasMotionedItems = computed(() => this.responsiveAnimationType() !== 'none');
 
   // Get offset multiplier based on breakpoint
   private getOffsetMultiplier(): number {
@@ -63,6 +73,11 @@ export class GalleryComponent {
 
   // Compute transform for scroll-based animations
   getTransform(index: number): string {
+    // Disable all animations on mobile
+    if (this.viewportService.isMobile()) {
+      return '';
+    }
+
     const anim = this.animationType();
     if (anim !== 'scrollCloser') return '';
     
@@ -75,9 +90,8 @@ export class GalleryComponent {
     const maxOffset = viewportWidth * offsetMultiplier;
     
     // Animation trigger point: responsive based on breakpoint
-    const isMobile = this.viewportService.isMobile();
-    const startScroll = isMobile ? 200 : 300;
-    const endScroll = isMobile ? 800 : 1200;
+    const startScroll = 300;
+    const endScroll = 1200;
     const scrollRange = endScroll - startScroll;
     
     // Calculate animation progress (0 to 1)

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -10,13 +10,13 @@ import { TranslateModule } from '@ngx-translate/core';
     <section class="story-section">
       <div class="story-content">
         <div class="story-text">
-          <h2>{{ titleKey | translate }}</h2>
-          <p>{{ introKey | translate }}</p>
-          <p>{{ detail1Key | translate }}</p>
-          <p>{{ detail2Key | translate }}</p>
+          <h2>{{ titleKey() | translate }}</h2>
+          <p>{{ introKey() | translate }}</p>
+          <p>{{ detail1Key() | translate }}</p>
+          <p>{{ detail2Key() | translate }}</p>
         </div>
         <div class="story-image">
-          <img [src]="imageUrl" [alt]="titleKey" class="fade-in">
+          <img [src]="imageUrl()" [alt]="titleKey()" class="fade-in">
         </div>
       </div>
     </section>
@@ -82,9 +82,9 @@ import { TranslateModule } from '@ngx-translate/core';
   `]
 })
 export class StoryComponent {
-  @Input() titleKey: string = '';
-  @Input() introKey: string = '';
-  @Input() detail1Key: string = '';
-  @Input() detail2Key: string = '';
-  @Input() imageUrl: string = 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&h=400&fit=crop';
+  titleKey = input<string>('');
+  introKey = input<string>('');
+  detail1Key = input<string>('');
+  detail2Key = input<string>('');
+  imageUrl = input<string>('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&h=400&fit=crop');
 }

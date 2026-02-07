@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,12 +6,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div [class]="'tiles-grid ' + gridClass">
+    <div [class]="'tiles-grid ' + gridClass()">
       <ng-content></ng-content>
     </div>
   `,
   styleUrl: './tiles.component.scss'
 })
 export class TilesComponent {
-  @Input() gridClass = 'cols-3';
+  gridClass = input<string>('cols-3');
 }

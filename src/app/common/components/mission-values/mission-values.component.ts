@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,16 +9,16 @@ import { TranslateModule } from '@ngx-translate/core';
   template: `
     <section class="mission-values">
       <div class="mission-card">
-        <h3>{{ missionTitleKey | translate }}</h3>
-        <p>{{ missionTextKey | translate }}</p>
+        <h3>{{ missionTitleKey() | translate }}</h3>
+        <p>{{ missionTextKey() | translate }}</p>
       </div>
       <div class="values-card">
-        <h3>{{ valuesTitleKey | translate }}</h3>
+        <h3>{{ valuesTitleKey() | translate }}</h3>
         <ul class="values-list">
-          <li>{{ value1Key | translate }}</li>
-          <li>{{ value2Key | translate }}</li>
-          <li>{{ value3Key | translate }}</li>
-          <li>{{ value4Key | translate }}</li>
+          <li>{{ value1Key() | translate }}</li>
+          <li>{{ value2Key() | translate }}</li>
+          <li>{{ value3Key() | translate }}</li>
+          <li>{{ value4Key() | translate }}</li>
         </ul>
       </div>
     </section>
@@ -93,11 +93,11 @@ import { TranslateModule } from '@ngx-translate/core';
   `]
 })
 export class MissionValuesComponent {
-  @Input() missionTitleKey: string = 'about.mission_title';
-  @Input() missionTextKey: string = 'about.mission_text';
-  @Input() valuesTitleKey: string = 'about.values_title';
-  @Input() value1Key: string = 'about.value_1';
-  @Input() value2Key: string = 'about.value_2';
-  @Input() value3Key: string = 'about.value_3';
-  @Input() value4Key: string = 'about.value_4';
+  missionTitleKey = input<string>('about.mission_title');
+  missionTextKey = input<string>('about.mission_text');
+  valuesTitleKey = input<string>('about.values_title');
+  value1Key = input<string>('about.value_1');
+  value2Key = input<string>('about.value_2');
+  value3Key = input<string>('about.value_3');
+  value4Key = input<string>('about.value_4');
 }

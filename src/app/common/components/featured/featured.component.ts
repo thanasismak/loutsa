@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, input, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { ViewportService } from '../../../core/services/viewport.service';
 
 export interface FeaturedContent {
   titleKey: string;
@@ -15,7 +16,7 @@ export interface FeaturedContent {
   standalone: true,
   imports: [CommonModule, TranslateModule],
   template: `
-    <div class="featured-section" [class]="variant()">
+    <div class="featured-section" [class]="responsiveVariant()">
       <div class="featured-image-container" [style.transform]="getImageTransform()">
         <img 
           [src]="content().imageUrl" 
@@ -116,12 +117,23 @@ export interface FeaturedContent {
   `]
 })
 export class FeaturedComponent {
+  private viewportService = inject(ViewportService);
+
   content = input.required<FeaturedContent>();
   variant = input<'grid-animated' | 'grid-simple'>('grid-animated');
   scrollPosition = input(0);
 
+  // Computed responsive variant - uses ViewportService signals for reactivity
+  // Only animate on desktop (1280px+), use simple grid on mobile/tablet
+  responsiveVariant = computed(() => {
+    const isMobile = this.viewportService.isMobile();
+    const isTablet = this.viewportService.isTablet();
+    return (isMobile || isTablet) ? 'grid-simple' : this.variant();
+  });
+
   getImageTransform(): string {
-    if (this.variant() !== 'grid-animated') return '';
+    // Only apply scroll transform when using animated variant (desktop only)
+    if (this.responsiveVariant() !== 'grid-animated') return '';
     
     const scrollPos = this.scrollPosition();
     const rotation = scrollPos * 0.02;

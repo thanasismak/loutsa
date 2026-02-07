@@ -1,4 +1,4 @@
-import { Injectable, signal, effect, OnDestroy } from '@angular/core';
+import { Injectable, signal, computed, OnDestroy } from '@angular/core';
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
@@ -9,27 +9,31 @@ export class ViewportService implements OnDestroy {
   private readonly BREAKPOINTS = {
     xs: 0,
     sm: 480,
-    md: 768,
-    lg: 1024,
-    xl: 1280,
+    md: 640,      // Mobile/tablet boundary
+    lg: 1024,     // Tablet range
+    xl: 1280,     // Desktop starts here (1280px+)
     '2xl': 1536,
   };
 
-  // Signals
+  // Primary signals - width and height update on resize
   readonly width = signal<number>(this.getWidth());
   readonly height = signal<number>(this.getHeight());
-  readonly isMobile = signal<boolean>(this.getWidth() < 768);
-  readonly isTablet = signal<boolean>(this.getWidth() >= 768 && this.getWidth() < 1024);
-  readonly isDesktop = signal<boolean>(this.getWidth() >= 1024);
-  readonly breakpoint = signal<Breakpoint>(this.getBreakpoint());
 
-  // Computed breakpoint checks
-  readonly isXs = signal<boolean>(this.width() < this.BREAKPOINTS.sm);
-  readonly isSm = signal<boolean>(this.width() >= this.BREAKPOINTS.sm && this.width() < this.BREAKPOINTS.md);
-  readonly isMd = signal<boolean>(this.width() >= this.BREAKPOINTS.md && this.width() < this.BREAKPOINTS.lg);
-  readonly isLg = signal<boolean>(this.width() >= this.BREAKPOINTS.lg && this.width() < this.BREAKPOINTS.xl);
-  readonly isXl = signal<boolean>(this.width() >= this.BREAKPOINTS.xl && this.width() < this.BREAKPOINTS['2xl']);
-  readonly is2xl = signal<boolean>(this.width() >= this.BREAKPOINTS['2xl']);
+  // Computed breakpoint - derives reactively from width signal
+  readonly breakpoint = computed(() => this.getBreakpointForWidth(this.width()));
+
+  // Computed device categories - auto-update when width changes
+  readonly isMobile = computed(() => this.width() < 640);           // xs, sm
+  readonly isTablet = computed(() => this.width() >= 640 && this.width() < 1280);  // md, lg  
+  readonly isDesktop = computed(() => this.width() >= 1280);        // xl, 2xl
+
+  // Computed individual breakpoint checks
+  readonly isXs = computed(() => this.width() < this.BREAKPOINTS.sm);
+  readonly isSm = computed(() => this.width() >= this.BREAKPOINTS.sm && this.width() < this.BREAKPOINTS.md);
+  readonly isMd = computed(() => this.width() >= this.BREAKPOINTS.md && this.width() < this.BREAKPOINTS.lg);
+  readonly isLg = computed(() => this.width() >= this.BREAKPOINTS.lg && this.width() < this.BREAKPOINTS.xl);
+  readonly isXl = computed(() => this.width() >= this.BREAKPOINTS.xl && this.width() < this.BREAKPOINTS['2xl']);
+  readonly is2xl = computed(() => this.width() >= this.BREAKPOINTS['2xl']);
 
   private resizeListener!: () => void;
 
@@ -50,20 +54,7 @@ export class ViewportService implements OnDestroy {
   }
 
   private setupEffects(): void {
-    // Update derived signals when width changes
-    effect(() => {
-      const w = this.width();
-      this.breakpoint.set(this.getBreakpointForWidth(w));
-      this.isMobile.set(w < 768);
-      this.isTablet.set(w >= 768 && w < 1024);
-      this.isDesktop.set(w >= 1024);
-      this.isXs.set(w < this.BREAKPOINTS.sm);
-      this.isSm.set(w >= this.BREAKPOINTS.sm && w < this.BREAKPOINTS.md);
-      this.isMd.set(w >= this.BREAKPOINTS.md && w < this.BREAKPOINTS.lg);
-      this.isLg.set(w >= this.BREAKPOINTS.lg && w < this.BREAKPOINTS.xl);
-      this.isXl.set(w >= this.BREAKPOINTS.xl && w < this.BREAKPOINTS['2xl']);
-      this.is2xl.set(w >= this.BREAKPOINTS['2xl']);
-    });
+    // No effects needed - all breakpoint signals are computed() and auto-derive from width
   }
 
   private getWidth(): number {
@@ -74,9 +65,7 @@ export class ViewportService implements OnDestroy {
     return typeof window !== 'undefined' ? window.innerHeight : 768;
   }
 
-  private getBreakpoint(): Breakpoint {
-    return this.getBreakpointForWidth(this.getWidth());
-  }
+
 
   private getBreakpointForWidth(width: number): Breakpoint {
     if (width < this.BREAKPOINTS.sm) return 'xs';
