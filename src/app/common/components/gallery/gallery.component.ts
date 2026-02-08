@@ -1,4 +1,4 @@
-import { Component, input, computed, inject } from '@angular/core';
+import { Component, input, computed, inject, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ViewportService } from '../../../core/services/viewport.service';
@@ -22,6 +22,9 @@ export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'scrollCloser
 })
 export class GalleryComponent {
   private viewportService = inject(ViewportService);
+  
+  // Reference to gallery container for section-scoped progress calculation
+  @ViewChild('galleryContainer') galleryContainer?: ElementRef<HTMLDivElement>;
   
   // Items to display - can be array or signal
   itemsInput = input<GalleryItem[]>([]);
@@ -68,30 +71,41 @@ export class GalleryComponent {
     if (anim !== 'scrollCloser') return '0px';
     
     const itemCount = this.items().length;
-    const scrollPos = this.scrollPosition();
     
-    // Animation trigger point: fixed, frame-independent
-    const startScroll = 300;
-    const endScroll = 1200;
-    const scrollRange = endScroll - startScroll;
-    
-    // Calculate animation progress (0 to 1)
-    const scrollProgress = Math.max(0, Math.min((scrollPos - startScroll) / scrollRange, 1));
+    // Get section-scoped progress using gallery's bounding rect
+    let scrollProgress = 0;
+    if (this.galleryContainer?.nativeElement) {
+      const rect = this.galleryContainer.nativeElement.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Progress: 0 when gallery enters bottom of viewport, 1 when it exits top
+      // Middle section (gallery center at viewport center) = ~0.5 progress
+      const startThreshold = viewportHeight; // Gallery bottom enters viewport
+      const endThreshold = -rect.height; // Gallery top exits viewport
+      
+      // Calculate progress: 0 → 1 as gallery moves through viewport
+      const distance = rect.top - startThreshold;
+      const range = endThreshold - startThreshold;
+      scrollProgress = Math.max(0, Math.min(-distance / range, 1));
+    }
     
     // Apply easing function for smooth deceleration
     const easedProgress = this.easeOutCubic(scrollProgress);
     
-    // Hard clamp max offset to safe range (160-260px)
-    // This prevents any spike regardless of viewport width or signal glitches
-    const MIN_OFFSET = 160;
-    const MAX_OFFSET = 260;
-    const maxOffset = 610; // Use middle-of-range value for consistent motion
+    // Calculate maxOffset responsive from container width
+    // Base: container width * 0.18, then clamp to safe range 160-260px
+    let maxOffset = 210; // fallback
+    if (this.galleryContainer?.nativeElement) {
+      const containerWidth = this.galleryContainer.nativeElement.offsetWidth;
+      const baseOffset = containerWidth * 0.18;
+      maxOffset = Math.max(160, Math.min(baseOffset, 260));
+    }
     
     // Calculate current offset: starts at maxOffset, decreases to 0
     let currentOffset = maxOffset * (1 - easedProgress);
     
     // Double clamp for safety - guarantee bounds even if signals glitch
-    currentOffset = Math.max(0, Math.min(currentOffset, MAX_OFFSET));
+    currentOffset = Math.max(0, Math.min(currentOffset, 260));
     
     // Return offset for outer cards only
     if (index === 0 || index === itemCount - 1) {
