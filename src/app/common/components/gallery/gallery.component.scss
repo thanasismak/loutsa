@@ -37,40 +37,6 @@
   }
 }
 
-/* ===== ANIMATION TYPES ===== */
-
-/* Far to Closer: Items come from far (left) to closer (center) */
-.farToClose .gallery-item {
-  animation: slideFromFar $transition-base ease-out forwards;
-
-  @keyframes slideFromFar {
-    from {
-      opacity: 0;
-      transform: translateX(-60px) scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-  }
-}
-
-/* Closer to Farther: Items come from closer (center) to farther (left) */
-.closeToFar .gallery-item {
-  animation: slideFromCenter $transition-base ease-out forwards;
-
-  @keyframes slideFromCenter {
-    from {
-      opacity: 0;
-      transform: translateX(60px) scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-  }
-}
-
 /* Reveal + Stagger: Grid-safe animation via IntersectionObserver */
 .gallery-grid.revealStagger {
   .gallery-item {

@@ -1,7 +1,5 @@
 <div class="gallery-grid" 
      #galleryContainer
-     [class.farToClose]="responsiveAnimationType() === 'farToClose'"
-     [class.closeToFar]="responsiveAnimationType() === 'closeToFar'"
      [class.revealStagger]="responsiveAnimationType() === 'revealStagger'"
      [attr.data-in-view]="isInView()"
      [ngStyle]="{'--gallery-columns': responsiveColumns()}"

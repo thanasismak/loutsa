@@ -11,7 +11,7 @@ export interface GalleryItem {
   description?: string;
 }
 
-export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'revealStagger';
+export type AnimationType = 'none' | 'revealStagger';
 
 @Component({
   selector: 'app-gallery',
@@ -41,7 +41,7 @@ export class GalleryComponent implements AfterViewInit, OnDestroy {
   // Grid columns: 1, 2, or 3
   columns = input<1 | 2 | 3>(3);
   
-  // Animation type: 'none' = static, 'farToClose' = from far to closer, 'closeToFar' = from closer to farther, 'revealStagger' = reveal with stagger on viewport entry
+  // Animation type: 'none' = static, 'revealStagger' = reveal with stagger on viewport entry
   animationType = input<AnimationType>('none');
 
   // Computed: responsive columns - single column on mobile, otherwise use input columns
