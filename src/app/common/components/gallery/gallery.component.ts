@@ -11,7 +11,7 @@ export interface GalleryItem {
   description?: string;
 }
 
-export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'scrollCloser' | 'revealStagger';
+export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'revealStagger';
 
 @Component({
   selector: 'app-gallery',
@@ -41,11 +41,8 @@ export class GalleryComponent implements AfterViewInit, OnDestroy {
   // Grid columns: 1, 2, or 3
   columns = input<1 | 2 | 3>(3);
   
-  // Animation type: 'none' = static, 'farToClose' = from far to closer, 'closeToFar' = from closer to farther, 'scrollCloser' = scroll-based, 'revealStagger' = reveal with stagger on viewport entry
+  // Animation type: 'none' = static, 'farToClose' = from far to closer, 'closeToFar' = from closer to farther, 'revealStagger' = reveal with stagger on viewport entry
   animationType = input<AnimationType>('none');
-
-  // Scroll position for scroll-based animations
-  scrollPosition = input(0);
 
   // Computed: responsive columns - single column on mobile, otherwise use input columns
   responsiveColumns = computed(() => {
@@ -73,61 +70,6 @@ export class GalleryComponent implements AfterViewInit, OnDestroy {
     }
     // Apply 80ms stagger per card
     return `${index * 80}ms`;
-  }
-
-  // Calculate offset for CSS custom property (safe hardclamped value) for scrollCloser animation
-  getOffset(index: number): string {
-    // Disable all animations on mobile AND tablet (only desktop animations)
-    if (this.viewportService.isMobile() || this.viewportService.isTablet()) {
-      return '0px';
-    }
-
-    const anim = this.animationType();
-    if (anim !== 'scrollCloser') return '0px';
-    
-    const itemCount = this.items().length;
-    
-    // Get section-scoped progress using gallery's bounding rect
-    let scrollProgress = 0;
-    if (this.galleryContainer?.nativeElement) {
-      const rect = this.galleryContainer.nativeElement.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      // Progress: 0 when gallery enters bottom of viewport, 1 when it exits top
-      // Middle section (gallery center at viewport center) = ~0.5 progress
-      const startThreshold = viewportHeight; // Gallery bottom enters viewport
-      const endThreshold = -rect.height; // Gallery top exits viewport
-      
-      // Calculate progress: 0 → 1 as gallery moves through viewport
-      const distance = rect.top - startThreshold;
-      const range = endThreshold - startThreshold;
-      scrollProgress = Math.max(0, Math.min(-distance / range, 1));
-    }
-    
-    // Apply easing function for smooth deceleration
-    const easedProgress = this.easeOutCubic(scrollProgress);
-    
-    // Calculate maxOffset responsive from container width
-    // Base: container width * 0.18, then clamp to safe range 160-260px
-    let maxOffset = 210; // fallback
-    if (this.galleryContainer?.nativeElement) {
-      const containerWidth = this.galleryContainer.nativeElement.offsetWidth;
-      const baseOffset = containerWidth * 0.18;
-      maxOffset = Math.max(160, Math.min(baseOffset, 260));
-    }
-    
-    // Calculate current offset: starts at maxOffset, decreases to 0
-    let currentOffset = maxOffset * (1 - easedProgress);
-    
-    // Double clamp for safety - guarantee bounds even if signals glitch
-    currentOffset = Math.max(0, Math.min(currentOffset, 260));
-    
-    // Return offset for outer cards only
-    if (index === 0 || index === itemCount - 1) {
-      return `${currentOffset}px`;
-    }
-    
-    return '0px';
   }
 
   ngAfterViewInit() {

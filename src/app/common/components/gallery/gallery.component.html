@@ -1,14 +1,15 @@
 <div class="gallery-grid" 
      #galleryContainer
-     [class]="responsiveAnimationType()"
+     [class.farToClose]="responsiveAnimationType() === 'farToClose'"
+     [class.closeToFar]="responsiveAnimationType() === 'closeToFar'"
+     [class.revealStagger]="responsiveAnimationType() === 'revealStagger'"
      [attr.data-in-view]="isInView()"
      [ngStyle]="{'--gallery-columns': responsiveColumns()}"
      [style.grid-template-columns]="'repeat(' + responsiveColumns() + ', 1fr)'">
   @for (item of items(); track $index) {
-    <!-- [style.animation-delay]="responsiveAnimationType() === 'revealStagger' ? getStaggerDelay($index) : (hasMotionedItems() ? ($index * 100) + 'ms' : '0ms')" -->
     <div class="gallery-item" 
-         [style.--stagger-delay]="getStaggerDelay($index)"
-         [style.--tx]="getOffset($index)">
+         [style.animation-delay]="responsiveAnimationType() === 'revealStagger' ? getStaggerDelay($index) : (hasMotionedItems() ? ($index * 100) + 'ms' : '0ms')"
+         [style.--stagger-delay]="getStaggerDelay($index)">
       
       <!-- Image Card: Image + Title + Description -->
       @if (item.src || item.image) {
