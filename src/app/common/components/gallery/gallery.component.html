@@ -6,9 +6,7 @@
      [style.grid-template-columns]="'repeat(' + responsiveColumns() + ', 1fr)'">
   @for (item of items(); track $index) {
     <!-- [style.animation-delay]="responsiveAnimationType() === 'revealStagger' ? getStaggerDelay($index) : (hasMotionedItems() ? ($index * 100) + 'ms' : '0ms')" -->
-    <div class="gallery-item" 
-         [style.--stagger-delay]="getStaggerDelay($index)"
-         [style.--tx]="getOffset($index)">
+    <div class="gallery-item" >
       
       <!-- Image Card: Image + Title + Description -->
       @if (item.src || item.image) {
