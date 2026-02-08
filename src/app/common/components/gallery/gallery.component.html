@@ -6,7 +6,7 @@
   @for (item of items(); track $index) {
     <div class="gallery-item" 
          [style.animation-delay]="hasMotionedItems() ? ($index * 100) + 'ms' : '0ms'"
-         [style.transform]="getTransform($index)">
+         [style.--tx]="getOffset($index)">
       
       <!-- Image Card: Image + Title + Description -->
       @if (item.src || item.image) {

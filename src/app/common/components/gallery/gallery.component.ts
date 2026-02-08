@@ -51,49 +51,26 @@ export class GalleryComponent {
   // Computed: whether items have animations
   hasMotionedItems = computed(() => this.responsiveAnimationType() !== 'none');
 
-  // Get offset multiplier based on breakpoint
-  private getOffsetMultiplier(): number {
-    const breakpoint = this.viewportService.breakpoint;
-    const multipliers: Record<string, number> = {
-      xs: 0.3,
-      sm: 0.35,
-      md: 0.4,
-      lg: 0.5,
-      xl: 0.6,
-      '2xl': 0.7,
-    };
-    return multipliers[breakpoint()] ?? 0.3;
-  }
-
   // Easing function: easeOutCubic for smooth deceleration
   private easeOutCubic(t: number): number {
     const x = 1 - t;
     return 1 - x * x * x;
   }
 
-  // Compute transform for scroll-based animations
-  getTransform(index: number): string {
+  // Calculate offset for CSS custom property (safe hardclamped value)
+  getOffset(index: number): string {
     // Disable all animations on mobile AND tablet (only desktop animations)
     if (this.viewportService.isMobile() || this.viewportService.isTablet()) {
-      return '';
+      return '0px';
     }
 
     const anim = this.animationType();
-    if (anim !== 'scrollCloser') return '';
+    if (anim !== 'scrollCloser') return '0px';
     
     const itemCount = this.items().length;
     const scrollPos = this.scrollPosition();
-    const viewportWidth = this.viewportService.width();
     
-    // Get responsive offset multiplier from breakpoint
-    const offsetMultiplier = this.getOffsetMultiplier();
-    
-    // Calculate base max offset, then cap to safe range (180-260px)
-    // This prevents over-translation at high viewport widths
-    const baseMaxOffset = viewportWidth * offsetMultiplier;
-    const maxOffset = Math.max(180, Math.min(baseMaxOffset, 260));
-    
-    // Animation trigger point: responsive based on breakpoint
+    // Animation trigger point: fixed, frame-independent
     const startScroll = 300;
     const endScroll = 1200;
     const scrollRange = endScroll - startScroll;
@@ -104,18 +81,23 @@ export class GalleryComponent {
     // Apply easing function for smooth deceleration
     const easedProgress = this.easeOutCubic(scrollProgress);
     
-    // Calculate current offset: starts at capped maxOffset, decreases to 0
-    const currentOffset = maxOffset * (1 - easedProgress);
+    // Hard clamp max offset to safe range (160-260px)
+    // This prevents any spike regardless of viewport width or signal glitches
+    const MIN_OFFSET = 160;
+    const MAX_OFFSET = 260;
+    const maxOffset = 610; // Use middle-of-range value for consistent motion
     
-    // First item starts far left, moves right toward center
-    if (index === 0) {
-      return `translateX(${-currentOffset}px)`;
-    } 
-    // Last item starts far right, moves left toward center
-    else if (index === itemCount - 1) {
-      return `translateX(${currentOffset}px)`;
+    // Calculate current offset: starts at maxOffset, decreases to 0
+    let currentOffset = maxOffset * (1 - easedProgress);
+    
+    // Double clamp for safety - guarantee bounds even if signals glitch
+    currentOffset = Math.max(0, Math.min(currentOffset, MAX_OFFSET));
+    
+    // Return offset for outer cards only
+    if (index === 0 || index === itemCount - 1) {
+      return `${currentOffset}px`;
     }
     
-    return '';
+    return '0px';
   }
 }

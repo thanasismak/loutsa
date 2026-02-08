@@ -77,6 +77,16 @@
   align-items: center;
   
   .gallery-item {
+    // Use CSS custom property for transform - safe hardclamped value (160-260px max)
+    // First item: translateX(-var(--tx)), Last item: translateX(var(--tx))
+    &:first-child {
+      transform: translateX(calc(-1 * var(--tx, 0px)));
+    }
+    
+    &:last-child {
+      transform: translateX(var(--tx, 0px));
+    }
+    
     transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
     will-change: transform;
     backface-visibility: hidden;
