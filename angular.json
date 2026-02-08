@@ -12,7 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/camping/",
+            "baseHref": "/loutsa/",
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
