@@ -1,4 +1,4 @@
-import { Component, input, computed, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, input, computed, inject, ViewChild, ElementRef, signal, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ViewportService } from '../../../core/services/viewport.service';
@@ -11,7 +11,7 @@ export interface GalleryItem {
   description?: string;
 }
 
-export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'scrollCloser';
+export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'scrollCloser' | 'revealStagger';
 
 @Component({
   selector: 'app-gallery',
@@ -20,11 +20,17 @@ export type AnimationType = 'none' | 'farToClose' | 'closeToFar' | 'scrollCloser
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss'
 })
-export class GalleryComponent {
+export class GalleryComponent implements AfterViewInit, OnDestroy {
   private viewportService = inject(ViewportService);
   
-  // Reference to gallery container for section-scoped progress calculation
+  // Reference to gallery container for IntersectionObserver
   @ViewChild('galleryContainer') galleryContainer?: ElementRef<HTMLDivElement>;
+  
+  // Track whether gallery is in viewport
+  isInView = signal(false);
+  
+  // IntersectionObserver instance
+  private intersectionObserver?: IntersectionObserver;
   
   // Items to display - can be array or signal
   itemsInput = input<GalleryItem[]>([]);
@@ -35,9 +41,9 @@ export class GalleryComponent {
   // Grid columns: 1, 2, or 3
   columns = input<1 | 2 | 3>(3);
   
-  // Animation type: 'none' = static, 'farToClose' = from far to closer, 'closeToFar' = from closer to farther, 'scrollCloser' = scroll-based
+  // Animation type: 'none' = static, 'farToClose' = from far to closer, 'closeToFar' = from closer to farther, 'scrollCloser' = scroll-based, 'revealStagger' = reveal with stagger on viewport entry
   animationType = input<AnimationType>('none');
-  
+
   // Scroll position for scroll-based animations
   scrollPosition = input(0);
 
@@ -54,13 +60,22 @@ export class GalleryComponent {
   // Computed: whether items have animations
   hasMotionedItems = computed(() => this.responsiveAnimationType() !== 'none');
 
-  // Easing function: easeOutCubic for smooth deceleration
+  // Easing function: easeOutCubic for smooth deceleration (kept for legacy animations)
   private easeOutCubic(t: number): number {
     const x = 1 - t;
     return 1 - x * x * x;
   }
 
-  // Calculate offset for CSS custom property (safe hardclamped value)
+  // Calculate stagger delay for revealStagger animation
+  getStaggerDelay(index: number): string {
+    if (!this.hasMotionedItems() || this.responsiveAnimationType() !== 'revealStagger') {
+      return '0ms';
+    }
+    // Apply 80ms stagger per card
+    return `${index * 80}ms`;
+  }
+
+  // Calculate offset for CSS custom property (safe hardclamped value) for scrollCloser animation
   getOffset(index: number): string {
     // Disable all animations on mobile AND tablet (only desktop animations)
     if (this.viewportService.isMobile() || this.viewportService.isTablet()) {
@@ -113,5 +128,32 @@ export class GalleryComponent {
     }
     
     return '0px';
+  }
+
+  ngAfterViewInit() {
+    // Set up IntersectionObserver for gallery container
+    if (!this.galleryContainer?.nativeElement) return;
+
+    const options: IntersectionObserverInit = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1 // Trigger when 10% of gallery is visible
+    };
+
+    this.intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Update in-view state signal
+        this.isInView.set(entry.isIntersecting);
+      });
+    }, options);
+
+    this.intersectionObserver.observe(this.galleryContainer.nativeElement);
+  }
+
+  ngOnDestroy() {
+    // Clean up IntersectionObserver
+    if (this.intersectionObserver) {
+      this.intersectionObserver.disconnect();
+    }
   }
 }
