@@ -1,0 +1,36 @@
+<div
+  [class]="containerClasses()"
+  [style.backgroundImage]="backgroundImage()"
+  [attr.role]="isClickable() ? 'button' : null"
+  [attr.tabindex]="isClickable() ? '0' : null"
+  [attr.aria-label]="config().title | translate"
+  (click)="onBannerClick()"
+  (keydown.enter)="onKeydown($event)"
+  (keydown.space)="onKeydown($event)"
+>
+  <!-- Overlay for background images (inline variant only) -->
+  @if (config().imageUrl) {
+    <div class="banner-overlay"></div>
+  }
+
+  <div class="banner-content">
+    <!-- Title -->
+    <span class="banner-title">{{ config().title | translate }}</span>
+
+    <!-- Subtitle (inline variant) -->
+    @if (variant() === 'inline' && config().subtitle) {
+      <span class="banner-subtitle">{{ config().subtitle! | translate }}</span>
+    }
+
+    <!-- CTA Link -->
+    @if (isClickable() && config().ctaText) {
+      <a
+        class="banner-cta"
+        [routerLink]="config().routeLink"
+        (click)="$event.stopPropagation()"
+      >
+        {{ config().ctaText! | translate }}
+      </a>
+    }
+  </div>
+</div>

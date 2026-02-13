@@ -1,3 +1,4 @@
+export * from './banner/banner.component';
 export * from './card/card.component';
 export * from './carousel/carousel.component';
 export * from './featured/featured.component';

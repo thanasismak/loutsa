@@ -15,7 +15,7 @@ export interface CardItem {
   template: `
     <section class="cards-grid-section">
       <h2 *ngIf="titleKey()">{{ (titleKey() || '') | translate }}</h2>
-      <div class="cards-grid" [ngClass]="'cols-' + columns()">
+      <div [class]="'cards-grid cols-' + columns()">
         <div class="card-item" *ngFor="let item of items()">
           <div class="card-icon">{{ item.icon }}</div>
           <h3>{{ item.titleKey | translate }}</h3>
