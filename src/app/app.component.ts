@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from './common/components';
 import { I18N_LANGUAGES, DEFAULT_LANGUAGE, SITE_CONFIG } from './config/constants';
+import { SeoService } from './core/services';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { I18N_LANGUAGES, DEFAULT_LANGUAGE, SITE_CONFIG } from './config/constant
 })
 export class AppComponent implements OnInit {
   readonly translate = inject(TranslateService);
+  readonly seoService = inject(SeoService);
 
   ngOnInit(): void {
     console.log('AppComponent initializing...');

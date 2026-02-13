@@ -3,7 +3,13 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
+    data: {
+      seo: {
+        title: 'Camping Loutsa',
+        description: 'Family-run camping in Finikounda, Messinia, Greece. Modern facilities, beach access, authentic Greek hospitality.'
+      }
+    }
   },
   {
     path: 'about',
