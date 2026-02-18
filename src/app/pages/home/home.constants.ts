@@ -10,15 +10,15 @@ export const HOME_FEATURED_CONTENT: FeaturedContent = {
 };
 
 export const HOME_NAVIGATION_CARDS = [
-  { title: 'app.nav.about', description: 'home.about_desc', link: '/about', arrow: true },
-  { title: 'app.nav.facilities', description: 'home.facilities_desc', link: '/facilities', arrow: true },
-  { title: 'app.nav.pricing', description: 'home.pricing_desc', link: '/pricing', arrow: true },
-  { title: 'app.nav.gallery', description: 'home.gallery_desc', link: '/gallery', arrow: true },
-  { title: 'app.nav.activities', description: 'home.activities_desc', link: '/things-to-do', arrow: true },
-  { title: 'app.nav.how_to_reach', description: 'home.how_to_reach_desc', link: '/how-to-reach', arrow: true },
-  { title: 'app.nav.rules', description: 'home.rules_desc', link: '/rules', arrow: true },
-  { title: 'app.nav.faq', description: 'home.faq_desc', link: '/faq', arrow: true },
-  { title: 'app.nav.contact', description: 'home.contact_desc', link: '/contact', arrow: true }
+  { title: 'app.nav.about', description: 'home.about_desc', link: '/about', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop' },
+  { title: 'app.nav.facilities', description: 'home.facilities_desc', link: '/facilities', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop' },
+  { title: 'app.nav.pricing', description: 'home.pricing_desc', link: '/pricing', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1554224311-beee415c15cb?w=400&h=300&fit=crop' },
+  { title: 'app.nav.gallery', description: 'home.gallery_desc', link: '/gallery', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1495316734285-57251b1ef5c0?w=400&h=300&fit=crop' },
+  { title: 'app.nav.activities', description: 'home.activities_desc', link: '/things-to-do', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop' },
+  { title: 'app.nav.how_to_reach', description: 'home.how_to_reach_desc', link: '/how-to-reach', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&h=300&fit=crop' },
+  { title: 'app.nav.rules', description: 'home.rules_desc', link: '/rules', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop' },
+  { title: 'app.nav.faq', description: 'home.faq_desc', link: '/faq', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1516534775068-bb57846d985c?w=400&h=300&fit=crop' },
+  { title: 'app.nav.contact', description: 'home.contact_desc', link: '/contact', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1516321318423-f06f70259b51?w=400&h=300&fit=crop' }
 ];
 
 export const HOME_FEATURE_ITEMS: GalleryItem[] = [

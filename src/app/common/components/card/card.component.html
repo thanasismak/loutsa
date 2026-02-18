@@ -1,4 +1,5 @@
 <div [routerLink]="config().link" [class.card]="true" [class.clickable]="config().link"
+     [ngStyle]="config().backgroundImage ? {'background-image': 'url(' + config().backgroundImage + ')'} : {}"
      (mouseenter)="onHover()" (mouseleave)="onLeave()">
   <div class="card-header" *ngIf="config().image">
     <img [src]="config().image" [alt]="config().title" class="card-image">

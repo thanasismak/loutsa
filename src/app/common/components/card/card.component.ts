@@ -9,6 +9,7 @@ export interface CardConfig {
   icon?: string;
   link?: string;
   image?: string;
+  backgroundImage?: string;
   arrow?: boolean;
 }
 
