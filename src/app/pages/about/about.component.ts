@@ -38,17 +38,17 @@ interface StatItem {
 export class AboutComponent {
   whyCards = signal<WhyCard[]>([
     { 
-      icon: '🌍', 
+      icon: '🏖️', 
       titleKey: 'about.why_location', 
       descKey: 'about.why_location_desc' 
     },
     { 
-      icon: '⭐', 
+      icon: '⚙️', 
       titleKey: 'about.why_facilities', 
       descKey: 'about.why_facilities_desc' 
     },
     { 
-      icon: '🏕️', 
+      icon: '👨‍👩‍👧‍👦', 
       titleKey: 'about.why_experience', 
       descKey: 'about.why_experience_desc' 
     },
@@ -60,9 +60,9 @@ export class AboutComponent {
   ]);
 
   stats = signal<StatItem[]>([
-    { value: '15+', labelKey: 'about.stat_years' },
-    { value: '10K+', labelKey: 'about.stat_guests' },
-    { value: '50+', labelKey: 'about.stat_sites' },
+    { value: '44+', labelKey: 'about.stat_years' },
+    { value: '1000s', labelKey: 'about.stat_guests' },
+    { value: '70', labelKey: 'about.stat_sites' },
     { value: '24/7', labelKey: 'about.stat_support' }
   ]);
 }

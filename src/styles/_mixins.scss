@@ -77,6 +77,22 @@
   gap: clamp($mobile, #{(100vw - v.$breakpoint-xs) * ($desktop - $mobile) / (v.$breakpoint-2xl - v.$breakpoint-xs) + $mobile}, $desktop);
 }
 
+/// Responsive font sizing
+/// @param {Number} $desktop - Font size on desktop
+/// @param {Number} $mobile - Font size on mobile
+/// @param {Number} $tablet - Font size on tablet (optional)
+@mixin responsive-font($desktop, $mobile, $tablet: $mobile) {
+  font-size: $mobile;
+  
+  @include respond-to('md') {
+    font-size: $tablet;
+  }
+  
+  @include respond-to('lg') {
+    font-size: $desktop;
+  }
+}
+
 /* ===== FLEX & GRID MIXINS ===== */
 
 /// Flexbox center

@@ -4,14 +4,14 @@
   subtitleKey="about.why_choose_desc">
 </app-hero>
 
-<!-- Why Choose Cards -->
+<!-- A: Why Choose Cards -->
 <app-cards-grid
   titleKey="about.why_title"
   [itemsInput]="whyCards()"
   [columns]="4">
 </app-cards-grid>
 
-<!-- Story Section -->
+<!-- B: Story Section (Full About Journey) -->
 <app-story
   titleKey="about.story_title"
   introKey="about.story_intro"
@@ -20,7 +20,7 @@
   imageUrl="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&h=400&fit=crop">
 </app-story>
 
-<!-- Mission & Values -->
+<!-- B: Mission & Values -->
 <app-mission-values
   missionTitleKey="about.mission_title"
   missionTextKey="about.mission_text"
@@ -31,7 +31,7 @@
   value4Key="about.value_4">
 </app-mission-values>
 
-<!-- Stats Section -->
+<!-- C: Stats Section -->
 <app-stats
   titleKey="about.stats_title"
   [statsInput]="stats()">
