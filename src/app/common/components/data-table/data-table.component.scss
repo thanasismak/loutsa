@@ -1,0 +1,98 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+// ─── Host ────────────────────────────────────────────────────────────────────
+:host {
+    display: block;
+    margin-bottom: $spacing-xl;
+}
+
+// ─── Caption ─────────────────────────────────────────────────────────────────
+.table-caption {
+    text-align: center;
+    color: $color-primary;
+    font-size: $font-size-lg;
+    font-weight: 600;
+    margin: 0 0 $spacing-md 0;
+}
+
+// ─── Scroll wrapper (horizontal on small screens) ────────────────────────────
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+// ─── Striped wrapper shell ────────────────────────────────────────────────────
+.table-wrapper--striped {
+    background: $color-white;
+    border: 1px solid $color-gray-border;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow-sm;
+}
+
+// ─── Base table + all projected content (scoped via :host) ───────────────────
+:host ::ng-deep {
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: $font-size-sm;
+
+        th,
+        td {
+            padding: $spacing-md $spacing-lg;
+            text-align: left;
+
+            @include respond-below('md') {
+                padding: $spacing-sm $spacing-md;
+            }
+        }
+
+        td {
+            color: $color-gray;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+    }
+
+    // ── Variant: striped ──────────────────────────────────────────────────────
+    .table-wrapper--striped .data-table {
+        th {
+            background: #f1f5f9;
+            color: $color-dark;
+            font-weight: 600;
+            border-bottom: 2px solid $color-gray-border;
+        }
+
+        td {
+            border-bottom: 1px solid $color-gray-border;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+            transition: background $transition-fast;
+        }
+    }
+
+    // ── Variant: transparent ──────────────────────────────────────────────────
+    .table-wrapper--transparent .data-table {
+        th {
+            color: $color-primary;
+            font-weight: 600;
+            background: transparent;
+            border-bottom: 2px solid $color-primary;
+        }
+
+        td {
+            border-bottom: 1px solid rgba($color-gray-border, 0.6);
+        }
+
+        tbody tr:hover {
+            background: rgba($color-primary, 0.04);
+            transition: background $transition-fast;
+        }
+    }
+}
