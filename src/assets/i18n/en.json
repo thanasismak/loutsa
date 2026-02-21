@@ -392,6 +392,13 @@
     "send": "Send Message",
     "map_heading": "Navigate to our coastal home",
     "get_directions": "Get Directions",
-    "follow": "Follow us on social media for updates and special offers"
+    "follow": "Follow us on social media for updates and special offers",
+    "reach_title": "How to Find Us",
+    "reach_location": "The camping is located 1.5 km outside Finikounda towards Koroni.",
+    "reach_from_athens": "Distance from Athens",
+    "reach_from_patras": "Distance from Patras",
+    "reach_route_title": "Routes",
+    "reach_route_1": "Athens → Messini → Koroni → Finikounda",
+    "reach_route_2": "Athens → Messini → Pylos → Methoni → Finikounda"
   }
 }

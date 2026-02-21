@@ -103,6 +103,120 @@ $text-dark: #3d3633;
   }
 }
 
+/* How to Find Us / Accessibility */
+.reach-block {
+  margin-bottom: 4rem;
+  padding: 2rem 2.5rem;
+  background: $sand-light;
+  border: 1.5px solid $sand-accent;
+  border-radius: 20px;
+}
+
+.reach-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.reach-icon {
+  font-size: 1.6rem;
+}
+
+.reach-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $text-dark;
+  margin: 0;
+}
+
+.reach-location {
+  font-size: 1rem;
+  color: $text-warm;
+  margin: 0 0 1.75rem;
+  line-height: 1.6;
+}
+
+.reach-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: start;
+
+  @include respond-below('md') {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.reach-dist-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, rgba($primary-teal, 0.08) 0%, rgba($primary-teal, 0.04) 100%);
+  border: 1.5px solid rgba($primary-teal, 0.2);
+  border-radius: 16px;
+  text-align: center;
+  gap: 0.35rem;
+
+  .reach-km {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $primary-teal;
+    line-height: 1;
+  }
+
+  .reach-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-warm;
+    white-space: nowrap;
+  }
+
+  @include respond-below('md') {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+
+    .reach-km {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.reach-routes {
+  .reach-route-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $text-warm;
+    margin: 0 0 0.75rem;
+  }
+
+  .reach-route {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: $text-dark;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    line-height: 1.5;
+
+    & + .reach-route {
+      margin-top: 0.4rem;
+    }
+
+    &:hover {
+      background: rgba($primary-teal, 0.05);
+    }
+  }
+}
+
 /* Main Layout */
 .contact-layout {
   display: grid;

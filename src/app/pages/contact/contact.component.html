@@ -1,11 +1,4 @@
 <app-section [title]="'contact.title' | translate">
-  <!-- Hero Section with Golden Hour Vibe -->
-  <div class="contact-hero">
-    <div class="hero-content">
-      <h2>{{ 'contact.hero_heading' | translate }}</h2>
-      <p>{{ 'contact.hero_subtitle' | translate }}</p>
-    </div>
-  </div>
 
   <!-- Feature Pills -->
   <div class="feature-pills">
@@ -24,6 +17,30 @@
     <div class="feature-pill">
       <span class="pill-icon" aria-label="Nature lovers welcome">🌿</span>
       <span class="pill-text">{{ 'contact.feature_nature' | translate }}</span>
+    </div>
+  </div>
+
+  <!-- How to Find Us -->
+  <div class="reach-block">
+    <div class="reach-header">
+      <span class="reach-icon">🗺️</span>
+      <h3 class="reach-title">{{ 'contact.reach_title' | translate }}</h3>
+    </div>
+    <p class="reach-location">📍 {{ 'contact.reach_location' | translate }}</p>
+    <div class="reach-grid">
+      <div class="reach-dist-card">
+        <span class="reach-km">280 km</span>
+        <span class="reach-label">{{ 'contact.reach_from_athens' | translate }}</span>
+      </div>
+      <div class="reach-routes">
+        <p class="reach-route-title">{{ 'contact.reach_route_title' | translate }}</p>
+        <div class="reach-route">🚗 {{ 'contact.reach_route_1' | translate }}</div>
+        <div class="reach-route">🚗 {{ 'contact.reach_route_2' | translate }}</div>
+      </div>
+      <div class="reach-dist-card">
+        <span class="reach-km">230 km</span>
+        <span class="reach-label">{{ 'contact.reach_from_patras' | translate }}</span>
+      </div>
     </div>
   </div>
 
