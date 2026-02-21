@@ -1,0 +1,183 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ─── Seasonal overview banner ─────────────────────────────────────────────────
+.pricing-overview {
+  margin: $spacing-xl 0;
+  padding: $spacing-lg;
+  background: #f8fafc;
+  border-radius: $radius-lg;
+}
+
+.pricing-overview h3 {
+  margin: 0 0 $spacing-md 0;
+  color: $color-dark;
+  font-size: $font-size-xl;
+}
+
+.seasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+  margin: $spacing-md 0;
+}
+
+.season {
+  padding: $spacing-md;
+  background: $color-white;
+  border-left: 4px solid $color-primary;
+  border-radius: $radius-sm;
+
+  h4 {
+    margin: 0 0 $spacing-xs 0;
+    color: $color-primary;
+    font-size: $font-size-base;
+  }
+
+  p {
+    margin: 0;
+    color: $color-gray-muted;
+    font-size: $font-size-sm;
+  }
+
+  &--high {
+    border-left-color: $theme-accent;
+
+    h4 {
+      color: $theme-accent;
+    }
+  }
+}
+
+.note {
+  margin: $spacing-md 0 0;
+  padding: $spacing-sm $spacing-md;
+  background: #fef3c7;
+  border-radius: $radius-sm;
+  color: #92400e;
+  font-size: $font-size-sm;
+}
+
+// ─── Tables area ──────────────────────────────────────────────────────────────
+.pricing-tables {
+  margin: $spacing-2xl 0;
+}
+
+.section-heading {
+  color: $color-dark;
+  font-size: $font-size-xl;
+  margin: 0 0 $spacing-lg 0;
+}
+
+// ─── Special offers ───────────────────────────────────────────────────────────
+.special-offers {
+  margin: $spacing-2xl 0;
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-lg;
+}
+
+.offer-card {
+  padding: $spacing-lg;
+  background: #f0fdf4;
+  border: 2px solid #bbf7d0;
+  border-radius: $radius-lg;
+}
+
+.offer-dates {
+  color: $color-gray-muted;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  margin: 0 0 $spacing-md 0;
+  padding: $spacing-xs $spacing-sm;
+  background: $color-white;
+  border-radius: $radius-sm;
+  display: inline-block;
+}
+
+.offer-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: $spacing-sm 0;
+  padding: $spacing-sm $spacing-md;
+  background: $color-white;
+  border-radius: $radius-sm;
+  gap: $spacing-md;
+}
+
+.offer-label {
+  margin: 0;
+  color: $color-gray;
+  font-size: $font-size-sm;
+  flex: 1;
+}
+
+.offer-price {
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: $color-primary;
+  white-space: nowrap;
+}
+
+// ─── Notes panels ─────────────────────────────────────────────────────────────
+.pricing-notes {
+  margin: $spacing-xl 0;
+  padding: $spacing-lg;
+  background: #eff6ff;
+  border-left: 4px solid $color-primary;
+  border-radius: $radius-lg;
+
+  h3 {
+    margin: 0 0 $spacing-md 0;
+    color: $color-dark;
+    font-size: $font-size-lg;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    position: relative;
+    padding: $spacing-xs 0 $spacing-xs $spacing-lg;
+    color: $color-gray;
+    font-size: $font-size-sm;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: $color-primary;
+      font-weight: 700;
+    }
+  }
+
+  &--info {
+    background: #f8fafc;
+    border-left-color: $color-gray-light;
+  }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@include respond-below('md') {
+  .seasons {
+    grid-template-columns: 1fr;
+  }
+
+  .offers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-option {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-xs;
+  }
+}

@@ -1,0 +1,181 @@
+<app-section [title]="'pricing.title' | translate">
+
+  <!-- Seasonal Pricing Overview -->
+  <div class="pricing-overview">
+    <h3>{{ 'pricing.seasonal_overview' | translate }}</h3>
+    <div class="seasons">
+      <div class="season">
+        <h4>{{ 'pricing.low_season' | translate }}</h4>
+        <p>{{ 'pricing.low_dates' | translate }}</p>
+      </div>
+      <div class="season season--high">
+        <h4>{{ 'pricing.high_season' | translate }}</h4>
+        <p>{{ 'pricing.high_dates' | translate }}</p>
+      </div>
+      <div class="season">
+        <h4>{{ 'pricing.low_season' | translate }}</h4>
+        <p>{{ 'pricing.low_dates2' | translate }}</p>
+      </div>
+    </div>
+    <p class="note">{{ 'pricing.peak_notes' | translate }}</p>
+  </div>
+
+  <!-- Accommodation Charges -->
+  <div class="pricing-tables">
+    <h3 class="section-heading">{{ 'pricing.accommodation_title' | translate }}</h3>
+
+    <!-- Persons -->
+    <app-data-table [caption]="'pricing.persons_category' | translate">
+      <thead>
+        <tr>
+          <th>{{ 'pricing.category' | translate }}</th>
+          <th>{{ 'pricing.low_season' | translate }}<br><small>1/6 – 30/6</small></th>
+          <th>{{ 'pricing.high_season' | translate }}<br><small>1/7 – 31/8</small></th>
+          <th>{{ 'pricing.low_season' | translate }}<br><small>1/9 – 31/10</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ 'pricing.adults_children' | translate }}</td>
+          <td>€8.00</td><td>€9.00</td><td>€8.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.children_4_10' | translate }}</td>
+          <td>€5.00</td><td>€6.00</td><td>€5.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.children_under_4' | translate }}</td>
+          <td>€2.00</td><td>€2.00</td><td>€2.00</td>
+        </tr>
+      </tbody>
+    </app-data-table>
+
+    <!-- Vehicles -->
+    <app-data-table [caption]="'pricing.vehicles_category' | translate">
+      <thead>
+        <tr>
+          <th>{{ 'pricing.vehicle_type' | translate }}</th>
+          <th>{{ 'pricing.low_season' | translate }}<br><small>1/6 – 30/6</small></th>
+          <th>{{ 'pricing.high_season' | translate }}<br><small>1/7 – 31/8</small></th>
+          <th>{{ 'pricing.low_season' | translate }}<br><small>1/9 – 31/10</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ 'pricing.car' | translate }}</td>
+          <td>€4.00</td><td>€4.00</td><td>€4.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.motorcycle' | translate }}</td>
+          <td>€3.00</td><td>€3.00</td><td>€3.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.motor_home' | translate }}</td>
+          <td>€6.00</td><td>€6.50</td><td>€6.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.caravan_trailer' | translate }}</td>
+          <td>€6.00</td><td>€6.50</td><td>€6.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.camper' | translate }}</td>
+          <td>€7.50</td><td>€8.00</td><td>€7.50</td>
+        </tr>
+      </tbody>
+    </app-data-table>
+
+    <!-- Tents -->
+    <app-data-table [caption]="'pricing.tents_category' | translate">
+      <thead>
+        <tr>
+          <th>{{ 'pricing.tent_size' | translate }}</th>
+          <th>{{ 'pricing.low_season' | translate }}<br><small>1/6 – 30/6</small></th>
+          <th>{{ 'pricing.high_season' | translate }}<br><small>1/7 – 31/8</small></th>
+          <th>{{ 'pricing.low_season' | translate }}<br><small>1/9 – 31/10</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ 'pricing.small_tent' | translate }}</td>
+          <td>€5.00</td><td>€5.50</td><td>€5.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.large_tent' | translate }}</td>
+          <td>€5.50</td><td>€6.00</td><td>€5.50</td>
+        </tr>
+      </tbody>
+    </app-data-table>
+
+    <!-- Electricity & Additional Services (transparent variant) -->
+    <app-data-table
+      variant="transparent"
+      [caption]="'pricing.electricity_title' | translate">
+      <thead>
+        <tr>
+          <th>{{ 'pricing.service' | translate }}</th>
+          <th>{{ 'pricing.all_seasons' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ 'pricing.basic_electricity' | translate }}</td>
+          <td>€5.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.heavy_appliances' | translate }}</td>
+          <td>€8.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.motor_home_electricity' | translate }}</td>
+          <td>€8.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.motor_home_ac' | translate }}</td>
+          <td>€10.00</td>
+        </tr>
+        <tr>
+          <td>{{ 'pricing.boat_trailer_storage' | translate }}</td>
+          <td>€3.00</td>
+        </tr>
+      </tbody>
+    </app-data-table>
+  </div>
+
+  <!-- Special Offers -->
+  <div class="special-offers">
+    <h3 class="section-heading">{{ 'pricing.special_offers' | translate }}</h3>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <p class="offer-dates">{{ 'pricing.spring_autumn_dates' | translate }}</p>
+        <div class="offer-option">
+          <p class="offer-label">{{ 'pricing.caravan_package' | translate }}</p>
+          <p class="offer-price">€28.00</p>
+        </div>
+        <div class="offer-option">
+          <p class="offer-label">{{ 'pricing.tent_package' | translate }}</p>
+          <p class="offer-price">€28.00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Important Notes + Minimum Charges -->
+  <div class="pricing-notes">
+    <h3>{{ 'pricing.minimum_charges' | translate }}</h3>
+    <ul>
+      <li>{{ 'pricing.high_season_minimum' | translate }}: <strong>€30.00</strong></li>
+      <li>{{ 'pricing.short_stay' | translate }}: <strong>€7.50</strong> {{ 'pricing.per_person' | translate }}</li>
+      <li>{{ 'pricing.no_electricity_discount' | translate }}</li>
+    </ul>
+  </div>
+
+  <div class="pricing-notes pricing-notes--info">
+    <h3>{{ 'pricing.important_notes' | translate }}</h3>
+    <ul>
+      <li>{{ 'pricing.vat_included' | translate }}</li>
+      <li>{{ 'pricing.electricity_adjustment' | translate }}</li>
+      <li>{{ 'pricing.last_updated' | translate }}</li>
+    </ul>
+  </div>
+
+</app-section>
