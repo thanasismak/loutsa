@@ -174,6 +174,7 @@
   },
   "facilities": {
     "title": "Amenities & Facilities",
+    "subtitle": "70 Pitches · Blue Flag Beach · Full On-Site Services",
     "mini_market": "Mini Market",
     "mini_market_desc": "Stock up on essentials and supplies at our on-site shop.",
     "restaurant": "Restaurant",
@@ -193,7 +194,53 @@
     "wc": "Clean Facilities",
     "wc_desc": "Well-maintained toilet and washing facilities.",
     "kitchen": "Cooking Area",
-    "kitchen_desc": "Facilities for preparing your own meals."
+    "kitchen_desc": "Facilities for preparing your own meals.",
+
+    "infra_title": "Pitches & Infrastructure",
+    "infra_intro": "Camping Loutsa has 70 pitches of 48 m², each clearly delineated and equipped with electricity and fresh drinking water.",
+    "pitch_count": "70 Pitches",
+    "pitch_count_desc": "Individual pitch size: 48 m²",
+    "pitch_elec": "Electric Hook-up",
+    "pitch_elec_desc": "Power connection at every pitch.",
+    "pitch_water": "Drinking Water",
+    "pitch_water_desc": "Fresh water tap at every pitch.",
+
+    "sanitation_title": "Sanitation Facilities",
+    "sanitation_intro": "All sanitation facilities are open 24 hours a day with hot water always available.",
+    "bathrooms_label": "Bathrooms",
+    "showers_label": "Showers",
+    "washbasins_label": "Washbasins",
+    "hot_water_note": "Hot water available 24 / 7",
+
+    "kitchen_section_title": "Communal Kitchen",
+    "kitchen_full_desc": "Full kitchen facilities for cooking and dishwashing, equipped with 2 large refrigerators for food preservation, 2 freezers and an iced water dispenser.",
+    "fridges": "2 Large Refrigerators",
+    "fridges_desc": "Food preservation storage.",
+    "freezers": "2 Freezers",
+    "freezers_desc": "Ice storage.",
+    "ice_water": "Iced Water Dispenser",
+    "ice_water_desc": "Always-cold drinking water.",
+
+    "dining_title": "Dining & Refreshments",
+    "bbq": "Barbecue",
+    "bbq_desc": "Group grilling facilities on site.",
+
+    "laundry_section_title": "Laundry & Cleaning",
+    "laundry_areas": "Designated Laundry Areas",
+    "laundry_areas_desc": "Dedicated spaces for hand-washing clothes.",
+    "chemical_dump": "Chemical Toilet Dump Station",
+    "chemical_dump_desc": "Specialised waste-disposal facility for RVs and motorhomes.",
+
+    "vehicle_section_title": "Vehicle & Boat Services",
+    "vehicle_service": "Vehicle Service Area",
+    "vehicle_service_desc": "On-site area for vehicle maintenance and minor repairs.",
+    "boat_wash": "Boat Washing Station",
+    "boat_wash_desc": "Dedicated rinse-and-clean area for boats.",
+    "boat_ramp": "Boat Launch Ramp",
+    "boat_ramp_desc": "Direct beach ramp for launching vessels into the sea.",
+
+    "pets_title": "Pets Welcome",
+    "pets_welcome_desc": "Pets are allowed throughout the camping grounds."
   },
   "activities": {
     "title": "Things To Do",

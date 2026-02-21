@@ -1,0 +1,173 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ─── Block wrappers ───────────────────────────────────────────────────────────
+.fac-block {
+  margin: $spacing-2xl 0;
+}
+
+.fac-block--alt {
+  padding: $spacing-xl $spacing-lg;
+  background: #f8fafc;
+  border-radius: $radius-lg;
+}
+
+// ─── Sub-section heading ──────────────────────────────────────────────────────
+.fac-heading {
+  color: $color-dark;
+  font-size: $font-size-xl;
+  margin: 0 0 $spacing-md 0;
+  padding-bottom: $spacing-sm;
+  // border-bottom: 3px solid $color-primary;
+  display: inline-block;
+}
+
+.fac-intro {
+  color: $color-gray;
+  font-size: $font-size-base;
+  line-height: 1.7;
+  margin: 0 0 $spacing-lg 0;
+  max-width: 860px;
+}
+
+// ─── Generic facility card ────────────────────────────────────────────────────
+.fac-card {
+  padding: $spacing-lg;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border-top: 4px solid $color-primary;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(14, 165, 164, 0.15);
+  }
+
+  &__icon {
+    font-size: 2.4rem;
+    margin-bottom: $spacing-sm;
+    display: block;
+  }
+
+  h4 {
+    margin: 0 0 $spacing-xs 0;
+    color: $color-dark;
+    font-size: $font-size-base;
+  }
+
+  p {
+    margin: 0;
+    color: $color-gray-muted;
+    font-size: $font-size-sm;
+    line-height: 1.5;
+  }
+
+  // Variants
+  &--primary { border-top-color: $color-primary; }
+  &--kitchen  { border-top-color: #f59e0b; }
+  &--boat     { border-top-color: #3b82f6; }
+}
+
+// ─── Sanitation stats row ─────────────────────────────────────────────────────
+.fac-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+  margin: $spacing-lg 0;
+}
+
+.fac-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-lg $spacing-md;
+  background: $color-white;
+  border-radius: $radius-lg;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  &__number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: $color-primary;
+    line-height: 1;
+  }
+
+  &__label {
+    margin-top: $spacing-xs;
+    color: $color-gray;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.fac-note {
+  margin: $spacing-md 0 0;
+  padding: $spacing-sm $spacing-md;
+  background: #fef3c7;
+  border-radius: $radius-sm;
+  color: #92400e;
+  font-size: $font-size-sm;
+  display: inline-block;
+}
+
+// ─── Banner cards (wifi / pets) ───────────────────────────────────────────────
+.fac-banner {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  padding: $spacing-xl;
+  border-radius: $radius-lg;
+
+  &__icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+  }
+
+  h4 {
+    margin: 0 0 $spacing-xs 0;
+    font-size: $font-size-lg;
+    color: $color-white;
+  }
+
+  p {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+  }
+
+  &--teal {
+    background: linear-gradient(135deg, #0ea5a4 0%, #0d9488 100%);
+  }
+
+  &--green {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@include respond-below('md') {
+  .fac-block--alt {
+    padding: $spacing-lg $spacing-sm;
+  }
+
+  .fac-stats-row {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+
+  .fac-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: $spacing-md;
+  }
+}
+
+@include respond-below('sm') {
+  .fac-stat__number {
+    font-size: 2.8rem;
+  }
+}

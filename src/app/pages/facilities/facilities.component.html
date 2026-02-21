@@ -1,0 +1,107 @@
+<app-section [title]="'facilities.title' | translate" [subtitle]="'facilities.subtitle' | translate">
+
+  <!-- ─── Pitches & Infrastructure ─────────────────────────────────────── -->
+  <div class="fac-block">
+    <h3 class="fac-heading">{{ 'facilities.infra_title' | translate }}</h3>
+    <p class="fac-intro">{{ 'facilities.infra_intro' | translate }}</p>
+    <app-tiles gridClass="cols-3">
+      <div class="fac-card fac-card--primary" *ngFor="let p of pitches()">
+        <div class="fac-card__icon">{{ p.icon }}</div>
+        <h4>{{ p.titleKey | translate }}</h4>
+        <p>{{ p.descKey | translate }}</p>
+      </div>
+    </app-tiles>
+  </div>
+
+  <!-- ─── Sanitation ───────────────────────────────────────────────────── -->
+  <div class="fac-block fac-block--alt">
+    <h3 class="fac-heading">{{ 'facilities.sanitation_title' | translate }}</h3>
+    <p class="fac-intro">{{ 'facilities.sanitation_intro' | translate }}</p>
+
+    <div class="fac-stats-row">
+      <div class="fac-stat">
+        <span class="fac-stat__number">16</span>
+        <span class="fac-stat__label">{{ 'facilities.bathrooms_label' | translate }}</span>
+      </div>
+      <div class="fac-stat">
+        <span class="fac-stat__number">16</span>
+        <span class="fac-stat__label">{{ 'facilities.showers_label' | translate }}</span>
+      </div>
+      <div class="fac-stat">
+        <span class="fac-stat__number">16</span>
+        <span class="fac-stat__label">{{ 'facilities.washbasins_label' | translate }}</span>
+      </div>
+    </div>
+    <p class="fac-note">🌡️ {{ 'facilities.hot_water_note' | translate }}</p>
+  </div>
+
+  <!-- ─── Dining & Refreshments ────────────────────────────────────────── -->
+  <div class="fac-block">
+    <h3 class="fac-heading">{{ 'facilities.dining_title' | translate }}</h3>
+    <app-tiles gridClass="cols-4">
+      <div class="fac-card" *ngFor="let d of dining()">
+        <div class="fac-card__icon">{{ d.icon }}</div>
+        <h4>{{ d.titleKey | translate }}</h4>
+        <p>{{ d.descKey | translate }}</p>
+      </div>
+    </app-tiles>
+  </div>
+
+  <!-- ─── Communal Kitchen ─────────────────────────────────────────────── -->
+  <div class="fac-block fac-block--alt">
+    <h3 class="fac-heading">{{ 'facilities.kitchen_section_title' | translate }}</h3>
+    <p class="fac-intro">{{ 'facilities.kitchen_full_desc' | translate }}</p>
+    <app-tiles gridClass="cols-4">
+      <div class="fac-card fac-card--kitchen" *ngFor="let k of kitchen()">
+        <div class="fac-card__icon">{{ k.icon }}</div>
+        <h4>{{ k.titleKey | translate }}</h4>
+        <p>{{ k.descKey | translate }}</p>
+      </div>
+    </app-tiles>
+  </div>
+
+  <!-- ─── Laundry & Cleaning ───────────────────────────────────────────── -->
+  <div class="fac-block">
+    <h3 class="fac-heading">{{ 'facilities.laundry_section_title' | translate }}</h3>
+    <app-tiles gridClass="cols-3">
+      <div class="fac-card" *ngFor="let l of laundry()">
+        <div class="fac-card__icon">{{ l.icon }}</div>
+        <h4>{{ l.titleKey | translate }}</h4>
+        <p>{{ l.descKey | translate }}</p>
+      </div>
+    </app-tiles>
+  </div>
+
+  <!-- ─── Vehicle & Boat Services ──────────────────────────────────────── -->
+  <div class="fac-block fac-block--alt">
+    <h3 class="fac-heading">{{ 'facilities.vehicle_section_title' | translate }}</h3>
+    <app-tiles gridClass="cols-3">
+      <div class="fac-card fac-card--boat" *ngFor="let v of vehicles()">
+        <div class="fac-card__icon">{{ v.icon }}</div>
+        <h4>{{ v.titleKey | translate }}</h4>
+        <p>{{ v.descKey | translate }}</p>
+      </div>
+    </app-tiles>
+  </div>
+
+  <!-- ─── Connectivity & Pets ──────────────────────────────────────────── -->
+  <div class="fac-block">
+    <app-tiles gridClass="cols-2">
+      <div class="fac-banner fac-banner--teal">
+        <span class="fac-banner__icon">📶</span>
+        <div>
+          <h4>{{ 'facilities.wifi' | translate }}</h4>
+          <p>{{ 'facilities.wifi_desc' | translate }}</p>
+        </div>
+      </div>
+      <div class="fac-banner fac-banner--green">
+        <span class="fac-banner__icon">🐾</span>
+        <div>
+          <h4>{{ 'facilities.pets_title' | translate }}</h4>
+          <p>{{ 'facilities.pets_welcome_desc' | translate }}</p>
+        </div>
+      </div>
+    </app-tiles>
+  </div>
+
+</app-section>

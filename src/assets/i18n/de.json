@@ -193,7 +193,54 @@
     "wc": "Saubere Anlagen",
     "wc_desc": "Gepflegte Toiletten- und Waschanlagen.",
     "kitchen": "Kochbereich",
-    "kitchen_desc": "Einrichtungen zum Zubereiten eigener Mahlzeiten."
+    "kitchen_desc": "Einrichtungen zum Zubereiten eigener Mahlzeiten.",
+
+    "subtitle": "70 Stellplätze · Blauflagge-Strand · Vollständige Services",
+    "infra_title": "Stellplätze & Infrastruktur",
+    "infra_intro": "Camping Loutsa verfügt über 70 Stellplätze à 48 m², klar voneinander abgegrenzt und mit Stromanschluss sowie Trinkwasser ausgestattet.",
+    "pitch_count": "70 Stellplätze",
+    "pitch_count_desc": "Einzelne Stellplatzgröße: 48 m²",
+    "pitch_elec": "Stromanschluss",
+    "pitch_elec_desc": "Stromverbindung an jedem Stellplatz.",
+    "pitch_water": "Trinkwasser",
+    "pitch_water_desc": "Trinkwasserhahn an jedem Stellplatz.",
+
+    "sanitation_title": "Sanitäranlagen",
+    "sanitation_intro": "Alle Sanitäranlagen sind 24 Stunden geöffnet, mit jederzeit verfügbarem Warmwasser.",
+    "bathrooms_label": "Bäder",
+    "showers_label": "Duschen",
+    "washbasins_label": "Waschbecken",
+    "hot_water_note": "Warmwasser 24 / 7",
+
+    "kitchen_section_title": "Gemeinschaftsküche",
+    "kitchen_full_desc": "Vollständige Kücheneinrichtung zum Kochen und Geschirrspülen, ausgestattet mit 2 großen Kühlschränken, 2 Tiefkühlern und einem Eiswasserspender.",
+    "fridges": "2 große Kühlschränke",
+    "fridges_desc": "Lebensmittellagerung und -konservierung.",
+    "freezers": "2 Tiefkühler",
+    "freezers_desc": "Eislagerung.",
+    "ice_water": "Eiswasserspender",
+    "ice_water_desc": "Immer kaltes Trinkwasser.",
+
+    "dining_title": "Gastronomie & Erfrischungen",
+    "bbq": "Grillplatz",
+    "bbq_desc": "Grilleinrichtungen für Gruppen vor Ort.",
+
+    "laundry_section_title": "Wäscherei & Reinigung",
+    "laundry_areas": "Wäschebereiche",
+    "laundry_areas_desc": "Ausgewiesene Bereiche zum Handwaschen von Kleidung.",
+    "chemical_dump": "Chemietoiletten-Entsorgungsstation",
+    "chemical_dump_desc": "Spezialisierte Abfallentsorgungsanlage für Wohnmobile und Reisemobile.",
+
+    "vehicle_section_title": "Fahrzeug- & Bootsservice",
+    "vehicle_service": "Fahrzeugservicebereich",
+    "vehicle_service_desc": "Bereich für Fahrzeugwartung und kleinere Reparaturen.",
+    "boat_wash": "Bootswaschstation",
+    "boat_wash_desc": "Dedizierter Spül- und Reinigungsbereich für Boote.",
+    "boat_ramp": "Bootsslipanlage",
+    "boat_ramp_desc": "Direkte Strandrampe zum Zuwasserlassen von Booten.",
+
+    "pets_title": "Haustiere willkommen",
+    "pets_welcome_desc": "Haustiere sind auf dem gesamten Campinggelände erlaubt."
   },
   "activities": {
     "title": "Aktivitäten",

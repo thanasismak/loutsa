@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { SectionComponent, TilesComponent } from '@app/common/components';
 
-interface Facility {
+interface FacilityItem {
   icon: string;
   titleKey: string;
   descKey: string;
@@ -13,53 +13,41 @@ interface Facility {
   selector: 'app-facilities',
   standalone: true,
   imports: [CommonModule, TranslateModule, SectionComponent, TilesComponent],
-  template: `
-    <app-section [title]="'facilities.title' | translate">
-      <app-tiles [gridClass]="'cols-4'">
-        <div class="facility-item" *ngFor="let facility of facilities()">
-          <div class="icon">{{ facility.icon }}</div>
-          <h3>{{ facility.titleKey | translate }}</h3>
-          <p>{{ facility.descKey | translate }}</p>
-        </div>
-      </app-tiles>
-    </app-section>
-  `,
-  styles: [`
-    .facility-item {
-      text-align: center;
-      padding: 1.5rem;
-      background: #f8fafc;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .facility-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(14, 165, 164, 0.15);
-    }
-
-    .icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .facility-item h3 {
-      margin: 0.5rem 0;
-      color: var(--accent, #0ea5a4);
-    }
-
-    .facility-item p {
-      margin: 0;
-      color: #64748b;
-      font-size: 0.9rem;
-    }
-  `]
+  templateUrl: './facilities.component.html',
+  styleUrl: './facilities.component.scss'
 })
 export class FacilitiesComponent {
-  facilities = signal<Facility[]>([
-    { icon: '💧', titleKey: 'facilities.water', descKey: 'facilities.water_desc' },
-    { icon: '🚿', titleKey: 'facilities.showers', descKey: 'facilities.showers_desc' },
-    { icon: '⚡', titleKey: 'facilities.electricity', descKey: 'facilities.electricity_desc' },
-    { icon: '📶', titleKey: 'facilities.wifi', descKey: 'facilities.wifi_desc' }
+
+  pitches = signal<FacilityItem[]>([
+    { icon: '🏕️', titleKey: 'facilities.pitch_count',  descKey: 'facilities.pitch_count_desc' },
+    { icon: '⚡',  titleKey: 'facilities.pitch_elec',   descKey: 'facilities.pitch_elec_desc' },
+    { icon: '💧',  titleKey: 'facilities.pitch_water',  descKey: 'facilities.pitch_water_desc' },
+  ]);
+
+  dining = signal<FacilityItem[]>([
+    { icon: '🍽️', titleKey: 'facilities.restaurant',  descKey: 'facilities.restaurant_desc' },
+    { icon: '☕',  titleKey: 'facilities.cafe_bar',    descKey: 'facilities.cafe_bar_desc' },
+    { icon: '🛒',  titleKey: 'facilities.mini_market', descKey: 'facilities.mini_market_desc' },
+    { icon: '🔥',  titleKey: 'facilities.bbq',         descKey: 'facilities.bbq_desc' },
+  ]);
+
+  kitchen = signal<FacilityItem[]>([
+    { icon: '🍳',  titleKey: 'facilities.kitchen',     descKey: 'facilities.kitchen_desc' },
+    { icon: '🧊',  titleKey: 'facilities.fridges',     descKey: 'facilities.fridges_desc' },
+    { icon: '❄️',  titleKey: 'facilities.freezers',    descKey: 'facilities.freezers_desc' },
+    { icon: '🥤',  titleKey: 'facilities.ice_water',   descKey: 'facilities.ice_water_desc' },
+  ]);
+
+  laundry = signal<FacilityItem[]>([
+    { icon: '🫧',  titleKey: 'facilities.laundry',       descKey: 'facilities.laundry_desc' },
+    { icon: '👚',  titleKey: 'facilities.laundry_areas', descKey: 'facilities.laundry_areas_desc' },
+    { icon: '🚽',  titleKey: 'facilities.chemical_dump', descKey: 'facilities.chemical_dump_desc' },
+  ]);
+
+  vehicles = signal<FacilityItem[]>([
+    { icon: '🔧',  titleKey: 'facilities.vehicle_service', descKey: 'facilities.vehicle_service_desc' },
+    { icon: '🚿',  titleKey: 'facilities.boat_wash',       descKey: 'facilities.boat_wash_desc' },
+    { icon: '⛵',  titleKey: 'facilities.boat_ramp',       descKey: 'facilities.boat_ramp_desc' },
   ]);
 }
+
