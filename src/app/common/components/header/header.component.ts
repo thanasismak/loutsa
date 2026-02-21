@@ -24,7 +24,8 @@ export class HeaderComponent {
   menuOpen = signal(false);
   languageOptions = signal<SelectOption[]>([
     { value: 'el', label: LANGUAGES.el.label, icon: LANGUAGES.el.flag },
-    { value: 'en', label: LANGUAGES.en.label, icon: LANGUAGES.en.flag }
+    { value: 'en', label: LANGUAGES.en.label, icon: LANGUAGES.en.flag },
+    { value: 'de', label: LANGUAGES.de.label, icon: LANGUAGES.de.flag }
   ]);
 
   constructor() {

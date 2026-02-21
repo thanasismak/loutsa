@@ -3,7 +3,7 @@
  * Defines metadata structure for pages and schemas
  */
 
-export type SeoLocale = 'en_US' | 'el_GR';
+export type SeoLocale = 'en_US' | 'el_GR' | 'de_DE';
 
 export interface SeoMeta {
   /** Page title (displayed in browser tab, search results) */

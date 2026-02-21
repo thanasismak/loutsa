@@ -2,7 +2,7 @@
  * Application-wide constants and configuration
  */
 
-export type Language = 'en' | 'el';
+export type Language = 'en' | 'el' | 'de';
 
 export interface LanguageConfig {
   code: Language;
@@ -23,6 +23,12 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
     name: 'Ελληνικά',
     flag: '🇬🇷',
     label: 'ΕΛ'
+  },
+  de: {
+    code: 'de',
+    name: 'Deutsch',
+    flag: '🇩🇪',
+    label: 'DE'
   }
 };
 

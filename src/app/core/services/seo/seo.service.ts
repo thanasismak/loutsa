@@ -114,7 +114,9 @@ export class SeoService {
    */
   private getCurrentLocale(): SeoLocale {
     const lang = this.translateService.currentLang || this.translateService.defaultLang;
-    return lang === 'el' ? 'el_GR' : 'en_US';
+    if (lang === 'el') return 'el_GR';
+    if (lang === 'de') return 'de_DE';
+    return 'en_US';
   }
 
   /**
