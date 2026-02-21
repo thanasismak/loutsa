@@ -1,6 +1,7 @@
 export * from './banner/banner.component';
 export * from './card/card.component';
 export * from './carousel/carousel.component';
+export * from './data-table/data-table.component';
 export * from './featured/featured.component';
 export * from './gallery/gallery.component';
 export * from './section/section.component';
