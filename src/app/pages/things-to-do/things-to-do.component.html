@@ -34,15 +34,17 @@
 
     <!-- Beach tiles -->
     <app-tiles gridClass="cols-3">
-      <div class="ttd-beach-card" *ngFor="let beach of beaches()">
-        <div class="ttd-beach-card__emoji">{{ beach.emoji }}</div>
-        <div class="ttd-beach-card__body">
-          <h4>{{ beach.nameKey | translate }}</h4>
-          <span class="ttd-beach-card__tag">{{ beach.charKey | translate }}</span>
-          <p>{{ beach.forKey | translate }}</p>
-          <span class="ttd-beach-card__dist">{{ beach.distance }}</span>
+      @for (beach of beaches(); track $index) {
+        <div class="ttd-beach-card">
+          <div class="ttd-beach-card__emoji">{{ beach.emoji }}</div>
+          <div class="ttd-beach-card__body">
+            <h4>{{ beach.nameKey | translate }}</h4>
+            <span class="ttd-beach-card__tag">{{ beach.charKey | translate }}</span>
+            <p>{{ beach.forKey | translate }}</p>
+            <span class="ttd-beach-card__dist">{{ beach.distance }}</span>
+          </div>
         </div>
-      </div>
+      }
     </app-tiles>
 
     <!-- Beach Guide Table -->
@@ -57,12 +59,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let beach of beaches()">
-            <td><strong>{{ beach.nameKey | translate }}</strong></td>
-            <td>{{ beach.charKey | translate }}</td>
-            <td>{{ beach.forKey | translate }}</td>
-            <td>{{ beach.distance }}</td>
-          </tr>
+          @for (beach of beaches(); track $index) {
+            <tr>
+              <td><strong>{{ beach.nameKey | translate }}</strong></td>
+              <td>{{ beach.charKey | translate }}</td>
+              <td>{{ beach.forKey | translate }}</td>
+              <td>{{ beach.distance }}</td>
+            </tr>
+          }
         </tbody>
       </app-data-table>
     </div>
@@ -74,11 +78,13 @@
     <p class="ttd-intro">{{ 'activities.monuments_intro' | translate }}</p>
 
     <app-tiles gridClass="cols-3">
-      <div class="ttd-monument-card" *ngFor="let m of monuments()">
-        <div class="ttd-monument-card__icon">{{ m.icon }}</div>
-        <h4>{{ m.titleKey | translate }}</h4>
-        <p>{{ m.descKey | translate }}</p>
-      </div>
+      @for (m of monuments(); track $index) {
+        <div class="ttd-monument-card">
+          <div class="ttd-monument-card__icon">{{ m.icon }}</div>
+          <h4>{{ m.titleKey | translate }}</h4>
+          <p>{{ m.descKey | translate }}</p>
+        </div>
+      }
     </app-tiles>
   </div>
 

@@ -5,11 +5,13 @@
     <h3 class="fac-heading">{{ 'facilities.infra_title' | translate }}</h3>
     <p class="fac-intro">{{ 'facilities.infra_intro' | translate }}</p>
     <app-tiles gridClass="cols-3">
-      <div class="fac-card fac-card--primary" *ngFor="let p of pitches()">
-        <div class="fac-card__icon">{{ p.icon }}</div>
-        <h4>{{ p.titleKey | translate }}</h4>
-        <p>{{ p.descKey | translate }}</p>
-      </div>
+      @for (p of pitches(); track $index) {
+        <div class="fac-card fac-card--primary">
+          <div class="fac-card__icon">{{ p.icon }}</div>
+          <h4>{{ p.titleKey | translate }}</h4>
+          <p>{{ p.descKey | translate }}</p>
+        </div>
+      }
     </app-tiles>
   </div>
 
@@ -39,11 +41,13 @@
   <div class="fac-block">
     <h3 class="fac-heading">{{ 'facilities.dining_title' | translate }}</h3>
     <app-tiles gridClass="cols-4">
-      <div class="fac-card" *ngFor="let d of dining()">
-        <div class="fac-card__icon">{{ d.icon }}</div>
-        <h4>{{ d.titleKey | translate }}</h4>
-        <p>{{ d.descKey | translate }}</p>
-      </div>
+      @for (d of dining(); track $index) {
+        <div class="fac-card">
+          <div class="fac-card__icon">{{ d.icon }}</div>
+          <h4>{{ d.titleKey | translate }}</h4>
+          <p>{{ d.descKey | translate }}</p>
+        </div>
+      }
     </app-tiles>
   </div>
 
@@ -52,11 +56,13 @@
     <h3 class="fac-heading">{{ 'facilities.kitchen_section_title' | translate }}</h3>
     <p class="fac-intro">{{ 'facilities.kitchen_full_desc' | translate }}</p>
     <app-tiles gridClass="cols-4">
-      <div class="fac-card fac-card--kitchen" *ngFor="let k of kitchen()">
-        <div class="fac-card__icon">{{ k.icon }}</div>
-        <h4>{{ k.titleKey | translate }}</h4>
-        <p>{{ k.descKey | translate }}</p>
-      </div>
+      @for (k of kitchen(); track $index) {
+        <div class="fac-card fac-card--kitchen">
+          <div class="fac-card__icon">{{ k.icon }}</div>
+          <h4>{{ k.titleKey | translate }}</h4>
+          <p>{{ k.descKey | translate }}</p>
+        </div>
+      }
     </app-tiles>
   </div>
 
@@ -64,11 +70,13 @@
   <div class="fac-block">
     <h3 class="fac-heading">{{ 'facilities.laundry_section_title' | translate }}</h3>
     <app-tiles gridClass="cols-3">
-      <div class="fac-card" *ngFor="let l of laundry()">
-        <div class="fac-card__icon">{{ l.icon }}</div>
-        <h4>{{ l.titleKey | translate }}</h4>
-        <p>{{ l.descKey | translate }}</p>
-      </div>
+      @for (l of laundry(); track $index) {
+        <div class="fac-card">
+          <div class="fac-card__icon">{{ l.icon }}</div>
+          <h4>{{ l.titleKey | translate }}</h4>
+          <p>{{ l.descKey | translate }}</p>
+        </div>
+      }
     </app-tiles>
   </div>
 
@@ -76,11 +84,13 @@
   <div class="fac-block fac-block--alt">
     <h3 class="fac-heading">{{ 'facilities.vehicle_section_title' | translate }}</h3>
     <app-tiles gridClass="cols-3">
-      <div class="fac-card fac-card--boat" *ngFor="let v of vehicles()">
-        <div class="fac-card__icon">{{ v.icon }}</div>
-        <h4>{{ v.titleKey | translate }}</h4>
-        <p>{{ v.descKey | translate }}</p>
-      </div>
+      @for (v of vehicles(); track $index) {
+        <div class="fac-card fac-card--boat">
+          <div class="fac-card__icon">{{ v.icon }}</div>
+          <h4>{{ v.titleKey | translate }}</h4>
+          <p>{{ v.descKey | translate }}</p>
+        </div>
+      }
     </app-tiles>
   </div>
 
