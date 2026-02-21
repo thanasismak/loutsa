@@ -1,0 +1,85 @@
+<app-section [title]="'activities.title' | translate">
+
+  <!-- ─── Explore the Area ──────────────────────────────────────────────── -->
+  <div class="ttd-block">
+    <h3 class="ttd-section-heading">{{ 'activities.exploration_title' | translate }}</h3>
+    <p class="ttd-intro">{{ 'activities.exploration_intro' | translate }}</p>
+
+    <app-tiles gridClass="cols-3">
+      <div class="ttd-card ttd-card--walk">
+        <div class="ttd-card__icon">🚶</div>
+        <h4>{{ 'activities.exploration_walking_title' | translate }}</h4>
+        <p>{{ 'activities.exploration_walking_desc' | translate }}</p>
+      </div>
+      <div class="ttd-card ttd-card--cycle">
+        <div class="ttd-card__icon">🚴</div>
+        <h4>{{ 'activities.exploration_cycling_title' | translate }}</h4>
+        <p>{{ 'activities.exploration_cycling_desc' | translate }}</p>
+      </div>
+      <div class="ttd-card ttd-card--boat">
+        <div class="ttd-card__icon">⛵</div>
+        <h4>{{ 'activities.exploration_boat_title' | translate }}</h4>
+        <p>{{ 'activities.exploration_boat_desc' | translate }}</p>
+      </div>
+    </app-tiles>
+  </div>
+
+  <!-- ─── Beaches ──────────────────────────────────────────────────────── -->
+  <div class="ttd-block ttd-block--alt">
+    <h3 class="ttd-section-heading">{{ 'activities.beaches_section_title' | translate }}</h3>
+    <p class="ttd-intro">{{ 'activities.beaches_section_intro' | translate }}</p>
+    <p class="ttd-body">{{ 'activities.beaches_section_body' | translate }}</p>
+    <p class="ttd-body">{{ 'activities.beaches_between' | translate }}</p>
+    <p class="ttd-body">{{ 'activities.beaches_pylos_koroni' | translate }}</p>
+
+    <!-- Beach tiles -->
+    <app-tiles gridClass="cols-3">
+      <div class="ttd-beach-card" *ngFor="let beach of beaches()">
+        <div class="ttd-beach-card__emoji">{{ beach.emoji }}</div>
+        <div class="ttd-beach-card__body">
+          <h4>{{ beach.nameKey | translate }}</h4>
+          <span class="ttd-beach-card__tag">{{ beach.charKey | translate }}</span>
+          <p>{{ beach.forKey | translate }}</p>
+          <span class="ttd-beach-card__dist">{{ beach.distance }}</span>
+        </div>
+      </div>
+    </app-tiles>
+
+    <!-- Beach Guide Table -->
+    <div class="ttd-table-wrap">
+      <app-data-table variant="striped" [caption]="'activities.beach_guide_title' | translate">
+        <thead>
+          <tr>
+            <th>{{ 'activities.beach_col_beach' | translate }}</th>
+            <th>{{ 'activities.beach_col_character' | translate }}</th>
+            <th>{{ 'activities.beach_col_best_for' | translate }}</th>
+            <th>{{ 'activities.beach_col_distance' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let beach of beaches()">
+            <td><strong>{{ beach.nameKey | translate }}</strong></td>
+            <td>{{ beach.charKey | translate }}</td>
+            <td>{{ beach.forKey | translate }}</td>
+            <td>{{ beach.distance }}</td>
+          </tr>
+        </tbody>
+      </app-data-table>
+    </div>
+  </div>
+
+  <!-- ─── Monuments & Historic Sites ──────────────────────────────────── -->
+  <div class="ttd-block">
+    <h3 class="ttd-section-heading">{{ 'activities.monuments_title' | translate }}</h3>
+    <p class="ttd-intro">{{ 'activities.monuments_intro' | translate }}</p>
+
+    <app-tiles gridClass="cols-3">
+      <div class="ttd-monument-card" *ngFor="let m of monuments()">
+        <div class="ttd-monument-card__icon">{{ m.icon }}</div>
+        <h4>{{ m.titleKey | translate }}</h4>
+        <p>{{ m.descKey | translate }}</p>
+      </div>
+    </app-tiles>
+  </div>
+
+</app-section>

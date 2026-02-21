@@ -1,0 +1,194 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ─── Block wrapper (alternating bg) ──────────────────────────────────────────
+.ttd-block {
+  margin: $spacing-2xl 0;
+}
+
+.ttd-block--alt {
+  padding: $spacing-xl $spacing-lg;
+  background: #f8fafc;
+  border-radius: $radius-lg;
+}
+
+// ─── Section heading (sub-title inside main section) ─────────────────────────
+.ttd-section-heading {
+  color: $color-dark;
+  font-size: $font-size-xl;
+  margin: 0 0 $spacing-md 0;
+  padding-bottom: $spacing-sm;
+  border-bottom: 3px solid $color-primary;
+  display: inline-block;
+}
+
+// ─── Intro / body text ───────────────────────────────────────────────────────
+.ttd-intro {
+  color: $color-gray;
+  font-size: $font-size-base;
+  line-height: 1.7;
+  margin: 0 0 $spacing-md 0;
+  max-width: 860px;
+}
+
+.ttd-body {
+  color: $color-gray;
+  font-size: $font-size-sm;
+  line-height: 1.7;
+  margin: 0 0 $spacing-sm 0;
+  padding: $spacing-sm $spacing-md;
+  border-left: 3px solid $color-primary;
+  background: $color-white;
+  border-radius: 0 $radius-sm $radius-sm 0;
+}
+
+// ─── Exploration cards ────────────────────────────────────────────────────────
+.ttd-card {
+  padding: $spacing-lg;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border-top: 4px solid $color-primary;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(14, 165, 164, 0.15);
+  }
+
+  &__icon {
+    font-size: 2.5rem;
+    margin-bottom: $spacing-sm;
+  }
+
+  h4 {
+    margin: 0 0 $spacing-xs 0;
+    color: $color-dark;
+    font-size: $font-size-lg;
+  }
+
+  p {
+    margin: 0;
+    color: $color-gray;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+  }
+
+  &--walk { border-top-color: #0ea5a4; }
+  &--cycle { border-top-color: #f59e0b; }
+  &--boat { border-top-color: #3b82f6; }
+}
+
+// ─── Beach cards ─────────────────────────────────────────────────────────────
+.ttd-beach-card {
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-start;
+  padding: $spacing-md;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border: 1px solid #e2e8f0;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(14, 165, 164, 0.12);
+  }
+
+  &__emoji {
+    font-size: 2rem;
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  h4 {
+    margin: 0 0 $spacing-xs 0;
+    font-size: $font-size-base;
+    color: $color-dark;
+  }
+
+  p {
+    margin: $spacing-xs 0 0;
+    font-size: $font-size-sm;
+    color: $color-gray-muted;
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #e0f2fe;
+    color: #0369a1;
+    border-radius: $radius-sm;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__dist {
+    display: inline-block;
+    margin-top: $spacing-xs;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $color-primary;
+  }
+}
+
+// ─── Beach Guide table wrap ───────────────────────────────────────────────────
+.ttd-table-wrap {
+  margin-top: $spacing-xl;
+}
+
+// ─── Monument cards ───────────────────────────────────────────────────────────
+.ttd-monument-card {
+  padding: $spacing-lg;
+  background: $color-white;
+  border-radius: $radius-lg;
+  border-left: 4px solid $color-primary;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(90, 58, 40, 0.12);
+  }
+
+  &__icon {
+    font-size: 2rem;
+    margin-bottom: $spacing-sm;
+  }
+
+  h4 {
+    margin: 0 0 $spacing-xs 0;
+    color: $color-dark;
+    font-size: $font-size-base;
+  }
+
+  p {
+    margin: 0;
+    color: $color-gray;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+  }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@include respond-below('md') {
+  .ttd-block--alt {
+    padding: $spacing-lg $spacing-sm;
+  }
+
+  .ttd-beach-card {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  .ttd-body {
+    padding: $spacing-xs $spacing-sm;
+  }
+}

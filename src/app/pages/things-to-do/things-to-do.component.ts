@@ -1,9 +1,18 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { SectionComponent, TilesComponent } from '@app/common/components';
+import { SectionComponent, TilesComponent, DataTableComponent } from '@app/common/components';
 
-interface Activity {
+interface Beach {
+  emoji: string;
+  nameKey: string;
+  charKey: string;
+  forKey: string;
+  distance: string;
+}
+
+interface Monument {
+  icon: string;
   titleKey: string;
   descKey: string;
 }
@@ -11,48 +20,32 @@ interface Activity {
 @Component({
   selector: 'app-things-to-do',
   standalone: true,
-  imports: [CommonModule, TranslateModule, SectionComponent, TilesComponent],
-  template: `
-    <app-section [title]="'activities.title' | translate">
-      <app-tiles [gridClass]="'cols-2'">
-        <div class="activity-item" *ngFor="let activity of activities()">
-          <h3>{{ activity.titleKey | translate }}</h3>
-          <p>{{ activity.descKey | translate }}</p>
-        </div>
-      </app-tiles>
-    </app-section>
-  `,
-  styles: [`
-    .activity-item {
-      padding: 1rem;
-      background: #f8fafc;
-      border-radius: 6px;
-      border-left: 4px solid var(--accent, #0ea5a4);
-      transition: all 0.3s ease;
-    }
-
-    .activity-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(14, 165, 164, 0.15);
-    }
-
-    .activity-item h3 {
-      margin: 0 0 0.5rem 0;
-      color: #0f172a;
-    }
-
-    .activity-item p {
-      margin: 0;
-      color: #64748b;
-      line-height: 1.5;
-    }
-  `]
+  imports: [CommonModule, TranslateModule, SectionComponent, TilesComponent, DataTableComponent],
+  templateUrl: './things-to-do.component.html',
+  styleUrl: './things-to-do.component.scss'
 })
 export class ThingsToDoComponent {
-  activities = signal<Activity[]>([
-    { titleKey: 'activities.beaches', descKey: 'activities.beaches_desc' },
-    { titleKey: 'activities.hiking', descKey: 'activities.hiking_desc' },
-    { titleKey: 'activities.dining', descKey: 'activities.dining_desc' },
-    { titleKey: 'activities.fishing', descKey: 'activities.fishing_desc' }
+
+  beaches = signal<Beach[]>([
+    { emoji: '🏖️', nameKey: 'activities.beach_loutsa',         charKey: 'activities.beach_loutsa_char',         forKey: 'activities.beach_loutsa_for',         distance: '0 km' },
+    { emoji: '🌊', nameKey: 'activities.beach_ligonamos',       charKey: 'activities.beach_ligonamos_char',       forKey: 'activities.beach_ligonamos_for',       distance: '1 km' },
+    { emoji: '🚢', nameKey: 'activities.beach_finikounda_main', charKey: 'activities.beach_finikounda_char',      forKey: 'activities.beach_finikounda_for',      distance: '1.5 km' },
+    { emoji: '⭐', nameKey: 'activities.beach_makryammos',      charKey: 'activities.beach_makryammos_char',      forKey: 'activities.beach_makryammos_for',      distance: '3 km' },
+    { emoji: '🍽️', nameKey: 'activities.beach_lampes',          charKey: 'activities.beach_lampes_char',          forKey: 'activities.beach_lampes_for',          distance: '8 km' },
+    { emoji: '🕊️', nameKey: 'activities.beach_romanou',         charKey: 'activities.beach_romanou_char',         forKey: 'activities.beach_romanou_for',         distance: '15 km' },
+    { emoji: '📸', nameKey: 'activities.beach_voidokoilia',     charKey: 'activities.beach_voidokoilia_char',     forKey: 'activities.beach_voidokoilia_for',     distance: '18 km' },
+    { emoji: '🎉', nameKey: 'activities.beach_zanga',           charKey: 'activities.beach_zanga_char',           forKey: 'activities.beach_zanga_for',           distance: '20 km' },
+    { emoji: '🌅', nameKey: 'activities.beach_memi',            charKey: 'activities.beach_memi_char',            forKey: 'activities.beach_memi_for',            distance: '22 km' },
+  ]);
+
+  monuments = signal<Monument[]>([
+    { icon: '🏰', titleKey: 'activities.monument_methoni',    descKey: 'activities.monument_methoni_desc' },
+    { icon: '🗺️', titleKey: 'activities.monument_pylos',      descKey: 'activities.monument_pylos_desc' },
+    { icon: '🏯', titleKey: 'activities.monument_koroni',     descKey: 'activities.monument_koroni_desc' },
+    { icon: '🏛️', titleKey: 'activities.monument_nestor',     descKey: 'activities.monument_nestor_desc' },
+    { icon: '⛪', titleKey: 'activities.monument_artemis',    descKey: 'activities.monument_artemis_desc' },
+    { icon: '💧', titleKey: 'activities.monument_polylimnio', descKey: 'activities.monument_polylimnio_desc' },
+    { icon: '🌿', titleKey: 'activities.monument_wetland',    descKey: 'activities.monument_wetland_desc' },
   ]);
 }
+
