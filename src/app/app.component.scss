@@ -1,3 +1,5 @@
+@use '../styles/variables' as *;
+
 /* App root layout and footer styles */
 
 .container {
@@ -12,7 +14,7 @@
   color: #d1d5db;
   margin-top: 4rem;
   padding: 3rem clamp(1rem, 5vw, 2rem) 1rem;
-  border-top: 3px solid #0ea5a4;
+  border-top: 3px solid $color-primary;
 }
 
 .footer-content {
@@ -23,7 +25,7 @@
   max-width: 1400px;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(14, 165, 164, 0.3);
+  border-bottom: 1px solid rgba($color-primary, 0.3);
 }
 
 .footer-section {
@@ -31,7 +33,7 @@
 }
 
 .footer-section h3 {
-  color: #0ea5a4;
+  color: $color-primary;
   font-size: 1.3rem;
   margin-bottom: 1rem;
 }
@@ -67,7 +69,7 @@
 }
 
 .footer-section a:hover {
-  color: #0ea5a4;
+  color: $color-primary;
   transform: translateX(4px);
 }
 
@@ -80,7 +82,7 @@
   display: inline-block;
   width: 40px;
   height: 40px;
-  background: #0ea5a4;
+  background: $color-primary;
   color: white;
   border-radius: 50%;
   text-align: center;
@@ -90,9 +92,9 @@
 }
 
 .social-link:hover {
-  background: #14b8a6;
+  background: $color-primary-light;
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(14, 165, 164, 0.3);
+  box-shadow: 0 8px 16px rgba($color-primary, 0.3);
 }
 
 .footer-bottom {

@@ -1,5 +1,4 @@
 import { Component, input, output, signal, effect, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 export interface SelectOption {
   value: string | number;
@@ -11,7 +10,7 @@ export interface SelectOption {
 @Component({
   selector: 'app-select',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="select-wrapper">
       <button 
@@ -21,24 +20,31 @@ export interface SelectOption {
         [disabled]="disabled()"
         [attr.aria-label]="ariaLabel()">
         <span class="select-value">
-          <span *ngIf="selectedOption()?.icon" class="select-icon">{{ selectedOption()?.icon }}</span>
+          @if (selectedOption()?.icon) {
+            <span class="select-icon">{{ selectedOption()?.icon }}</span>
+          }
           <span class="select-text">{{ selectedOption()?.label || placeholder() }}</span>
         </span>
         <span class="select-arrow" [class.rotated]="isOpen()">▼</span>
       </button>
 
-      <div class="select-dropdown" [class.open]="isOpen()" *ngIf="isOpen()">
-        <button 
-          *ngFor="let option of options()"
-          class="select-option"
-          [class.selected]="option.value === value()"
-          [class.disabled]="option.disabled"
-          [disabled]="option.disabled"
-          (click)="selectOption(option.value)">
-          <span *ngIf="option.icon" class="option-icon">{{ option.icon }}</span>
-          <span class="option-text">{{ option.label }}</span>
-        </button>
-      </div>
+      @if (isOpen()) {
+        <div class="select-dropdown" [class.open]="isOpen()">
+          @for (option of options(); track $index) {
+            <button
+              class="select-option"
+              [class.selected]="option.value === value()"
+              [class.disabled]="option.disabled"
+              [disabled]="option.disabled"
+              (click)="selectOption(option.value)">
+              @if (option.icon) {
+                <span class="option-icon">{{ option.icon }}</span>
+              }
+              <span class="option-text">{{ option.label }}</span>
+            </button>
+          }
+        </div>
+      }
     </div>
   `,
   styles: `

@@ -1,0 +1,26 @@
+@use '../../../styles/variables' as *;
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: $spacing-sm 0;
+    padding-left: $spacing-lg;
+    position: relative;
+    color: $color-gray-muted;
+    line-height: 1.6;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: $color-primary;
+      font-weight: bold;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-gray-border;
+    }
+  }
+}

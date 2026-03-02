@@ -1,5 +1,4 @@
 import { Component, input, signal, effect } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 export interface CardItem {
@@ -11,16 +10,20 @@ export interface CardItem {
 @Component({
   selector: 'app-cards-grid',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [TranslateModule],
   template: `
     <section class="cards-grid-section">
-      <h2 *ngIf="titleKey()">{{ (titleKey() || '') | translate }}</h2>
+      @if (titleKey()) {
+        <h2>{{ (titleKey() || '') | translate }}</h2>
+      }
       <div [class]="'cards-grid cols-' + columns()">
-        <div class="card-item" *ngFor="let item of items()">
-          <div class="card-icon">{{ item.icon }}</div>
-          <h3>{{ item.titleKey | translate }}</h3>
-          <p>{{ item.descKey | translate }}</p>
-        </div>
+        @for (item of items(); track $index) {
+          <div class="card-item">
+            <div class="card-icon">{{ item.icon }}</div>
+            <h3>{{ item.titleKey | translate }}</h3>
+            <p>{{ item.descKey | translate }}</p>
+          </div>
+        }
       </div>
     </section>
   `,

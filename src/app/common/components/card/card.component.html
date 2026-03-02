@@ -1,13 +1,19 @@
 <div [routerLink]="config().link" [class.card]="true" [class.clickable]="config().link"
      [ngStyle]="config().backgroundImage ? {'background-image': 'url(' + config().backgroundImage + ')'} : {}"
      (mouseenter)="onHover()" (mouseleave)="onLeave()">
-  <div class="card-header" *ngIf="config().image">
-    <img [src]="config().image" [alt]="config().title" class="card-image">
-  </div>
+  @if (config().image) {
+    <div class="card-header">
+      <img [src]="config().image" [alt]="config().title" class="card-image">
+    </div>
+  }
   <div class="card-body">
-    <div *ngIf="config().icon" class="card-icon">{{ config().icon }}</div>
+    @if (config().icon) {
+      <div class="card-icon">{{ config().icon }}</div>
+    }
     <h3 class="card-title">{{ config().title | translate }}</h3>
     <p class="card-description">{{ config().description | translate }}</p>
-    <span class="card-arrow" *ngIf="config().arrow">→</span>
+    @if (config().arrow) {
+      <span class="card-arrow">→</span>
+    }
   </div>
 </div>

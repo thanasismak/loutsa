@@ -74,7 +74,7 @@
     line-height: 1.6;
   }
 
-  &--walk { border-top-color: #0ea5a4; }
+  &--walk { border-top-color: $color-primary; }
   &--cycle { border-top-color: #f59e0b; }
   &--boat { border-top-color: #3b82f6; }
 }

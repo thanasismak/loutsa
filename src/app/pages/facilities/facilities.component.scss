@@ -140,7 +140,7 @@
   }
 
   &--teal {
-    background: linear-gradient(135deg, #0ea5a4 0%, #0d9488 100%);
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
   }
 
   &--green {

@@ -1,5 +1,4 @@
 import { Component, input, signal, effect } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 export interface StatItem {
@@ -10,15 +9,19 @@ export interface StatItem {
 @Component({
   selector: 'app-stats',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [TranslateModule],
   template: `
     <section class="stats-section">
-      <h2 *ngIf="titleKey()">{{ (titleKey() || '') | translate }}</h2>
+      @if (titleKey()) {
+        <h2>{{ (titleKey() || '') | translate }}</h2>
+      }
       <div class="stats-grid">
-        <div class="stat-item" *ngFor="let stat of stats()">
-          <div class="stat-value">{{ stat.value }}</div>
-          <div class="stat-label">{{ stat.labelKey | translate }}</div>
-        </div>
+        @for (stat of stats(); track $index) {
+          <div class="stat-item">
+            <div class="stat-value">{{ stat.value }}</div>
+            <div class="stat-label">{{ stat.labelKey | translate }}</div>
+          </div>
+        }
       </div>
     </section>
   `,
