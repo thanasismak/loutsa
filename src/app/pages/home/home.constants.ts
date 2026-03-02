@@ -5,7 +5,7 @@ import { IMAGES } from '@app/config/constants';
 export const HOME_FEATURED_CONTENT: FeaturedContent = {
   titleKey: 'home.feature_nature',
   descriptionKey: 'home.feature_nature_desc',
-  imageUrl: IMAGES.large(1),
+  imageUrl: IMAGES.large(17),
   imageAlt: 'Camping View',
   variant: 'grid-animated'
 };
