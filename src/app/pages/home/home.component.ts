@@ -14,6 +14,7 @@ import {
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
 import { FeaturedContent } from '@app/common/components/featured/featured.component';
 import { HOME_NAVIGATION_CARDS, HOME_FEATURE_ITEMS, HOME_TESTIMONIALS, HOME_FEATURED_CONTENT } from './home.constants';
+import { IMAGES } from '@app/config/constants';
 
 @Component({
   selector: 'app-home',
@@ -38,6 +39,8 @@ export class HomeComponent implements OnInit {
   private lastScrollPos = 0;
   
   scrollPosition = signal(0);
+  heroImage = signal(IMAGES.hero(1));
+  heroImageMobile = signal(IMAGES.medium(1));
   navigationCards = HOME_NAVIGATION_CARDS;
   featuredContent = signal<FeaturedContent>(HOME_FEATURED_CONTENT);
   featureItems = signal<GalleryItem[]>(HOME_FEATURE_ITEMS);

@@ -2,7 +2,8 @@
 <app-hero
   titleKey="home.hero"
   subtitleKey="home.hero_subtitle"
-  backgroundImage="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop">
+  [backgroundImage]="heroImage()"
+  [mobileImage]="heroImageMobile()">
 </app-hero>
 
 <!-- Featured Section using FeaturedComponent -->

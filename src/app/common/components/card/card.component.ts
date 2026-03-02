@@ -18,7 +18,8 @@ export interface CardConfig {
   standalone: true,
   imports: [CommonModule, RouterModule, TranslateModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
+  host: { style: 'display: block; height: 100%;' }
 })
 export class CardComponent {
   config = input.required<CardConfig>();

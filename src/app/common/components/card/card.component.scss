@@ -9,6 +9,11 @@
   background: linear-gradient(135deg, $color-primary-very-light 0%, $color-white 100%);
   border-left: 4px solid $color-primary;
   cursor: default;
+  height: 100%;           /* stretch to fill grid cell */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   @include transition(all, $transition-base);
 
   &.clickable {
@@ -21,6 +26,64 @@
       .card-arrow {
         transform: translateX(4px);
       }
+    }
+  }
+
+  /* ===== PHOTO VARIANT — when backgroundImage is set ===== */
+  &.card--photo {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-left: none;
+    overflow: hidden;
+    /* card-body sits at bottom, overlay fills everything above */
+    justify-content: flex-end;
+
+    &.clickable:hover {
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.65) 100%
+      );
+      border-radius: inherit;
+      transition: background 0.3s ease;
+    }
+
+    &:hover .card-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.75) 100%
+      );
+    }
+
+    .card-body {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+    }
+
+    .card-title {
+      color: $color-white;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-description {
+      color: rgba(255, 255, 255, 0.88);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-arrow {
+      color: $color-white;
     }
   }
 }

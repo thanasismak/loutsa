@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -7,7 +7,9 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [CommonModule, TranslateModule],
   template: `
-    <section class="hero-banner" [style.background-image]="backgroundImage() ? 'url(' + backgroundImage() + ')' : ''">
+    <section class="hero-banner"
+      [style.--hero-bg-desktop]="bgDesktop()"
+      [style.--hero-bg-mobile]="bgMobile()">
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <h1>{{ titleKey() | translate }}</h1>
@@ -21,6 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
       /* Fluid height: 250px on mobile, scales with viewport, max 400px on desktop */
       height: clamp(250px, 60vw, 400px);
       background: linear-gradient(135deg, #0ea5a4 0%, #14b8a6 100%);
+      /* Desktop: uses hero (1400px) image */
+      background-image: var(--hero-bg-desktop);
       background-size: cover;
       background-position: center;
       display: flex;
@@ -30,6 +34,13 @@ import { TranslateModule } from '@ngx-translate/core';
       text-align: center;
       margin-bottom: 3rem;
       overflow: hidden;
+    }
+
+    /* Mobile (≤768px): uses medium (400px) image — smaller download */
+    @media (max-width: 768px) {
+      .hero-banner {
+        background-image: var(--hero-bg-mobile);
+      }
     }
 
     .hero-overlay {
@@ -76,5 +87,15 @@ import { TranslateModule } from '@ngx-translate/core';
 export class HeroComponent {
   titleKey = input<string>('');
   subtitleKey = input<string>('');
+  /** Desktop/hero image — use assets/images/hero/ (1400px+) */
   backgroundImage = input<string | undefined>();
+  /** Mobile fallback — use assets/images/medium/ (400px). Defaults to backgroundImage if omitted. */
+  mobileImage = input<string | undefined>();
+
+  bgDesktop = computed(() =>
+    this.backgroundImage() ? `url(${this.backgroundImage()})` : 'none'
+  );
+  bgMobile = computed(() =>
+    `url(${this.mobileImage() ?? this.backgroundImage() ?? ''})`
+  );
 }

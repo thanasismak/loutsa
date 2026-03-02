@@ -1,41 +1,42 @@
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
 import { FeaturedContent } from '@app/common/components/featured/featured.component';
+import { IMAGES } from '@app/config/constants';
 
 export const HOME_FEATURED_CONTENT: FeaturedContent = {
   titleKey: 'home.feature_nature',
   descriptionKey: 'home.feature_nature_desc',
-  imageUrl: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=500&fit=crop',
+  imageUrl: IMAGES.large(1),
   imageAlt: 'Camping View',
   variant: 'grid-animated'
 };
 
 export const HOME_NAVIGATION_CARDS = [
-  { title: 'app.nav.about', description: 'home.about_desc', link: '/about', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop' },
-  { title: 'app.nav.facilities', description: 'home.facilities_desc', link: '/facilities', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop' },
-  { title: 'app.nav.pricing', description: 'home.pricing_desc', link: '/pricing', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1554224311-beee415c15cb?w=400&h=300&fit=crop' },
-  { title: 'app.nav.gallery', description: 'home.gallery_desc', link: '/gallery', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1495316734285-57251b1ef5c0?w=400&h=300&fit=crop' },
-  { title: 'app.nav.activities', description: 'home.activities_desc', link: '/things-to-do', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop' },
-  { title: 'app.nav.how_to_reach', description: 'home.how_to_reach_desc', link: '/how-to-reach', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&h=300&fit=crop' },
-  { title: 'app.nav.rules', description: 'home.rules_desc', link: '/rules', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop' },
-  { title: 'app.nav.faq', description: 'home.faq_desc', link: '/faq', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1516534775068-bb57846d985c?w=400&h=300&fit=crop' },
-  { title: 'app.nav.contact', description: 'home.contact_desc', link: '/contact', arrow: true, backgroundImage: 'https://images.unsplash.com/photo-1516321318423-f06f70259b51?w=400&h=300&fit=crop' }
+  { title: 'app.nav.about',       description: 'home.about_desc',        link: '/about',        arrow: true, backgroundImage: IMAGES.medium(3) },
+  { title: 'app.nav.facilities',  description: 'home.facilities_desc',   link: '/facilities',   arrow: true, backgroundImage: IMAGES.medium(5) },
+  { title: 'app.nav.pricing',     description: 'home.pricing_desc',      link: '/pricing',      arrow: true, backgroundImage: IMAGES.medium(8) },
+  { title: 'app.nav.gallery',     description: 'home.gallery_desc',      link: '/gallery',      arrow: true, backgroundImage: IMAGES.medium(11) },
+  { title: 'app.nav.activities',  description: 'home.activities_desc',   link: '/things-to-do', arrow: true, backgroundImage: IMAGES.medium(14) },
+  { title: 'app.nav.how_to_reach',description: 'home.how_to_reach_desc', link: '/how-to-reach', arrow: true, backgroundImage: IMAGES.medium(17) },
+  { title: 'app.nav.rules',       description: 'home.rules_desc',        link: '/rules',        arrow: true, backgroundImage: IMAGES.medium(20) },
+  { title: 'app.nav.faq',         description: 'home.faq_desc',          link: '/faq',          arrow: true, backgroundImage: IMAGES.medium(23) },
+  { title: 'app.nav.contact',     description: 'home.contact_desc',      link: '/contact',      arrow: true, backgroundImage: IMAGES.medium(26) },
 ];
 
 export const HOME_FEATURE_ITEMS: GalleryItem[] = [
   {
     title: 'home.nearby_beaches',
     description: 'home.nearby_beaches_desc',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop'
+    image: IMAGES.medium(2)
   },
   {
     title: 'home.nearby_dining',
     description: 'home.nearby_dining_desc',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop'
+    image: IMAGES.medium(6)
   },
   {
     title: 'home.nearby_activities',
     description: 'home.nearby_activities_desc',
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop'
+    image: IMAGES.medium(9)
   }
 ];
 

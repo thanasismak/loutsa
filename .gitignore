@@ -31,3 +31,12 @@ yarn-error.log*
 # OS
 Thumbs.db
 .DS_Store
+
+# Assets — images live on CDN (Cloudflare R2), not in repo
+# Keep folder structure via .gitkeep files
+src/assets/images/**/*.jpg
+src/assets/images/**/*.jpeg
+src/assets/images/**/*.png
+src/assets/images/**/*.webp
+src/assets/images/**/*.avif
+!src/assets/images/**/.gitkeep

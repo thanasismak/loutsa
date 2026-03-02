@@ -1,6 +1,12 @@
-<div [routerLink]="config().link" [class.card]="true" [class.clickable]="config().link"
+<div [routerLink]="config().link"
+     [class.card]="true"
+     [class.clickable]="config().link"
+     [class.card--photo]="config().backgroundImage"
      [ngStyle]="config().backgroundImage ? {'background-image': 'url(' + config().backgroundImage + ')'} : {}"
      (mouseenter)="onHover()" (mouseleave)="onLeave()">
+  @if (config().backgroundImage) {
+    <div class="card-overlay"></div>
+  }
   @if (config().image) {
     <div class="card-header">
       <img [src]="config().image" [alt]="config().title" class="card-image">

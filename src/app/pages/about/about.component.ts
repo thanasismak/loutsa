@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { IMAGES } from '@app/config/constants';
 import {
   HeroComponent,
   CardsGridComponent,
@@ -36,6 +37,9 @@ interface StatItem {
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
+  heroImage = signal(IMAGES.hero(2));
+  heroImageMobile = signal(IMAGES.medium(2));
+
   whyCards = signal<WhyCard[]>([
     { 
       icon: '🏖️', 
