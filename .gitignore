@@ -1,5 +1,6 @@
 # Build outputs
 dist/
+docs/
 out-tsc/
 
 # Dependencies

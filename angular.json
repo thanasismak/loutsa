@@ -12,8 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/loutsa/",
-            "outputPath": "docs",
+            "outputPath": "dist/loutsa-site",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
