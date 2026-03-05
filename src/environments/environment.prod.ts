@@ -14,5 +14,5 @@ export const environment = {
    * Keeps the Google API key server-side.
    * Returns: { reviews: GoogleReview[] }
    */
-  googleReviewsEndpoint: 'https://api.loutsacamping.gr/reviews',
+  googleReviewsEndpoint: '', // Worker not yet deployed — falls back to static reviews
 };
