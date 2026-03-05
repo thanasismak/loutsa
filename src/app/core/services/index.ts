@@ -5,5 +5,6 @@
 
 export * from './seo';
 export * from './viewport.service';
+export * from './cdn/cdn.service';
 export * from './contact/contact.service';
 export * from './reviews/reviews.service';

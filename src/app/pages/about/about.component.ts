@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { IMAGES } from '@app/config/constants';
+import { CdnService } from '@app/core/services/cdn/cdn.service';
 import {
   HeroComponent,
   CardsGridComponent,
@@ -37,8 +37,10 @@ interface StatItem {
   styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-  heroImage = signal(IMAGES.hero(2));
-  heroImageMobile = signal(IMAGES.medium(2));
+  private readonly cdn = inject(CdnService);
+
+  readonly heroImage = this.cdn.imageSignal('hero', 2);
+  readonly heroImageMobile = this.cdn.imageSignal('medium', 2);
 
   whyCards = signal<WhyCard[]>([
     { 

@@ -42,13 +42,14 @@ import { environment } from '../../environments/environment';
 
 // ---------------------------------------------------------------------------
 // Image URL helpers
-// Dev  → 'assets/images/hero/loutsa01.jpg'
-// Prod → 'https://assets.loutsacamping.gr/images/hero/loutsa01.jpg'
+// R2 bucket layout: {folder}/ at root — NO /images/ prefix in CDN URLs
+// Dev  → 'assets/images/hero/loutsa01.jpg'   (local Angular assets)
+// Prod → 'https://assets.loutsacamping.gr/hero/loutsa01.jpg'  (R2)
 // ---------------------------------------------------------------------------
 const pad = (n: number) => String(n).padStart(2, '0');
 const img = (folder: string, n: number): string =>
   environment.cdnBase
-    ? `${environment.cdnBase}/images/${folder}/loutsa${pad(n)}.jpg`
+    ? `${environment.cdnBase}/${folder}/loutsa${pad(n)}.jpg`
     : `assets/images/${folder}/loutsa${pad(n)}.jpg`;
 
 export const IMAGES = {

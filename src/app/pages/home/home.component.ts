@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, HostListener } from '@angular/core';
+import { Component, OnInit, signal, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,7 +15,7 @@ import { ReviewsComponent } from '@app/common/components/reviews/reviews.compone
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
 import { FeaturedContent } from '@app/common/components/featured/featured.component';
 import { HOME_NAVIGATION_CARDS, HOME_FEATURE_ITEMS, HOME_TESTIMONIALS, HOME_FEATURED_CONTENT } from './home.constants';
-import { IMAGES } from '@app/config/constants';
+import { CdnService } from '@app/core/services/cdn/cdn.service';
 
 @Component({
   selector: 'app-home',
@@ -37,12 +37,13 @@ import { IMAGES } from '@app/config/constants';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private readonly cdn = inject(CdnService);
   private scrollRAF: number | null = null;
   private lastScrollPos = 0;
   
   scrollPosition = signal(0);
-  heroImage = signal(IMAGES.hero(1));
-  heroImageMobile = signal(IMAGES.medium(1));
+  readonly heroImage = this.cdn.imageSignal('hero', 1);
+  readonly heroImageMobile = this.cdn.imageSignal('medium', 1);
   navigationCards = HOME_NAVIGATION_CARDS;
   featuredContent = signal<FeaturedContent>(HOME_FEATURED_CONTENT);
   featureItems = signal<GalleryItem[]>(HOME_FEATURE_ITEMS);
