@@ -25,12 +25,17 @@
 </app-section>
 
 <!-- Features Section - Discover Nearby -->
-<app-section [title]="'home.discover_nearby' | translate">
+<!-- <app-section [title]="'home.discover_nearby' | translate">
   <app-gallery 
     [itemsInput]="featureItems()"
     [animationType]="'revealStagger'"
     [columns]="3">
   </app-gallery>
+</app-section> -->
+
+<!-- Google Reviews Section -->
+<app-section [title]="'home.reviews' | translate" [sectionClass]="'reviews-section'">
+  <app-reviews></app-reviews>
 </app-section>
 
 <!-- Highlights Section - Testimonials (3 per view, auto-rotate) -->

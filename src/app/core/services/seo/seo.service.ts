@@ -5,21 +5,22 @@ import { filter } from 'rxjs/operators';
 import { MetaService } from './meta.service';
 import { StructuredDataService } from './structured-data.service';
 import { SeoMeta, SeoLocale, LocalBusinessSchema } from './seo.config';
+import { SITE_CONFIG, SOCIAL_LINKS } from '../../../config/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeoService {
-  private baseUrl = 'https://loutsa.gr';
-  
+  private baseUrl = SITE_CONFIG.url;
+
   // Site-wide organization schema (inject once at app start)
   private siteOrganization = {
-    name: 'Camping Loutsa',
+    name: SITE_CONFIG.title,
     description: 'Family-run camping in Finikounda, Messinia, Greece',
     url: this.baseUrl,
     logo: `${this.baseUrl}/assets/logo.png`,
-    email: 'info@loutsa.gr',
-    phone: '+30 27350 77600',
+    email: SITE_CONFIG.contact.email,
+    phone: SITE_CONFIG.contact.phone,
     address: {
       streetAddress: 'Finikounda',
       addressLocality: 'Messinia',
@@ -27,10 +28,7 @@ export class SeoService {
       postalCode: '24400',
       addressCountry: 'GR'
     },
-    sameAs: [
-      'https://www.facebook.com/campingloutsa',
-      'https://www.instagram.com/camploutsa'
-    ]
+    sameAs: SOCIAL_LINKS.map(l => l.url),
   };
 
   constructor(

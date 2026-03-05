@@ -1,6 +1,18 @@
-// Production environment — images served from Cloudflare R2 CDN
-// TODO: Replace with actual R2 public URL / custom domain once configured
+// Production environment — Cloudflare R2 CDN + Workers API
 export const environment = {
   production: true,
-  cdnBase: 'https://assets.camping-loutsa.gr',  // ← update when domain is ready
+  cdnBase: 'https://assets.loutsacamping.gr',
+  /**
+   * Cloudflare Worker endpoint for contact form submissions.
+   * Worker should accept POST { name, email, phone, message }
+   * and forward via Resend / SendGrid / Cloudflare Email Routing.
+   * Deploy worker at: https://developers.cloudflare.com/workers/
+   */
+  emailEndpoint: 'https://api.loutsacamping.gr/contact',
+  /**
+   * Cloudflare Worker endpoint that proxies Google Places API reviews.
+   * Keeps the Google API key server-side.
+   * Returns: { reviews: GoogleReview[] }
+   */
+  googleReviewsEndpoint: 'https://api.loutsacamping.gr/reviews',
 };

@@ -352,15 +352,98 @@ $text-dark: #3d3633;
   width: 100%;
   margin-top: 0.5rem;
   box-shadow: 0 4px 12px rgba($primary-teal, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 12px 24px rgba($primary-teal, 0.3);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     transform: translateY(0);
   }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  &__spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: $primary-teal;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  padding: 0;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: #c0392b;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.form-group--error {
+  input, textarea {
+    border-color: #c0392b !important;
+  }
+}
+
+.form-api-error {
+  padding: 0.75rem 1rem;
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  border-radius: 8px;
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 2rem 1.5rem;
+
+  &__icon {
+    font-size: 2.5rem;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin: 0;
+  }
+
+  &__body {
+    font-size: 0.9rem;
+    color: $text-warm;
+    margin: 0;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 .form-note {

@@ -19,7 +19,9 @@
     "tagline": "Camping & Tourism in Messinia, Peloponnese",
     "location": "Finikounda, Messinia, Greece",
     "phone": "+30 27230 71200",
-    "email": "loutsa@otenet.gr"
+    "email": "loutsa@otenet.gr",
+    "quick_links": "Quick Links",
+    "follow_us": "Follow Us"
   },
   "home": {
     "hero": "Welcome to Camping Loutsa",
@@ -53,6 +55,7 @@
     "why_support": "Expert Support",
     "why_support_desc": "Friendly staff ready to assist with travel tips, local recommendations, and any questions.",
     "testimonials": "What Our Guests Say",
+    "reviews": "Google Reviews",
     "testimonial_name_1": "Maria Papadopoulos",
     "testimonial_title_1": "Family Traveler",
     "testimonial_text_1": "Camping Loutsa made our family vacation unforgettable! The beachfront location, friendly staff, and modern facilities exceeded our expectations.",

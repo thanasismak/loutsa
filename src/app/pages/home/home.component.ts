@@ -11,6 +11,7 @@ import {
   HeroComponent,
   FeaturedComponent
 } from '@app/common/components';
+import { ReviewsComponent } from '@app/common/components/reviews/reviews.component';
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
 import { FeaturedContent } from '@app/common/components/featured/featured.component';
 import { HOME_NAVIGATION_CARDS, HOME_FEATURE_ITEMS, HOME_TESTIMONIALS, HOME_FEATURED_CONTENT } from './home.constants';
@@ -26,10 +27,11 @@ import { IMAGES } from '@app/config/constants';
     CardComponent,
     SectionComponent,
     TilesComponent,
-    GalleryComponent,
+    // GalleryComponent,
     CarouselComponent,
     HeroComponent,
-    FeaturedComponent
+    FeaturedComponent,
+    ReviewsComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']

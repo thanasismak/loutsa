@@ -1,0 +1,86 @@
+<div class="reviews">
+
+  <!-- Loading skeleton -->
+  @if (loading()) {
+    <div class="reviews__skeleton" aria-busy="true" aria-label="Loading reviews">
+      @for (_ of [1,2,3]; track $index) {
+        <div class="reviews__skeleton-card">
+          <div class="reviews__skeleton-line reviews__skeleton-line--short"></div>
+          <div class="reviews__skeleton-line"></div>
+          <div class="reviews__skeleton-line reviews__skeleton-line--medium"></div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (!loading() && reviews().length > 0) {
+
+    <!-- Summary bar -->
+    <div class="reviews__summary" aria-label="Overall rating summary">
+      <div class="reviews__avg-score">{{ avgRating() | number:'1.1-1' }}</div>
+      <div class="reviews__avg-stars" [attr.aria-label]="avgRating() + ' out of 5 stars'">
+        @for (filled of stars(); track $index) {
+          <svg class="reviews__star" [class.reviews__star--filled]="filled" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        }
+      </div>
+      <span class="reviews__count">{{ reviews().length }} reviews</span>
+      @if (usingStatic()) {
+        <span class="reviews__badge">Featured reviews</span>
+      } @else {
+        <span class="reviews__badge reviews__badge--live">Google Reviews</span>
+      }
+    </div>
+
+    <!-- Review cards -->
+    <div class="reviews__grid">
+      @for (review of reviews(); track $index) {
+        <article class="reviews__card" [attr.aria-label]="'Review by ' + review.authorName">
+          <header class="reviews__card-header">
+            @if (review.authorPhoto) {
+              <img
+                class="reviews__avatar"
+                [src]="review.authorPhoto"
+                [alt]="review.authorName + ' profile photo'"
+                width="40"
+                height="40"
+                loading="lazy"
+              />
+            } @else {
+              <div class="reviews__avatar reviews__avatar--placeholder" aria-hidden="true">
+                {{ review.authorName.charAt(0).toUpperCase() }}
+              </div>
+            }
+            <div class="reviews__card-meta">
+              <span class="reviews__author">{{ review.authorName }}</span>
+              <div class="reviews__stars" [attr.aria-label]="review.rating + ' out of 5 stars'">
+                @for (filled of reviewStars(review.rating); track $index) {
+                  <svg class="reviews__star reviews__star--sm" [class.reviews__star--filled]="filled" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                }
+              </div>
+            </div>
+            <time class="reviews__date">{{ review.relativeTime }}</time>
+          </header>
+          <p class="reviews__text">{{ review.text }}</p>
+        </article>
+      }
+    </div>
+
+    <!-- CTA: write a review -->
+    <div class="reviews__cta">
+      <a
+        [href]="reviewLink()"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="reviews__cta-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+          <path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z"/>
+        </svg>
+        Write a Google review
+      </a>
+    </div>
+  }
+</div>

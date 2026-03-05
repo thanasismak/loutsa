@@ -52,33 +52,74 @@
           <h3>{{ 'contact.form_heading' | translate }}</h3>
           <p class="form-subtitle">{{ 'contact.form_subtitle' | translate }} <span class="required">*</span></p>
         </div>
-        
-        <form class="contact-form" name="contact" netlify>
-          <div class="form-group">
-            <label for="name">{{ 'contact.name' | translate }} <span class="required">*</span></label>
-            <input id="name" name="name" type="text" required [placeholder]="('contact.name_placeholder' | translate)" />
-          </div>
 
-          <div class="form-group">
-            <label for="email">{{ 'contact.email_label' | translate }} <span class="required">*</span></label>
-            <input id="email" name="email" type="email" required placeholder="your@email.com" />
+        <!-- Success state -->
+        @if (contactService.isSuccess()) {
+          <div class="form-success" role="alert">
+            <span class="form-success__icon">✅</span>
+            <div>
+              <p class="form-success__title">{{ 'contact.success_title' | translate }}</p>
+              <p class="form-success__body">{{ 'contact.success_body' | translate }}</p>
+            </div>
+            <button class="btn-text" (click)="resetForm()">{{ 'contact.send_another' | translate }}</button>
           </div>
+        } @else {
+          <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
-          <div class="form-group">
-            <label for="phone">{{ 'contact.phone' | translate }}</label>
-            <input id="phone" name="phone" type="tel" placeholder="+30 265 102 3456" />
-          </div>
+            <div class="form-group" [class.form-group--error]="hasError('name', 'required') || hasError('name', 'minlength')">
+              <label for="name">{{ 'contact.name' | translate }} <span class="required">*</span></label>
+              <input id="name" formControlName="name" type="text" autocomplete="name"
+                     [placeholder]="'contact.name_placeholder' | translate" />
+              @if (hasError('name', 'required')) {
+                <span class="field-error">{{ 'contact.error_required' | translate }}</span>
+              } @else if (hasError('name', 'minlength')) {
+                <span class="field-error">{{ 'contact.error_name_short' | translate }}</span>
+              }
+            </div>
 
-          <div class="form-group">
-            <label for="message">{{ 'contact.message' | translate }} <span class="required">*</span></label>
-            <textarea id="message" name="message" rows="6" required [placeholder]="('contact.message_placeholder' | translate)"></textarea>
-          </div>
+            <div class="form-group" [class.form-group--error]="hasError('email', 'required') || hasError('email', 'email')">
+              <label for="email">{{ 'contact.email_label' | translate }} <span class="required">*</span></label>
+              <input id="email" formControlName="email" type="email" autocomplete="email"
+                     placeholder="your@email.com" />
+              @if (hasError('email', 'required')) {
+                <span class="field-error">{{ 'contact.error_required' | translate }}</span>
+              } @else if (hasError('email', 'email')) {
+                <span class="field-error">{{ 'contact.error_email_invalid' | translate }}</span>
+              }
+            </div>
 
-          <button type="submit" class="btn-submit">
-            <span aria-label="Send message">📧</span> {{ 'contact.send' | translate }}
-          </button>
-          <p class="form-note">{{ 'contact.form_note' | translate }}</p>
-        </form>
+            <div class="form-group">
+              <label for="phone">{{ 'contact.phone' | translate }}</label>
+              <input id="phone" formControlName="phone" type="tel" autocomplete="tel"
+                     placeholder="+30 265 102 3456" />
+            </div>
+
+            <div class="form-group" [class.form-group--error]="hasError('message', 'required') || hasError('message', 'minlength')">
+              <label for="message">{{ 'contact.message' | translate }} <span class="required">*</span></label>
+              <textarea id="message" formControlName="message" rows="6"
+                        [placeholder]="'contact.message_placeholder' | translate"></textarea>
+              @if (hasError('message', 'required')) {
+                <span class="field-error">{{ 'contact.error_required' | translate }}</span>
+              } @else if (hasError('message', 'minlength')) {
+                <span class="field-error">{{ 'contact.error_message_short' | translate }}</span>
+              }
+            </div>
+
+            @if (contactService.isError()) {
+              <p class="form-api-error" role="alert">⚠️ {{ contactService.errorMessage() }}</p>
+            }
+
+            <button type="submit" class="btn-submit" [disabled]="contactService.isSubmitting()">
+              @if (contactService.isSubmitting()) {
+                <span class="btn-submit__spinner" aria-hidden="true"></span>
+                {{ 'contact.sending' | translate }}
+              } @else {
+                <span aria-hidden="true">📧</span> {{ 'contact.send' | translate }}
+              }
+            </button>
+            <p class="form-note">{{ 'contact.form_note' | translate }}</p>
+          </form>
+        }
       </div>
     </div>
 
@@ -95,7 +136,7 @@
             <div class="info-icon" aria-label="Phone number">📞</div>
             <div class="info-content">
               <span class="info-label">{{ 'contact.phone' | translate }}</span>
-              <p><a href="tel:+302651023456">+30 265 102 3456</a></p>
+              <p><a [href]="'tel:' + siteContact().phone">{{ siteContact().phone }}</a></p>
             </div>
           </div>
 
@@ -103,7 +144,7 @@
             <div class="info-icon" aria-label="Email address">✉️</div>
             <div class="info-content">
               <span class="info-label">{{ 'contact.email' | translate }}</span>
-              <p><a href="mailto:info&#64;loutsacamping.gr">info&#64;loutsacamping.gr</a></p>
+              <p><a [href]="'mailto:' + siteContact().email">{{ siteContact().email }}</a></p>
             </div>
           </div>
 

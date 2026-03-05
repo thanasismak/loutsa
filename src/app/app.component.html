@@ -7,31 +7,28 @@
 
 <footer class="site-footer">
   <div class="footer-content">
-    <div class="footer-section">
-      <h3>{{ 'app.nav.logo' | translate }} Camping Loutsa</h3>
+    <div class="footer-section footer-section--brand">
+      <h3>{{ 'app.nav.logo' | translate }} {{ siteConfig.title }}</h3>
       <p>{{ 'footer.location' | translate }}</p>
-      <p>📞 {{ 'footer.phone' | translate }}</p>
-      <p>✉️ {{ 'footer.email' | translate }}</p>
+      <p>📞 <a [href]="'tel:' + siteConfig.contact.phone">{{ siteConfig.contact.phone }}</a></p>
+      <p>✉️ <a [href]="'mailto:' + siteConfig.contact.email">{{ siteConfig.contact.email }}</a></p>
     </div>
     <div class="footer-section">
-      <h4>Quick Links</h4>
+      <h4>{{ 'footer.quick_links' | translate }}</h4>
       <ul>
         <li><a routerLink="/about">{{ 'app.nav.about' | translate }}</a></li>
         <li><a routerLink="/facilities">{{ 'app.nav.facilities' | translate }}</a></li>
         <li><a routerLink="/pricing">{{ 'app.nav.pricing' | translate }}</a></li>
+        <li><a routerLink="/gallery">{{ 'app.nav.gallery' | translate }}</a></li>
         <li><a routerLink="/contact">{{ 'app.nav.contact' | translate }}</a></li>
       </ul>
     </div>
     <div class="footer-section">
-      <h4>Follow Us</h4>
-      <div class="social-links">
-        <a href="#" class="social-link">Facebook</a>
-        <a href="#" class="social-link">Instagram</a>
-        <a href="#" class="social-link">Twitter</a>
-      </div>
+      <h4>{{ 'footer.follow_us' | translate }}</h4>
+      <app-social-links variant="labeled"></app-social-links>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Camping Loutsa - {{ 'footer.tagline' | translate }}</p>
+    <p>© 2026 {{ siteConfig.title }} &mdash; {{ 'footer.tagline' | translate }}</p>
   </div>
 </footer>

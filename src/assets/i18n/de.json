@@ -19,7 +19,9 @@
     "tagline": "Camping & Tourismus in Messinien, Peloponnes",
     "location": "Finikounda, Messinien, Griechenland",
     "phone": "+30 27230 71200",
-    "email": "loutsa@otenet.gr"
+    "email": "loutsa@otenet.gr",
+    "quick_links": "Schnelllinks",
+    "follow_us": "Folgen Sie uns"
   },
   "home": {
     "hero": "Willkommen im Camping Loutsa",
@@ -53,6 +55,7 @@
     "why_support": "Fachkundige Unterstützung",
     "why_support_desc": "Freundliches Personal, das mit Reisetipps, lokalen Empfehlungen und bei allen Fragen hilft.",
     "testimonials": "Was unsere Gäste sagen",
+    "reviews": "Google Reviews",
     "testimonial_name_1": "Maria Papadopoulos",
     "testimonial_title_1": "Familienreisende",
     "testimonial_text_1": "Camping Loutsa hat unseren Familienurlaub unvergesslich gemacht! Die Strandlage, das freundliche Personal und die modernen Einrichtungen haben unsere Erwartungen übertroffen.",
@@ -399,6 +402,14 @@
     "reach_from_patras": "Entfernung von Patras",
     "reach_route_title": "Routen",
     "reach_route_1": "Athen → Messini → Koroni → Finikounda",
-    "reach_route_2": "Athen → Messini → Pylos → Methoni → Finikounda"
+    "reach_route_2": "Athen → Messini → Pylos → Methoni → Finikounda",
+    "success_title": "Nachricht gesendet!",
+    "success_body": "Danke für Ihre Nachricht. Wir antworten innerhalb von 24 Stunden.",
+    "send_another": "Weitere Nachricht senden",
+    "sending": "Wird gesendet…",
+    "error_required": "Dieses Feld ist erforderlich",
+    "error_name_short": "Der Name muss mindestens 2 Zeichen lang sein",
+    "error_email_invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "error_message_short": "Die Nachricht muss mindestens 10 Zeichen lang sein"
   }
 }

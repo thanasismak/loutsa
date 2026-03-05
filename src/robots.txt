@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://loutsa.gr/sitemap.xml
+Sitemap: https://loutsacamping.gr/sitemap.xml

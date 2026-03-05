@@ -3,19 +3,21 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from './common/components';
+import { SocialLinksComponent } from './common/components/social-links/social-links.component';
 import { I18N_LANGUAGES, DEFAULT_LANGUAGE, SITE_CONFIG } from './config/constants';
 import { SeoService } from './core/services';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule, HeaderComponent],
+  imports: [CommonModule, RouterModule, TranslateModule, HeaderComponent, SocialLinksComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   readonly translate = inject(TranslateService);
   readonly seoService = inject(SeoService);
+  readonly siteConfig = SITE_CONFIG;
 
   ngOnInit(): void {
     console.log('AppComponent initializing...');
