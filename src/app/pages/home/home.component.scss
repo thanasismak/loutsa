@@ -493,6 +493,29 @@
   border-radius: 999px;
 }
 
+.rt-toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1rem, 3vw, 1.5rem);
+}
+
+.rt-toggle-btn {
+  background: transparent;
+  border: 1px solid rgba($color-white, 0.5);
+  color: $color-white;
+  border-radius: 999px;
+  padding: 0.45rem 1.25rem;
+  font-size: clamp(0.8rem, 1.4vw, 0.875rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background: rgba($color-white, 0.12);
+    border-color: $color-white;
+  }
+}
+
 .rt-cta {
   display: flex;
   justify-content: center;

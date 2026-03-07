@@ -57,6 +57,8 @@
     "testimonials": "Was unsere Gäste sagen",
     "reviews": "Google Reviews",
     "write_review": "Google-Bewertung schreiben",
+    "show_all_reviews": "Alle {{count}} Bewertungen ansehen",
+    "show_fewer_reviews": "Weniger anzeigen",
     "testimonial_name_1": "Maria Papadopoulos",
     "testimonial_title_1": "Familienreisende",
     "testimonial_text_1": "Camping Loutsa hat unseren Familienurlaub unvergesslich gemacht! Die Strandlage, das freundliche Personal und die modernen Einrichtungen haben unsere Erwartungen übertroffen.",

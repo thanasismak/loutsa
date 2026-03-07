@@ -47,7 +47,12 @@ export class HomeComponent implements OnInit {
   featuredContent = signal<FeaturedContent>(HOME_FEATURED_CONTENT);
   featureItems = signal<GalleryItem[]>(HOME_FEATURE_ITEMS);
   testimonials = signal(HOME_TESTIMONIALS);
+  showAllReviews = signal(false);
   readonly reviewLink = GOOGLE_CONFIG.reviewLink;
+
+  toggleReviews(): void {
+    this.showAllReviews.update(v => !v);
+  }
   readonly avgRating = 4.8;
   readonly ratingStars = [true, true, true, true, true];
 

@@ -53,9 +53,21 @@
   </div>
 
   <!-- Testimonials Carousel -->
-  <app-carousel [items]="testimonials()" [autoRotate]="true" [rotationInterval]="5000" [visibleCount]="3"
+  <app-carousel [items]="testimonials()" [autoRotate]="!showAllReviews()" [rotationInterval]="5000"
+    [visibleCount]="showAllReviews() ? testimonials().length : 3"
     [showIndicators]="false" [showNavigation]="false">
   </app-carousel>
+
+  <!-- Show more / less toggle -->
+  <div class="rt-toggle">
+    <button class="rt-toggle-btn" (click)="toggleReviews()">
+      @if (!showAllReviews()) {
+        {{ 'home.show_all_reviews' | translate: { count: testimonials().length } }}
+      } @else {
+        {{ 'home.show_fewer_reviews' | translate }}
+      }
+    </button>
+  </div>
 
   <!-- Write a Google Review CTA -->
   <div class="rt-cta">
