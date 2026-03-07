@@ -13,12 +13,12 @@ export const HOME_FEATURED_CONTENT: FeaturedContent = {
 export const HOME_NAVIGATION_CARDS = [
   { title: 'app.nav.about',       description: 'home.about_desc',        link: '/about',        arrow: true, backgroundImage: IMAGES.medium(3) },
   { title: 'app.nav.facilities',  description: 'home.facilities_desc',   link: '/facilities',   arrow: true, backgroundImage: IMAGES.medium(5) },
-  { title: 'app.nav.pricing',     description: 'home.pricing_desc',      link: '/pricing',      arrow: true, backgroundImage: IMAGES.medium(23) },
+  { title: 'app.nav.pricing',     description: 'home.pricing_desc',      link: '/pricing',      arrow: true, backgroundImage: IMAGES.medium(8)  },
   { title: 'app.nav.gallery',     description: 'home.gallery_desc',      link: '/gallery',      arrow: true, backgroundImage: IMAGES.medium(11) },
-  { title: 'app.nav.activities',  description: 'home.activities_desc',   link: '/things-to-do', arrow: true, backgroundImage: IMAGES.medium(14) },
+  { title: 'app.nav.activities',  description: 'home.activities_desc',   link: '/things-to-do', arrow: true, backgroundImage: IMAGES.medium(9)  },
   { title: 'app.nav.how_to_reach',description: 'home.how_to_reach_desc', link: '/how-to-reach', arrow: true, backgroundImage: IMAGES.medium(17) },
   { title: 'app.nav.rules',       description: 'home.rules_desc',        link: '/rules',        arrow: true, backgroundImage: IMAGES.medium(20) },
-  { title: 'app.nav.faq',         description: 'home.faq_desc',          link: '/faq',          arrow: true, backgroundImage: IMAGES.medium(8) },
+  { title: 'app.nav.faq',         description: 'home.faq_desc',          link: '/faq',          arrow: true, backgroundImage: IMAGES.medium(23) },
   { title: 'app.nav.contact',     description: 'home.contact_desc',      link: '/contact',      arrow: true, backgroundImage: IMAGES.medium(26) },
 ];
 

@@ -1,9 +1,9 @@
 <header class="site-header">
   <div class="container header-content">
-    <!-- Logo on Left -->
-    <div class="logo-section">
+    <!-- Logo on Left - click to go home -->
+    <a routerLink="/" class="logo-section" (click)="closeMenu()">
       <h1 class="site-title">{{ 'app.nav.logo' | translate }} {{ title() }}</h1>
-    </div>
+    </a>
     
     <!-- Navigation Menu (Desktop: horizontal, Mobile: hidden) -->
     <nav class="nav" [class.open]="menuOpen()">
@@ -11,7 +11,6 @@
         {{ 'app.nav.home' | translate }}
       </a>
       <a routerLink="/about" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.about' | translate }}</a>
-      <a routerLink="/gallery" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.gallery' | translate }}</a>
       <a routerLink="/facilities" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.facilities' | translate }}</a>
       <a routerLink="/pricing" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.pricing' | translate }}</a>
       <a routerLink="/things-to-do" routerLinkActive="active" class="nav-link" (click)="closeMenu()">{{ 'app.nav.activities' | translate }}</a>
