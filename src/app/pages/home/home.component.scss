@@ -431,3 +431,91 @@
     transform: translateY(0);
   }
 }
+
+/* ===== COMBINED REVIEWS + TESTIMONIALS SECTION ===== */
+.rt-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+
+  @include respond-below('md') {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.rt-title {
+  margin: 0;
+  color: $color-white;
+  font-weight: 700;
+  @include responsive-text($font-size-2xl, $font-size-4xl, $font-size-5xl);
+}
+
+.rt-rating-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.rt-score {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: $color-white;
+  line-height: 1;
+}
+
+.rt-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.rt-star {
+  width: clamp(1.1rem, 2.5vw, 1.4rem);
+  height: clamp(1.1rem, 2.5vw, 1.4rem);
+  fill: rgba($color-white, 0.35);
+
+  &--filled {
+    fill: #fbbf24;
+  }
+}
+
+.rt-google-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $color-white;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba($color-white, 0.6);
+  border-radius: 999px;
+}
+
+.rt-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.rt-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  border: 2px solid $color-white;
+  color: $color-white;
+  text-decoration: none;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  font-weight: 600;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: $color-white;
+    color: $color-primary;
+  }
+}

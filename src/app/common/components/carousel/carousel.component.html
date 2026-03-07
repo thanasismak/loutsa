@@ -12,18 +12,24 @@
     <!-- Multi-item grid mode - render only visible items -->
     @if (visibleCount() > 1) {
       <div class="testimonials-carousel-grid">
-        @for (item of visibleItems(); track item['name'] || $index) {
+        @for (item of visibleItems(); track item['name'] || $index; let i = $index) {
           <div class="testimonial-card-compact">
-            <div class="stars">
-              @for (star of [1,2,3,4,5]; track star) {
-                <span class="star" [class.filled]="star <= (item['rating'] || 0)">★</span>
-              }
+            <!-- Google-review style header: avatar + name + stars -->
+            <div class="tc-header">
+              <div class="tc-avatar" [ngClass]="'tc-avatar--' + (i % 5)">
+                {{ getInitial(item['name']) }}
+              </div>
+              <div class="tc-meta">
+                <strong class="tc-name">{{ (item['name'] || '') | translate }}</strong>
+                <div class="stars">
+                  @for (star of [1,2,3,4,5]; track star) {
+                    <span class="star" [class.filled]="star <= (item['rating'] || 0)">★</span>
+                  }
+                </div>
+              </div>
             </div>
             <p class="testimonial-text">{{ (item['text'] || '') | translate }}</p>
-            <div class="testimonial-author">
-              <strong>{{ (item['name'] || '') | translate }}</strong>
-              <span class="testimonial-title">{{ (item['title'] || '') | translate }}</span>
-            </div>
+            <span class="testimonial-title">{{ (item['title'] || '') | translate }}</span>
           </div>
         }
       </div>

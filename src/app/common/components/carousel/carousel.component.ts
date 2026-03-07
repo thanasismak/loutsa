@@ -10,7 +10,7 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TestimonialCarouselService } from '@app/pages/home/services/testimonial-carousel.service';
 import { getCurrentScrollPosition, hasScrollPositionChanged } from '@app/pages/home/utils/scroll.utils';
 
@@ -33,6 +33,7 @@ export interface CarouselItem {
 })
 export class CarouselComponent implements OnInit, OnDestroy {
   private carouselService = inject(TestimonialCarouselService);
+  private readonly translate = inject(TranslateService);
 
   items = input<CarouselItem[]>([]);
   autoRotate = input<boolean>(true);
@@ -152,5 +153,10 @@ export class CarouselComponent implements OnInit, OnDestroy {
       this.stopAutoRotation();
       this.startAutoRotation();
     }
+  }
+
+  getInitial(nameKey: unknown): string {
+    const translated = this.translate.instant(String(nameKey ?? ''));
+    return (translated as string).charAt(0).toUpperCase();
   }
 }

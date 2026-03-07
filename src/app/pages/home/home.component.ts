@@ -11,11 +11,11 @@ import {
   HeroComponent,
   FeaturedComponent
 } from '@app/common/components';
-import { ReviewsComponent } from '@app/common/components/reviews/reviews.component';
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
 import { FeaturedContent } from '@app/common/components/featured/featured.component';
 import { HOME_NAVIGATION_CARDS, HOME_FEATURE_ITEMS, HOME_TESTIMONIALS, HOME_FEATURED_CONTENT } from './home.constants';
 import { CdnService } from '@app/core/services/cdn/cdn.service';
+import { GOOGLE_CONFIG } from '@app/config/constants';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +31,6 @@ import { CdnService } from '@app/core/services/cdn/cdn.service';
     CarouselComponent,
     HeroComponent,
     FeaturedComponent,
-    ReviewsComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
@@ -48,6 +47,9 @@ export class HomeComponent implements OnInit {
   featuredContent = signal<FeaturedContent>(HOME_FEATURED_CONTENT);
   featureItems = signal<GalleryItem[]>(HOME_FEATURE_ITEMS);
   testimonials = signal(HOME_TESTIMONIALS);
+  readonly reviewLink = GOOGLE_CONFIG.reviewLink;
+  readonly avgRating = 4.8;
+  readonly ratingStars = [true, true, true, true, true];
 
   @HostListener('window:scroll')
   onScroll(): void {
