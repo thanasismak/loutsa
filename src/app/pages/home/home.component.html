@@ -1,11 +1,17 @@
 <!-- Hero Section using HeroComponent -->
-<app-hero titleKey="home.hero" subtitleKey="home.hero_subtitle" [backgroundImage]="heroImage()"
+<app-hero
+  titleKey="home.hero"
+  subtitleKey="home.hero_subtitle"
+  [backgroundImage]="heroImage()"
   [mobileImage]="heroImageMobile()">
 </app-hero>
 
 <!-- Featured Section using FeaturedComponent -->
 <app-section [sectionClass]="'featured'">
-  <app-featured [content]="featuredContent()" [variant]="'grid-animated'" [scrollPosition]="scrollPosition()">
+  <app-featured 
+    [content]="featuredContent()" 
+    [variant]="'grid-animated'"
+    [scrollPosition]="scrollPosition()">
   </app-featured>
 </app-section>
 
@@ -13,16 +19,19 @@
 <app-section [title]="'home.explore' | translate">
   <app-tiles [gridClass]="'cols-3'">
     @for (card of navigationCards; track $index; let i = $index) {
-    <app-card [config]="card" [style.animation-delay]="(i * 100) + 'ms'"></app-card>
+      <app-card [config]="card" [style.animation-delay]="(i * 100) + 'ms'"></app-card>
     }
   </app-tiles>
 </app-section>
 
 <!-- Features Section - Discover Nearby -->
-<app-section [title]="'home.discover_nearby' | translate">
-  <app-gallery [itemsInput]="featureItems()" [animationType]="'revealStagger'" [columns]="3">
+<!-- <app-section [title]="'home.discover_nearby' | translate">
+  <app-gallery 
+    [itemsInput]="featureItems()"
+    [animationType]="'revealStagger'"
+    [columns]="3">
   </app-gallery>
-</app-section>
+</app-section> -->
 
 <!-- Google Reviews Section -->
 <app-section [title]="'home.reviews' | translate" [sectionClass]="'reviews-section'">

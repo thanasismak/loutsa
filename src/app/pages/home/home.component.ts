@@ -27,7 +27,7 @@ import { CdnService } from '@app/core/services/cdn/cdn.service';
     CardComponent,
     SectionComponent,
     TilesComponent,
-    GalleryComponent,
+    // GalleryComponent,
     CarouselComponent,
     HeroComponent,
     FeaturedComponent,
