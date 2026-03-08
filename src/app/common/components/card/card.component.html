@@ -2,6 +2,9 @@
      [class.card]="true"
      [class.clickable]="config().link"
      [class.card--photo]="config().backgroundImage"
+     [class.card--gradient]="config().icon && !config().backgroundImage"
+     [routerLinkActive]="config().link ? 'card--active' : ''"
+     [routerLinkActiveOptions]="{ exact: true }"
      (mouseenter)="onHover()" (mouseleave)="onLeave()">
   @if (config().backgroundImage) {
     <div class="card-bg" [style.background-image]="'url(' + config().backgroundImage + ')'"></div>
@@ -12,10 +15,10 @@
       <img [src]="config().image" [alt]="config().title" class="card-image">
     </div>
   }
+  @if (config().icon) {
+    <div class="card-icon">{{ config().icon }}</div>
+  }
   <div class="card-body">
-    @if (config().icon) {
-      <div class="card-icon">{{ config().icon }}</div>
-    }
     <h3 class="card-title">{{ config().title | translate }}</h3>
     <p class="card-description">{{ config().description | translate }}</p>
     @if (config().arrow) {
