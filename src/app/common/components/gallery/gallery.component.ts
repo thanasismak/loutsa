@@ -1,4 +1,4 @@
-import { Component, input, computed, inject, ViewChild, ElementRef, signal, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, input, computed, inject, ViewChild, ElementRef, signal, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ViewportService } from '../../../core/services/viewport.service';
@@ -9,6 +9,8 @@ export interface GalleryItem {
   alt?: string;
   title?: string;
   description?: string;
+  /** Full-resolution URL shown in lightbox. Falls back to src/image if omitted. */
+  fullImage?: string;
 }
 
 export type AnimationType = 'none' | 'revealStagger';
@@ -70,6 +72,43 @@ export class GalleryComponent implements AfterViewInit, OnDestroy {
     }
     // Apply 80ms stagger per card
     return `${index * 80}ms`;
+  }
+
+  // Lightbox state
+  lightboxItem = signal<GalleryItem | null>(null);
+  lightboxIndex = signal<number>(-1);
+
+  openLightbox(item: GalleryItem, index: number): void {
+    this.lightboxItem.set(item);
+    this.lightboxIndex.set(index);
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeLightbox(): void {
+    this.lightboxItem.set(null);
+    this.lightboxIndex.set(-1);
+    document.body.style.overflow = '';
+  }
+
+  navigate(dir: 1 | -1): void {
+    const all = this.items();
+    const next = (this.lightboxIndex() + dir + all.length) % all.length;
+    this.lightboxItem.set(all[next]);
+    this.lightboxIndex.set(next);
+  }
+
+  get lightboxSrc(): string {
+    const item = this.lightboxItem();
+    if (!item) return '';
+    return item.fullImage ?? item.src ?? item.image ?? '';
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onKey(e: KeyboardEvent): void {
+    if (!this.lightboxItem()) return;
+    if (e.key === 'Escape') this.closeLightbox();
+    if (e.key === 'ArrowRight') this.navigate(1);
+    if (e.key === 'ArrowLeft') this.navigate(-1);
   }
 
   ngAfterViewInit() {
