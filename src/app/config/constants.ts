@@ -52,11 +52,24 @@ const img = (folder: string, n: number): string =>
     ? `${environment.cdnBase}/${folder}/loutsa${pad(n)}.jpg`
     : `assets/images/${folder}/loutsa${pad(n)}.jpg`;
 
+const namedImg = (folder: string, name: string): string =>
+  environment.cdnBase
+    ? `${environment.cdnBase}/${folder}/${name}.jpg`
+    : `assets/images/${folder}/${name}.jpg`;
+
 export const IMAGES = {
   hero:   (n: number) => img('hero',   n),
   large:  (n: number) => img('large',  n),
   medium: (n: number) => img('medium', n),
   thumb:  (n: number) => img('thumb',  n),
+} as const;
+
+/** Named (non-numbered) image references */
+export const NAMED_IMAGES = {
+  panas_parking: {
+    medium: namedImg('medium', 'panas_parking'),
+    large:  namedImg('large',  'panas_parking'),
+  },
 } as const;
 
 // ---------------------------------------------------------------------------
