@@ -28,7 +28,7 @@ export class GalleryComponent {
    * Every entry has both medium (preview) and large (lightbox zoom).
    */
   readonly galleryImages: GalleryItem[] = [
-    { image: this.cdn.imageUrl('medium',  1), fullImage: this.cdn.imageUrl('large',  1) },
+    { image: this.cdn.imageUrl('medium',  4), fullImage: this.cdn.imageUrl('large',  4) },
     { image: this.cdn.imageUrl('medium',  2), fullImage: this.cdn.imageUrl('large',  2) },
     { image: this.cdn.imageUrl('medium',  5), fullImage: this.cdn.imageUrl('large',  5) },
     { image: this.cdn.imageUrl('medium',  7), fullImage: this.cdn.imageUrl('large',  7) },

@@ -20,6 +20,12 @@
   </app-tiles>
 </app-section>
 
+<!-- Featured — atmospheric photo + 3 nearby highlights -->
+<app-featured
+  [content]="featuredContent()"
+  [scrollPosition]="scrollPosition()">
+</app-featured>
+
 <!-- Combined Reviews + Testimonials Section -->
 <app-section [sectionClass]="'highlight testimonials-compact'">
 

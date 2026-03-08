@@ -3,10 +3,14 @@ import { FeaturedContent } from '@app/common/components/featured/featured.compon
 import { IMAGES } from '@app/config/constants';
 
 export const HOME_FEATURED_CONTENT: FeaturedContent = {
-  titleKey: 'home.feature_nature',
-  descriptionKey: 'home.feature_nature_desc',
-  imageUrl: IMAGES.large(17),
-  imageAlt: 'Camping View',
+  imageUrl: IMAGES.medium(2),
+  imageAlt: 'Camping Loutsa',
+  extraImages: [
+    IMAGES.medium(5),
+    IMAGES.medium(8),
+    IMAGES.medium(9),
+    IMAGES.medium(12),
+  ],
   variant: 'grid-animated'
 };
 

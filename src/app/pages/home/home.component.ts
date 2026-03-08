@@ -9,8 +9,8 @@ import {
   GalleryComponent,
   CarouselComponent,
   HeroComponent,
-  FeaturedComponent
 } from '@app/common/components';
+import { FeaturedComponent } from '@app/common/components/featured/featured.component';
 import { HeroUsp } from '@app/common/components/hero/hero.component';
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
 import { FeaturedContent } from '@app/common/components/featured/featured.component';
@@ -31,7 +31,7 @@ import { GOOGLE_CONFIG } from '@app/config/constants';
     // GalleryComponent,
     CarouselComponent,
     HeroComponent,
-    // FeaturedComponent,
+    FeaturedComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
