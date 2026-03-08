@@ -11,6 +11,7 @@ import {
   HeroComponent,
   FeaturedComponent
 } from '@app/common/components';
+import { HeroUsp } from '@app/common/components/hero/hero.component';
 import { GalleryItem } from '@app/common/components/gallery/gallery.component';
 import { FeaturedContent } from '@app/common/components/featured/featured.component';
 import { HOME_NAVIGATION_CARDS, HOME_FEATURE_ITEMS, HOME_TESTIMONIALS, HOME_FEATURED_CONTENT } from './home.constants';
@@ -30,7 +31,7 @@ import { GOOGLE_CONFIG } from '@app/config/constants';
     // GalleryComponent,
     CarouselComponent,
     HeroComponent,
-    FeaturedComponent,
+    // FeaturedComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
@@ -53,7 +54,12 @@ export class HomeComponent implements OnInit {
   toggleReviews(): void {
     this.showAllReviews.update(v => !v);
   }
-  readonly avgRating = 4.8;
+  readonly heroUsps: HeroUsp[] = [
+    { icon: 'beach',    textKey: 'home.usp_beach' },
+    { icon: 'star',     textKey: 'home.usp_rating' },
+    { icon: 'calendar', textKey: 'home.usp_open' },
+  ];
+  readonly avgRating = 4.6;
   readonly ratingStars = [true, true, true, true, true];
 
   @HostListener('window:scroll')

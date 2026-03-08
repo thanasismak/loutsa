@@ -1,19 +1,15 @@
-<!-- Hero Section using HeroComponent -->
 <app-hero
+  variant="split"
+  [backgroundImage]="heroImage()"
   titleKey="home.hero"
   subtitleKey="home.hero_subtitle"
-  [backgroundImage]="heroImage()"
-  [mobileImage]="heroImageMobile()">
+  eyebrow="Camping Loutsa · Φινικούντα, Μεσσηνία"
+  [usps]="heroUsps"
+  primaryCtaKey="home.cta"
+  primaryCtaLink="/pricing"
+  secondaryCtaKey="app.nav.contact"
+  secondaryCtaLink="/contact">
 </app-hero>
-
-<!-- Featured Section using FeaturedComponent -->
-<app-section [sectionClass]="'featured'">
-  <app-featured 
-    [content]="featuredContent()" 
-    [variant]="'grid-animated'"
-    [scrollPosition]="scrollPosition()">
-  </app-featured>
-</app-section>
 
 <!-- Navigation Cards Section -->
 <app-section [title]="'home.explore' | translate">
@@ -24,19 +20,10 @@
   </app-tiles>
 </app-section>
 
-<!-- Features Section - Discover Nearby -->
-<!-- <app-section [title]="'home.discover_nearby' | translate">
-  <app-gallery 
-    [itemsInput]="featureItems()"
-    [animationType]="'revealStagger'"
-    [columns]="3">
-  </app-gallery>
-</app-section> -->
-
 <!-- Combined Reviews + Testimonials Section -->
 <app-section [sectionClass]="'highlight testimonials-compact'">
 
-  <!-- Title + 4.8 rating bar on same row -->
+  <!-- Title + 4.6 rating bar on same row -->
   <div class="rt-section-header">
     <h2 class="rt-title">{{ 'home.testimonials' | translate }}</h2>
     <div class="rt-rating-bar">

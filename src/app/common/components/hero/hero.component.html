@@ -1,0 +1,64 @@
+@if (variant() === 'split') {
+  <section class="split-hero">
+    <div class="sh-photo" [style.background-image]="'url(' + backgroundImage() + ')'">
+      <div class="sh-overlay"></div>
+    </div>
+    <div class="sh-content">
+      @if (eyebrow()) {
+        <p class="sh-eyebrow">{{ eyebrow() }}</p>
+      }
+      <h1 class="sh-title">{{ titleKey() | translate }}</h1>
+      <p class="sh-tagline">{{ subtitleKey() | translate }}</p>
+      @if (usps().length > 0) {
+        <ul class="sh-usps">
+          @for (usp of usps(); track $index) {
+            <li>
+              @if (usp.icon === 'beach') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+                  <path d="M3 17c3-3 6-3 9 0s6 3 9 0"/>
+                  <path d="M3 12c3-3 6-3 9 0s6 3 9 0"/>
+                  <path d="M12 3v5"/>
+                  <circle cx="12" cy="3" r="1" fill="currentColor"/>
+                </svg>
+              }
+              @if (usp.icon === 'star') {
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              }
+              @if (usp.icon === 'calendar') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              }
+              {{ usp.textKey | translate }}
+            </li>
+          }
+        </ul>
+      }
+      @if (primaryCtaKey() || secondaryCtaKey()) {
+        <div class="sh-actions">
+          @if (primaryCtaKey()) {
+            <a [routerLink]="primaryCtaLink()" class="sh-btn sh-btn--primary">{{ primaryCtaKey() | translate }}</a>
+          }
+          @if (secondaryCtaKey()) {
+            <a [routerLink]="secondaryCtaLink()" class="sh-btn sh-btn--outline">{{ secondaryCtaKey() | translate }}</a>
+          }
+        </div>
+      }
+    </div>
+  </section>
+} @else {
+  <section class="hero-banner"
+    [style.--hero-bg-desktop]="bgDesktop()"
+    [style.--hero-bg-mobile]="bgMobile()">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>{{ titleKey() | translate }}</h1>
+      <p class="hero-subtitle">{{ subtitleKey() | translate }}</p>
+    </div>
+  </section>
+}

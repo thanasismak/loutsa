@@ -1,96 +1,32 @@
 import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
+
+export interface HeroUsp {
+  icon: 'beach' | 'star' | 'calendar';
+  textKey: string;
+}
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
-  template: `
-    <section class="hero-banner"
-      [style.--hero-bg-desktop]="bgDesktop()"
-      [style.--hero-bg-mobile]="bgMobile()">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>{{ titleKey() | translate }}</h1>
-        <p class="hero-subtitle">{{ subtitleKey() | translate }}</p>
-      </div>
-    </section>
-  `,
-  styles: [`
-    .hero-banner {
-      position: relative;
-      /* Fluid height: 250px on mobile, scales with viewport, max 400px on desktop */
-      height: clamp(250px, 60vw, 400px);
-      background: linear-gradient(135deg, #0ea5a4 0%, #14b8a6 100%);
-      /* Desktop: uses hero (1400px) image */
-      background-image: var(--hero-bg-desktop);
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      margin-bottom: 3rem;
-      overflow: hidden;
-    }
-
-    /* Mobile (≤768px): uses medium (400px) image — smaller download */
-    @media (max-width: 768px) {
-      .hero-banner {
-        background-image: var(--hero-bg-mobile);
-      }
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      animation: slideUp 0.8s ease-out;
-      padding: 0 clamp(1rem, 5vw, 2rem);
-    }
-
-    .hero-banner h1 {
-      /* Fluid font size: 1.75rem on mobile, scales with viewport, max 3.5rem on desktop */
-      font-size: clamp(1.75rem, 5vw, 3.5rem);
-      margin: 0 0 clamp(0.75rem, 2vw, 1rem) 0;
-      font-weight: 700;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-subtitle {
-      /* Fluid font size: 0.875rem on mobile, scales with viewport, max 1.3rem on desktop */
-      font-size: clamp(0.875rem, 2vw, 1.3rem);
-      margin: 0;
-      opacity: 0.95;
-      font-weight: 300;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  `]
+  imports: [CommonModule, TranslateModule, RouterModule],
+  templateUrl: './hero.component.html',
+  styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
   titleKey = input<string>('');
   subtitleKey = input<string>('');
-  /** Desktop/hero image — use assets/images/hero/ (1400px+) */
   backgroundImage = input<string | undefined>();
-  /** Mobile fallback — use assets/images/medium/ (400px). Defaults to backgroundImage if omitted. */
   mobileImage = input<string | undefined>();
+  variant = input<'default' | 'split'>('default');
+  eyebrow = input<string>('');
+  usps = input<HeroUsp[]>([]);
+  primaryCtaKey = input<string>('');
+  primaryCtaLink = input<string>('');
+  secondaryCtaKey = input<string>('');
+  secondaryCtaLink = input<string>('');
 
   bgDesktop = computed(() =>
     this.backgroundImage() ? `url(${this.backgroundImage()})` : 'none'
