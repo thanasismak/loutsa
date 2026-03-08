@@ -2,9 +2,9 @@
      [class.card]="true"
      [class.clickable]="config().link"
      [class.card--photo]="config().backgroundImage"
-     [ngStyle]="config().backgroundImage ? {'background-image': 'url(' + config().backgroundImage + ')'} : {}"
      (mouseenter)="onHover()" (mouseleave)="onLeave()">
   @if (config().backgroundImage) {
+    <div class="card-bg" [style.background-image]="'url(' + config().backgroundImage + ')'"></div>
     <div class="card-overlay"></div>
   }
   @if (config().image) {
