@@ -135,7 +135,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Contact Form <noreply@loutsacamping.gr>',
+        from: 'Contact Form <onboarding@resend.dev>',
         to: ['info@loutsacamping.gr'],
         reply_to: email,
         subject: `New contact form message from ${name}`,
