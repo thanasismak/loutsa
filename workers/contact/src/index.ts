@@ -35,7 +35,8 @@ const corsHeaders = (origin: string) => ({
 function isAllowedOrigin(origin: string): boolean {
   return (
     origin === 'https://www.loutsacamping.gr' ||
-    origin === 'https://loutsacamping.gr'
+    origin === 'https://loutsacamping.gr' ||
+    origin === 'http://localhost:4200'
   );
 }
 
@@ -135,8 +136,8 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Contact Form <onboarding@resend.dev>',
-        to: ['delivered@resend.dev'], // TODO: change to info@loutsacamping.gr after domain verification
+        from: 'Camping Loutsa <noreply@loutsacamping.gr>',
+        to: ['makris_th@hotmail.com'],
         reply_to: email,
         subject: `New contact form message from ${name}`,
         text: emailBody,

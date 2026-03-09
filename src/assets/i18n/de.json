@@ -203,7 +203,6 @@
     "wc_desc": "Gepflegte Toiletten- und Waschanlagen.",
     "kitchen": "Kochbereich",
     "kitchen_desc": "Einrichtungen zum Zubereiten eigener Mahlzeiten.",
-
     "subtitle": "70 Stellplätze · Blauflagge-Strand · Vollständige Services",
     "infra_title": "Stellplätze & Infrastruktur",
     "infra_intro": "Camping Loutsa verfügt über 70 Stellplätze à 48 m², klar voneinander abgegrenzt und mit Stromanschluss sowie Trinkwasser ausgestattet.",
@@ -213,14 +212,12 @@
     "pitch_elec_desc": "Stromverbindung an jedem Stellplatz.",
     "pitch_water": "Trinkwasser",
     "pitch_water_desc": "Trinkwasserhahn an jedem Stellplatz.",
-
     "sanitation_title": "Sanitäranlagen",
     "sanitation_intro": "Alle Sanitäranlagen sind 24 Stunden geöffnet, mit jederzeit verfügbarem Warmwasser.",
     "bathrooms_label": "Bäder",
     "showers_label": "Duschen",
     "washbasins_label": "Waschbecken",
     "hot_water_note": "Warmwasser 24 / 7",
-
     "kitchen_section_title": "Gemeinschaftsküche",
     "kitchen_full_desc": "Vollständige Kücheneinrichtung zum Kochen und Geschirrspülen, ausgestattet mit 2 großen Kühlschränken, 2 Tiefkühlern und einem Eiswasserspender.",
     "fridges": "2 große Kühlschränke",
@@ -229,17 +226,14 @@
     "freezers_desc": "Eislagerung.",
     "ice_water": "Eiswasserspender",
     "ice_water_desc": "Immer kaltes Trinkwasser.",
-
     "dining_title": "Gastronomie & Erfrischungen",
     "bbq": "Grillplatz",
     "bbq_desc": "Grilleinrichtungen für Gruppen vor Ort.",
-
     "laundry_section_title": "Wäscherei & Reinigung",
     "laundry_areas": "Wäschebereiche",
     "laundry_areas_desc": "Ausgewiesene Bereiche zum Handwaschen von Kleidung.",
     "chemical_dump": "Chemietoiletten-Entsorgungsstation",
     "chemical_dump_desc": "Spezialisierte Abfallentsorgungsanlage für Wohnmobile und Reisemobile.",
-
     "vehicle_section_title": "Fahrzeug- & Bootsservice",
     "vehicle_service": "Fahrzeugservicebereich",
     "vehicle_service_desc": "Bereich für Fahrzeugwartung und kleinere Reparaturen.",
@@ -247,7 +241,6 @@
     "boat_wash_desc": "Dedizierter Spül- und Reinigungsbereich für Boote.",
     "boat_ramp": "Bootsslipanlage",
     "boat_ramp_desc": "Direkte Strandrampe zum Zuwasserlassen von Booten.",
-
     "pets_title": "Haustiere willkommen",
     "pets_welcome_desc": "Haustiere sind auf dem gesamten Campinggelände erlaubt."
   },
@@ -267,7 +260,6 @@
     "fishing_desc": "Lokale Angelmöglichkeiten und Meeresfrüchte-Erlebnisse.",
     "nature": "Natur & Tierwelt",
     "nature_desc": "Beobachten Sie nistende Unechte Karettschildkröten am Strand und erleben Sie die lokale Tierwelt.",
-
     "exploration_title": "Die Umgebung erkunden",
     "exploration_intro": "Campinggäste haben neben ihrem entspannenden Urlaubsprogramm die Möglichkeit, ihre Spaziergänge mit der Erkundung der weiteren Umgebung zu verbinden.",
     "exploration_walking_title": "Wanderwege",
@@ -276,7 +268,6 @@
     "exploration_cycling_desc": "Die weitere Umgebung von Finikounda hat viele Pfade und landwirtschaftliche Straßen, die sich hervorragend zum Radfahren eignen.",
     "exploration_boat_title": "Bootsausflüge",
     "exploration_boat_desc": "Bootsbesitzer können die umliegenden kleinen Inseln (Agia Marina, Schieza, Sapientza, Venetiko) sowie die Strände (Mikro und Megalo Marathi, Limani Giatrou und Tsapi) besuchen.",
-
     "beaches_section_title": "Strände von Finikounda",
     "beaches_section_intro": "Finikounda, mit seiner ruhigen Lage und seinen spektakulären Stränden, ist das perfekte Gegenmittel, um dem Rhythmus des Alltags zu entfliehen.",
     "beaches_section_body": "Im Osten liegt der Loutsa-Strand, von dem das Camping seinen Namen hat. Nach Westen treffen Sie auf den Strand \"Ligonamos\", den Hauptstrand von Finikounda neben dem Hafen, und den Strand \"Makryammos\" oder \"Charoupia\", der bekannteste und größte Strand der Gegend ist.",
@@ -314,7 +305,6 @@
     "beach_col_character": "Charakter",
     "beach_col_best_for": "Am besten für",
     "beach_col_distance": "Entfernung",
-
     "monuments_title": "Denkmäler & historische Stätten",
     "monuments_intro": "In kurzer Entfernung von Finikounda können Besucher zahlreiche Antiken, Denkmäler, byzantinische Kirchen und Orte seltener natürlicher Schönheit bestaunen.",
     "monument_methoni": "Mittelalterliche Burg Methoni",
@@ -416,6 +406,28 @@
     "error_required": "Dieses Feld ist erforderlich",
     "error_name_short": "Der Name muss mindestens 2 Zeichen lang sein",
     "error_email_invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
-    "error_message_short": "Die Nachricht muss mindestens 10 Zeichen lang sein"
+    "error_message_short": "Die Nachricht muss mindestens 10 Zeichen lang sein",
+    "toggle_contact": "Kontakt",
+    "toggle_booking": "Buchen",
+    "booking_heading": "Ihren Platz reservieren",
+    "booking_subtitle": "Füllen Sie das Formular aus und wir bestätigen Ihre Buchung — Pflichtfelder markiert mit",
+    "check_in": "Anreisedatum",
+    "check_out": "Abreisedatum",
+    "adults": "Erwachsene",
+    "children_label": "Kinder",
+    "accommodation_type": "Unterkunftsart",
+    "accommodation_placeholder": "Typ auswählen...",
+    "accommodation_tent": "Zelt",
+    "accommodation_caravan": "Wohnwagen",
+    "accommodation_motorhome": "Wohnmobil",
+    "notes": "Besondere Wünsche",
+    "notes_placeholder": "Eventuelle Sonderwünsche oder Anmerkungen...",
+    "book_now": "Buchung anfragen",
+    "error_check_in": "Anreisedatum ist erforderlich",
+    "error_check_out": "Abreisedatum ist erforderlich",
+    "error_adults": "Mindestens 1 Erwachsener erforderlich",
+    "error_accommodation": "Bitte wählen Sie eine Unterkunftsart",
+    "success_booking_title": "Buchungsanfrage gesendet!",
+    "success_booking_body": "Wir melden uns innerhalb von 24 Stunden zur Bestätigung Ihrer Buchung."
   }
 }

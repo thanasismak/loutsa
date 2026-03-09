@@ -219,19 +219,21 @@ $text-dark: #3d3633;
 
 /* Main Layout */
 .contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
   margin-top: 2rem;
 }
 
 /* Form Wrapper */
 .contact-form-wrapper {
+  flex: 3 1 0%;
+  min-width: 0;
   display: flex;
+  flex-direction: column;
 }
 
 .form-card {
-  width: 100%;
   background: linear-gradient(135deg, $sand-light 0%, $primary-sand 100%);
   border-radius: 20px;
   border: none;
@@ -455,6 +457,8 @@ $text-dark: #3d3633;
 
 /* Info Wrapper */
 .contact-info-wrapper {
+  flex: 2 1 0%;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -666,10 +670,15 @@ $text-dark: #3d3633;
 }
 
 /* Responsive Layout - Mobile Comfort Focus */
-@include respond-below('lg') {
+@include respond-below('xl') {
   .contact-layout {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 2.5rem;
+  }
+
+  .contact-info-wrapper {
+    min-width: 0;
+    width: 100%;
   }
 
   .contact-hero {
@@ -730,7 +739,7 @@ $text-dark: #3d3633;
   }
 
   .contact-layout {
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .form-card {
@@ -931,3 +940,170 @@ $text-dark: #3d3633;
     animation: none !important;
   }
 }
+
+/* ============================================================
+   Form Type Toggle Pill
+   ============================================================ */
+.form-type-toggle {
+  position: relative;
+  display: flex;
+  gap: 0;
+  padding: 4px;
+  background: rgba($primary-teal, 0.1);
+  border-radius: 14px;
+  margin-bottom: 1.25rem;
+
+  &__btn {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1rem;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    color: $text-warm;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.25s ease;
+    line-height: 1;
+
+    &.active {
+      color: white;
+    }
+
+    &:not(.active):hover {
+      color: $primary-teal;
+    }
+  }
+
+  &__indicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    background: linear-gradient(135deg, $primary-teal 0%, $teal-dark 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba($primary-teal, 0.35);
+    transition: transform 0.35s cubic-bezier(0.4, 0.2, 0.2, 1);
+    pointer-events: none;
+
+    &.on-booking {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* ============================================================
+   3D Flip Scene
+   ============================================================ */
+.contact-form-wrapper {
+  // defined above — flex: 3 1 0; min-width: 0
+}
+
+.flip-scene {
+  perspective: 1600px;
+  perspective-origin: center 30%;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.flip-card {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.72s cubic-bezier(0.4, 0.2, 0.2, 1);
+
+  > .flip-card__face {
+    grid-row: 1;
+    grid-column: 1;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .flip-card__back {
+    transform: rotateY(180deg);
+  }
+}
+
+.flip-scene.is-flipped .flip-card {
+  transform: rotateY(180deg);
+}
+
+/* Disable the card's hover-lift inside the flip scene (transform conflicts) */
+.flip-card__face .form-card {
+  &:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   Booking Form Styles
+   ============================================================ */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @include respond-below('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  select {
+    padding: 0.95rem 1.1rem;
+    border: 2px solid rgba($primary-teal, 0.2);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.6);
+    @include transition(all);
+    outline: none;
+    color: $text-dark;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235ba9a6' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.8rem;
+
+    &:focus {
+      border-color: $primary-teal;
+      box-shadow: 0 0 0 4px rgba($primary-teal, 0.08);
+    }
+
+    &:hover {
+      border-color: rgba($primary-teal, 0.35);
+    }
+  }
+}
+
+.form-card--booking {
+  &::before {
+    background: linear-gradient(90deg, $primary-teal 0%, #fbbf7e 100%);
+  }
+}
+
+.btn-submit--booking {
+  background: linear-gradient(135deg, #e8a050 0%, #d4714b 100%);
+  box-shadow: 0 4px 12px rgba(212, 113, 75, 0.25);
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 12px 24px rgba(212, 113, 75, 0.35);
+  }
+}
+

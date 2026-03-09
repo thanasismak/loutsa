@@ -45,81 +45,234 @@
   </div>
 
   <div class="contact-layout">
-    <!-- Left: Contact Form -->
+    <!-- Left: Contact Form + Booking -->
     <div class="contact-form-wrapper">
-      <div class="form-card">
-        <div class="form-header">
-          <h3>{{ 'contact.form_heading' | translate }}</h3>
-          <p class="form-subtitle">{{ 'contact.form_subtitle' | translate }} <span class="required">*</span></p>
-        </div>
 
-        <!-- Success state -->
-        @if (contactService.isSuccess()) {
-          <div class="form-success" role="alert">
-            <span class="form-success__icon">✅</span>
-            <div>
-              <p class="form-success__title">{{ 'contact.success_title' | translate }}</p>
-              <p class="form-success__body">{{ 'contact.success_body' | translate }}</p>
-            </div>
-            <button class="btn-text" (click)="resetForm()">{{ 'contact.send_another' | translate }}</button>
-          </div>
-        } @else {
-          <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Form Type Toggle Pill -->
+      <div class="form-type-toggle" role="tablist">
+        <button
+          role="tab"
+          class="form-type-toggle__btn"
+          [class.active]="activeForm() === 'contact'"
+          [attr.aria-selected]="activeForm() === 'contact'"
+          (click)="toggleForm('contact')">
+          <span aria-hidden="true">✉️</span>
+          {{ 'contact.toggle_contact' | translate }}
+        </button>
+        <button
+          role="tab"
+          class="form-type-toggle__btn"
+          [class.active]="activeForm() === 'booking'"
+          [attr.aria-selected]="activeForm() === 'booking'"
+          (click)="toggleForm('booking')">
+          <span aria-hidden="true">📅</span>
+          {{ 'contact.toggle_booking' | translate }}
+        </button>
+        <span class="form-type-toggle__indicator" [class.on-booking]="activeForm() === 'booking'" aria-hidden="true"></span>
+      </div>
 
-            <div class="form-group" [class.form-group--error]="hasError('name', 'required') || hasError('name', 'minlength')">
-              <label for="name">{{ 'contact.name' | translate }} <span class="required">*</span></label>
-              <input id="name" formControlName="name" type="text" autocomplete="name"
-                     [placeholder]="'contact.name_placeholder' | translate" />
-              @if (hasError('name', 'required')) {
-                <span class="field-error">{{ 'contact.error_required' | translate }}</span>
-              } @else if (hasError('name', 'minlength')) {
-                <span class="field-error">{{ 'contact.error_name_short' | translate }}</span>
-              }
-            </div>
+      <!-- 3D Flip Scene -->
+      <div class="flip-scene" [class.is-flipped]="activeForm() === 'booking'">
+        <div class="flip-card">
 
-            <div class="form-group" [class.form-group--error]="hasError('email', 'required') || hasError('email', 'email')">
-              <label for="email">{{ 'contact.email_label' | translate }} <span class="required">*</span></label>
-              <input id="email" formControlName="email" type="email" autocomplete="email"
-                     placeholder="your@email.com" />
-              @if (hasError('email', 'required')) {
-                <span class="field-error">{{ 'contact.error_required' | translate }}</span>
-              } @else if (hasError('email', 'email')) {
-                <span class="field-error">{{ 'contact.error_email_invalid' | translate }}</span>
-              }
-            </div>
+          <!-- FRONT: Contact Form -->
+          <div class="flip-card__face flip-card__front">
+            <div class="form-card">
+              <div class="form-header">
+                <h3>{{ 'contact.form_heading' | translate }}</h3>
+                <p class="form-subtitle">{{ 'contact.form_subtitle' | translate }} <span class="required">*</span></p>
+              </div>
 
-            <div class="form-group">
-              <label for="phone">{{ 'contact.phone' | translate }}</label>
-              <input id="phone" formControlName="phone" type="tel" autocomplete="tel"
-                     placeholder="+30 265 102 3456" />
-            </div>
-
-            <div class="form-group" [class.form-group--error]="hasError('message', 'required') || hasError('message', 'minlength')">
-              <label for="message">{{ 'contact.message' | translate }} <span class="required">*</span></label>
-              <textarea id="message" formControlName="message" rows="6"
-                        [placeholder]="'contact.message_placeholder' | translate"></textarea>
-              @if (hasError('message', 'required')) {
-                <span class="field-error">{{ 'contact.error_required' | translate }}</span>
-              } @else if (hasError('message', 'minlength')) {
-                <span class="field-error">{{ 'contact.error_message_short' | translate }}</span>
-              }
-            </div>
-
-            @if (contactService.isError()) {
-              <p class="form-api-error" role="alert">⚠️ {{ contactService.errorMessage() }}</p>
-            }
-
-            <button type="submit" class="btn-submit" [disabled]="contactService.isSubmitting()">
-              @if (contactService.isSubmitting()) {
-                <span class="btn-submit__spinner" aria-hidden="true"></span>
-                {{ 'contact.sending' | translate }}
+              @if (contactService.isSuccess() && activeForm() === 'contact') {
+                <div class="form-success" role="alert">
+                  <span class="form-success__icon">✅</span>
+                  <div>
+                    <p class="form-success__title">{{ 'contact.success_title' | translate }}</p>
+                    <p class="form-success__body">{{ 'contact.success_body' | translate }}</p>
+                  </div>
+                  <button class="btn-text" (click)="resetForm()">{{ 'contact.send_another' | translate }}</button>
+                </div>
               } @else {
-                <span aria-hidden="true">📧</span> {{ 'contact.send' | translate }}
+                <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+                  <div class="form-group" [class.form-group--error]="hasError('name', 'required') || hasError('name', 'minlength')">
+                    <label for="c-name">{{ 'contact.name' | translate }} <span class="required">*</span></label>
+                    <input id="c-name" formControlName="name" type="text" autocomplete="name"
+                           [placeholder]="'contact.name_placeholder' | translate" />
+                    @if (hasError('name', 'required')) {
+                      <span class="field-error">{{ 'contact.error_required' | translate }}</span>
+                    } @else if (hasError('name', 'minlength')) {
+                      <span class="field-error">{{ 'contact.error_name_short' | translate }}</span>
+                    }
+                  </div>
+
+                  <div class="form-group" [class.form-group--error]="hasError('email', 'required') || hasError('email', 'email')">
+                    <label for="c-email">{{ 'contact.email_label' | translate }} <span class="required">*</span></label>
+                    <input id="c-email" formControlName="email" type="email" autocomplete="email"
+                           placeholder="your@email.com" />
+                    @if (hasError('email', 'required')) {
+                      <span class="field-error">{{ 'contact.error_required' | translate }}</span>
+                    } @else if (hasError('email', 'email')) {
+                      <span class="field-error">{{ 'contact.error_email_invalid' | translate }}</span>
+                    }
+                  </div>
+
+                  <div class="form-group">
+                    <label for="c-phone">{{ 'contact.phone' | translate }}</label>
+                    <input id="c-phone" formControlName="phone" type="tel" autocomplete="tel"
+                           placeholder="+30 265 102 3456" />
+                  </div>
+
+                  <div class="form-group" [class.form-group--error]="hasError('message', 'required') || hasError('message', 'minlength')">
+                    <label for="c-message">{{ 'contact.message' | translate }} <span class="required">*</span></label>
+                    <textarea id="c-message" formControlName="message" rows="5"
+                              [placeholder]="'contact.message_placeholder' | translate"></textarea>
+                    @if (hasError('message', 'required')) {
+                      <span class="field-error">{{ 'contact.error_required' | translate }}</span>
+                    } @else if (hasError('message', 'minlength')) {
+                      <span class="field-error">{{ 'contact.error_message_short' | translate }}</span>
+                    }
+                  </div>
+
+                  @if (contactService.isError()) {
+                    <p class="form-api-error" role="alert">⚠️ {{ contactService.errorMessage() }}</p>
+                  }
+
+                  <button type="submit" class="btn-submit" [disabled]="contactService.isSubmitting()">
+                    @if (contactService.isSubmitting()) {
+                      <span class="btn-submit__spinner" aria-hidden="true"></span>
+                      {{ 'contact.sending' | translate }}
+                    } @else {
+                      <span aria-hidden="true">📧</span> {{ 'contact.send' | translate }}
+                    }
+                  </button>
+                  <p class="form-note">{{ 'contact.form_note' | translate }}</p>
+                </form>
               }
-            </button>
-            <p class="form-note">{{ 'contact.form_note' | translate }}</p>
-          </form>
-        }
+            </div>
+          </div>
+
+          <!-- BACK: Booking Form -->
+          <div class="flip-card__face flip-card__back">
+            <div class="form-card form-card--booking">
+              <div class="form-header">
+                <h3>{{ 'contact.booking_heading' | translate }}</h3>
+                <p class="form-subtitle">{{ 'contact.booking_subtitle' | translate }} <span class="required">*</span></p>
+              </div>
+
+              @if (contactService.isSuccess() && activeForm() === 'booking') {
+                <div class="form-success" role="alert">
+                  <span class="form-success__icon">🏕️</span>
+                  <div>
+                    <p class="form-success__title">{{ 'contact.success_booking_title' | translate }}</p>
+                    <p class="form-success__body">{{ 'contact.success_booking_body' | translate }}</p>
+                  </div>
+                  <button class="btn-text" (click)="resetForm()">{{ 'contact.send_another' | translate }}</button>
+                </div>
+              } @else {
+                <form class="booking-form" [formGroup]="bookingForm" (ngSubmit)="onBookingSubmit()" novalidate>
+
+                  <div class="form-row">
+                    <div class="form-group" [class.form-group--error]="hasBookingError('name', 'required') || hasBookingError('name', 'minlength')">
+                      <label for="b-name">{{ 'contact.name' | translate }} <span class="required">*</span></label>
+                      <input id="b-name" formControlName="name" type="text" autocomplete="name"
+                             [placeholder]="'contact.name_placeholder' | translate" />
+                      @if (hasBookingError('name', 'required')) {
+                        <span class="field-error">{{ 'contact.error_required' | translate }}</span>
+                      } @else if (hasBookingError('name', 'minlength')) {
+                        <span class="field-error">{{ 'contact.error_name_short' | translate }}</span>
+                      }
+                    </div>
+
+                    <div class="form-group" [class.form-group--error]="hasBookingError('email', 'required') || hasBookingError('email', 'email')">
+                      <label for="b-email">{{ 'contact.email_label' | translate }} <span class="required">*</span></label>
+                      <input id="b-email" formControlName="email" type="email" autocomplete="email"
+                             placeholder="your@email.com" />
+                      @if (hasBookingError('email', 'required')) {
+                        <span class="field-error">{{ 'contact.error_required' | translate }}</span>
+                      } @else if (hasBookingError('email', 'email')) {
+                        <span class="field-error">{{ 'contact.error_email_invalid' | translate }}</span>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="b-phone">{{ 'contact.phone' | translate }}</label>
+                    <input id="b-phone" formControlName="phone" type="tel" autocomplete="tel"
+                           placeholder="+30 265 102 3456" />
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group" [class.form-group--error]="hasBookingError('checkIn', 'required')">
+                      <label for="b-checkin">{{ 'contact.check_in' | translate }} <span class="required">*</span></label>
+                      <input id="b-checkin" formControlName="checkIn" type="date" [min]="today" />
+                      @if (hasBookingError('checkIn', 'required')) {
+                        <span class="field-error">{{ 'contact.error_check_in' | translate }}</span>
+                      }
+                    </div>
+
+                    <div class="form-group" [class.form-group--error]="hasBookingError('checkOut', 'required')">
+                      <label for="b-checkout">{{ 'contact.check_out' | translate }} <span class="required">*</span></label>
+                      <input id="b-checkout" formControlName="checkOut" type="date" [min]="today" />
+                      @if (hasBookingError('checkOut', 'required')) {
+                        <span class="field-error">{{ 'contact.error_check_out' | translate }}</span>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group" [class.form-group--error]="hasBookingError('adults', 'required') || hasBookingError('adults', 'min')">
+                      <label for="b-adults">{{ 'contact.adults' | translate }} <span class="required">*</span></label>
+                      <input id="b-adults" formControlName="adults" type="number" min="1" max="20" />
+                      @if (hasBookingError('adults', 'min')) {
+                        <span class="field-error">{{ 'contact.error_adults' | translate }}</span>
+                      }
+                    </div>
+
+                    <div class="form-group">
+                      <label for="b-children">{{ 'contact.children_label' | translate }}</label>
+                      <input id="b-children" formControlName="children" type="number" min="0" max="20" />
+                    </div>
+                  </div>
+
+                  <div class="form-group" [class.form-group--error]="hasBookingError('accommodationType', 'required')">
+                    <label for="b-type">{{ 'contact.accommodation_type' | translate }} <span class="required">*</span></label>
+                    <select id="b-type" formControlName="accommodationType">
+                      <option value="" disabled>{{ 'contact.accommodation_placeholder' | translate }}</option>
+                      <option value="tent">{{ 'contact.accommodation_tent' | translate }}</option>
+                      <option value="caravan">{{ 'contact.accommodation_caravan' | translate }}</option>
+                      <option value="motorhome">{{ 'contact.accommodation_motorhome' | translate }}</option>
+                    </select>
+                    @if (hasBookingError('accommodationType', 'required')) {
+                      <span class="field-error">{{ 'contact.error_accommodation' | translate }}</span>
+                    }
+                  </div>
+
+                  <div class="form-group">
+                    <label for="b-notes">{{ 'contact.notes' | translate }}</label>
+                    <textarea id="b-notes" formControlName="notes" rows="3"
+                              [placeholder]="'contact.notes_placeholder' | translate"></textarea>
+                  </div>
+
+                  @if (contactService.isError()) {
+                    <p class="form-api-error" role="alert">⚠️ {{ contactService.errorMessage() }}</p>
+                  }
+
+                  <button type="submit" class="btn-submit btn-submit--booking" [disabled]="contactService.isSubmitting()">
+                    @if (contactService.isSubmitting()) {
+                      <span class="btn-submit__spinner" aria-hidden="true"></span>
+                      {{ 'contact.sending' | translate }}
+                    } @else {
+                      <span aria-hidden="true">📅</span> {{ 'contact.book_now' | translate }}
+                    }
+                  </button>
+                  <p class="form-note">{{ 'contact.form_note' | translate }}</p>
+                </form>
+              }
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
 
