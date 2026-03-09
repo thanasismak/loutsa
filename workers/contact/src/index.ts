@@ -136,7 +136,7 @@ export default {
       },
       body: JSON.stringify({
         from: 'Contact Form <onboarding@resend.dev>',
-        to: ['info@loutsacamping.gr'],
+        to: ['delivered@resend.dev'], // TODO: change to info@loutsacamping.gr after domain verification
         reply_to: email,
         subject: `New contact form message from ${name}`,
         text: emailBody,
