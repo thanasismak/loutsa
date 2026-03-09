@@ -36,7 +36,8 @@ function isAllowedOrigin(origin: string): boolean {
   return (
     origin === 'https://www.loutsacamping.gr' ||
     origin === 'https://loutsacamping.gr' ||
-    origin === 'http://localhost:4200'
+    origin === 'http://localhost:4200' ||
+    origin === 'https://loutsa.pages.dev'
   );
 }
 
@@ -118,7 +119,7 @@ export default {
     }
 
     // Send email via Resend
-    const emailBody = [
+    const textBody = [
       `Name: ${name}`,
       `Email: ${email}`,
       phone ? `Phone: ${phone}` : null,
@@ -128,6 +129,27 @@ export default {
     ]
       .filter((line) => line !== null)
       .join('\n');
+
+    const htmlBody = `<!DOCTYPE html>
+<html>
+<body style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#333;">
+  <div style="background:#2a7f6f;padding:16px 24px;border-radius:8px 8px 0 0;">
+    <h2 style="color:#fff;margin:0;font-size:18px;">New message — Camping Loutsa</h2>
+  </div>
+  <div style="border:1px solid #e0e0e0;border-top:none;padding:24px;border-radius:0 0 8px 8px;">
+    <table style="width:100%;border-collapse:collapse;">
+      <tr><td style="padding:8px 0;font-weight:bold;width:100px;">Name</td><td style="padding:8px 0;">${name}</td></tr>
+      <tr><td style="padding:8px 0;font-weight:bold;">Email</td><td style="padding:8px 0;"><a href="mailto:${email}" style="color:#2a7f6f;">${email}</a></td></tr>
+      ${phone ? `<tr><td style="padding:8px 0;font-weight:bold;">Phone</td><td style="padding:8px 0;">${phone}</td></tr>` : ''}
+    </table>
+    <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+    <p style="font-weight:bold;margin:0 0 8px;">Message:</p>
+    <p style="background:#f9f9f9;padding:16px;border-radius:6px;border-left:4px solid #2a7f6f;margin:0;white-space:pre-wrap;">${message}</p>
+    <hr style="border:none;border-top:1px solid #eee;margin:16px 0;">
+    <p style="font-size:12px;color:#999;margin:0;">Reply to this email to respond directly to ${name} (${email}).</p>
+  </div>
+</body>
+</html>`;
 
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -139,8 +161,9 @@ export default {
         from: 'Camping Loutsa <noreply@loutsacamping.gr>',
         to: ['makris_th@hotmail.com'],
         reply_to: email,
-        subject: `New contact form message from ${name}`,
-        text: emailBody,
+        subject: `[Camping Loutsa] Message from ${name}`,
+        text: textBody,
+        html: htmlBody,
       }),
     });
 

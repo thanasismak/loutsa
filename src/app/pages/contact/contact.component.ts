@@ -74,13 +74,21 @@ export class ContactComponent {
       return;
     }
     const v = this.bookingForm.getRawValue();
+    const typeLabel: Record<string, string> = { tent: 'Tent', caravan: 'Caravan / Trailer', motorhome: 'Motorhome / Camper' };
+    const nights = v.checkIn && v.checkOut
+      ? Math.round((new Date(v.checkOut).getTime() - new Date(v.checkIn).getTime()) / 86400000)
+      : null;
     const message = [
-      '[BOOKING REQUEST]',
-      `Check-in:  ${v.checkIn}`,
-      `Check-out: ${v.checkOut}`,
-      `Guests:    ${v.adults} adult(s), ${v.children} child(ren)`,
-      `Type:      ${v.accommodationType}`,
-      v.notes ? `Notes:     ${v.notes}` : null,
+      '📅 BOOKING REQUEST',
+      '─────────────────────────────',
+      `📆 Check-in:       ${v.checkIn}`,
+      `📆 Check-out:      ${v.checkOut}`,
+      nights !== null ? `🌙 Duration:       ${nights} night(s)` : null,
+      '─────────────────────────────',
+      `👥 Adults:         ${v.adults}`,
+      `👧 Children:       ${v.children ?? 0}`,
+      `🏕️  Type:           ${typeLabel[v.accommodationType ?? ''] ?? v.accommodationType}`,
+      v.notes ? `\n💬 Special requests:\n${v.notes}` : null,
     ].filter(Boolean).join('\n');
 
     this.contactService.submit({
