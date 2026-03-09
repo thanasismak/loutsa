@@ -22,6 +22,7 @@ export class HeroComponent {
   mobileImage = input<string | undefined>();
   variant = input<'default' | 'split'>('default');
   eyebrow = input<string>('');
+  eyebrowKey = input<string>('');
   usps = input<HeroUsp[]>([]);
   primaryCtaKey = input<string>('');
   primaryCtaLink = input<string>('');

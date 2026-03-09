@@ -4,8 +4,8 @@
       <div class="sh-overlay"></div>
     </div>
     <div class="sh-content">
-      @if (eyebrow()) {
-        <p class="sh-eyebrow">{{ eyebrow() }}</p>
+      @if (eyebrowKey() || eyebrow()) {
+        <p class="sh-eyebrow">{{ eyebrowKey() ? (eyebrowKey() | translate) : eyebrow() }}</p>
       }
       <h1 class="sh-title">{{ titleKey() | translate }}</h1>
       <p class="sh-tagline">{{ subtitleKey() | translate }}</p>
